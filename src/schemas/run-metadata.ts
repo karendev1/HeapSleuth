@@ -11,10 +11,12 @@ export const modelUsageSchema = z.object({
 export const runErrorCategorySchema = z.enum([
   "configuration",
   "source-boundary",
+  "browser-evidence",
   "provider",
   "malformed-json",
   "schema-validation",
   "persistence",
+  "trajectory",
   "unknown",
 ]);
 

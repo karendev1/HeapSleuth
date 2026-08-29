@@ -20,8 +20,17 @@ results/**
 !results/baseline/**/input-manifest.json
 !results/baseline/**/result.json
 !results/baseline/**/run-metadata.json
+!results/solution/
+!results/solution/**/
+!results/solution/**/browser-evidence.json
+!results/solution/**/failure.json
+!results/solution/**/input-manifest.json
+!results/solution/**/result.json
+!results/solution/**/run-metadata.json
 trajectories/**
 !trajectories/.gitkeep
+!trajectories/**/
+!trajectories/**/*.jsonl
 *.heapsnapshot
 
 # Logs and editor files

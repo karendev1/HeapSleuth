@@ -3,6 +3,7 @@ export * from "./baseline.js";
 export * from "./case.js";
 export * from "./diagnosis.js";
 export * from "./ground-truth.js";
+export * from "./investigator.js";
 export * from "./run-metadata.js";
 export * from "./trajectory.js";
 export * from "./verification.js";

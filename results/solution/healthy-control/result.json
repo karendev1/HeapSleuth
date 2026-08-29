@@ -1,0 +1,27 @@
+{
+  "caseId": "healthy-control",
+  "verdict": "no-leak",
+  "mechanism": null,
+  "rootCause": null,
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "HealthyControlCase returns a cleanup function in useEffect that removes the window event listener added during mount."
+    },
+    {
+      "source": "runtime",
+      "claim": "The runtime state shows retainedResources and activeResources remain at 0, while releasedResources increments to 3 matching createdInstances."
+    },
+    {
+      "source": "heap",
+      "claim": "Window event listener count shows zero net delta between baseline and final samples."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

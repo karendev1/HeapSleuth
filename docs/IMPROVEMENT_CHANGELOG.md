@@ -500,3 +500,116 @@ output, including failures. It does not complete an accuracy evaluation and does
 not establish that the seven leak verdicts are correct. The missing
 healthy-control diagnosis remains a known free-tier quota limitation for later
 evaluation and reporting.
+
+## 2026-08-29 — Investigator bounded-tool protocol decision
+
+### Context
+
+Block 5 must add runtime evidence to the same diagnosis task without exposing
+evaluator-only ground truth, implementing the later Verifier, or widening the
+MVP dataset. The existing direct-CDP spike and deterministic benchmark runner
+already provide the smallest reliable browser boundary.
+
+### Decision
+
+- Reuse the direct CDP/Playwright adapter selected in Block 2. Do not add a
+  second browser adapter or a model-controlled general-purpose browser.
+- Orchestrate a fixed, auditable tool sequence for each selected case: read only
+  the source files listed in neutral case metadata, warm up in an isolated
+  browser context, collect a post-GC baseline, run the recorded scenario in a
+  fresh context, collect a post-GC final sample, summarize listeners, and read
+  captured console errors.
+- Give the Investigator only the neutral description, recorded scenario, allowed
+  source contents, and validated browser evidence. Never load or import
+  evaluator ground truth in the Investigator path.
+- Reuse the exact Gemini model and request settings from the baseline so later
+  comparisons do not confound the evidence change with a model change.
+- Require the common diagnosis schema plus case-specific grounding checks: the
+  returned case ID must match, any root-cause file must be in the allowed source
+  list, and every cited evidence category must have been supplied.
+- Record JSONL trajectories containing observable instructions, bounded tool
+  calls and summarized results, run checkpoints, and the validated final result.
+  Do not store API keys, authorization data, provider envelopes, hidden prompts,
+  or private reasoning.
+- Limit the first working execution to `event-listener` and `healthy-control`,
+  as required by Block 5. Other cases, the Verifier, evaluation, and repair stay
+  in later blocks.
+
+### Acceptance checklist
+
+1. A case-scoped browser run completes warm-up and the exact recorded scenario
+   with baseline and final samples captured after forced garbage collection.
+2. Structured evidence includes heap usage, DOM counters, benchmark runtime
+   state, listener summaries, and console errors, and passes a saved-file schema
+   round trip.
+3. Source access rejects absolute, traversing, missing, and unlisted files.
+4. A versioned Investigator prompt enforces the evidence guardrails from the
+   project plan and requests the common diagnosis schema.
+5. Invalid model JSON, schema violations, mismatched case IDs, unsupported
+   evidence citations, and out-of-bound root-cause files fail closed.
+6. Successful and failed runs save validated metadata and an auditable JSONL
+   trajectory without secrets or evaluator data.
+7. One leak case and the healthy control complete with one model request each;
+   focused tests, `npm run validate`, and clean reproduction commands pass.
+
+### Evidence status
+
+The implementation now exposes a required single-case command:
+
+```text
+npm run solution -- --case <case-id>
+```
+
+It validates and saves `browser-evidence.json`, `input-manifest.json`,
+`result.json` or `failure.json`, `run-metadata.json`, and a run-ID-scoped JSONL
+trajectory. A previous active run is copied to
+`results/solution/attempts/<case-id>/<run-id>/` before replacement. The command
+does not retry a model request automatically.
+
+The first official `event-listener` attempt collected valid browser evidence,
+then received HTTP 429 from the Gemini free-tier 20-request quota. It saved one
+provider failure and one complete trajectory. After the provider's requested
+wait interval, a new independent run archived that failure and completed with
+one model request. The successful diagnosis returned `leak`, localized
+`EventListenerCase`, and passed all schema and grounding checks. The official
+`healthy-control` run also used one request and returned `no-leak` with no root
+cause or recommended fix.
+
+Both browser runs used Chrome 151.0.7922.174, one isolated warm-up cycle, three
+measured mount/unmount cycles, six measured actions, and two forced garbage
+collections before each sample. Neither run emitted a browser error.
+
+| Signal                           | Event listener | Healthy control |
+| -------------------------------- | -------------: | --------------: |
+| Used heap after-GC delta         | +487,348 bytes |  +486,704 bytes |
+| Backing storage after-GC delta   | +786,944 bytes |      +477 bytes |
+| All DOM listener delta           |             +3 |               0 |
+| Target listener delta            |             +3 |               0 |
+| Created resources                |             +3 |              +3 |
+| Active resources after unmount   |             +3 |               0 |
+| Retained resources after unmount |             +3 |               0 |
+| Released resources               |              0 |              +3 |
+
+The similar positive used-heap deltas demonstrate why HeapSleuth does not use
+heap size alone as proof. The targeted listener and runtime-retention signals
+separate this leak case from the healthy control after garbage collection.
+
+The successful event-listener run completed in 8,036 ms and used 2,520 input,
+358 output including thought, and 2,878 total tokens. The healthy-control run
+completed in 16,946 ms and used 2,144 input, 491 output including thought, and
+2,635 total tokens. Active artifacts are under
+`results/solution/event-listener/` and `results/solution/healthy-control/`;
+trajectories are under the matching case directories in `trajectories/`.
+
+An independent saved-artifact pass validated both active results, all three
+trajectories, the archived quota failure, and a scan for secrets and evaluator
+fields. `npm run validate` passed formatting, ESLint, both strict TypeScript
+projects, 56 tests across 16 test files, both production builds, and the final
+eight-case Chrome smoke regression.
+
+The Investigator currently uses compact heap, DOM, listener, runtime, and
+console summaries rather than a full heap snapshot or arbitrary retaining-path
+search. Block 5 tests only one known leak case and the healthy control; the
+Verifier, full dataset run, evaluator, automatic repair, and broader benchmark
+remain later work. These two diagnoses are acceptance checks, not an accuracy
+evaluation, so no diagnosis-accuracy improvement is claimed.

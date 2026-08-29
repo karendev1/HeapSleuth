@@ -618,11 +618,11 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 5: Investigator - 3 hours
 
-- [ ] Implement bounded browser and source tools.
-- [ ] Implement the investigator prompt.
-- [ ] Add structured result validation.
-- [ ] Save trajectories from the first working run.
-- [ ] Test one leak case and the healthy control.
+- [x] Implement bounded browser and source tools.
+- [x] Implement the investigator prompt.
+- [x] Add structured result validation.
+- [x] Save trajectories from the first working run.
+- [x] Test one leak case and the healthy control.
 
 ### Day 2 - Verify, evaluate, and package
 

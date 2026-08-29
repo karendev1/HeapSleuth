@@ -20,6 +20,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
+    "solution": "tsx src/investigator/run-investigator.ts",
     "start": "node dist/cli.js",
     "spike": "tsx src/browser/run-spike.ts",
     "smoke:benchmark": "tsx src/browser/run-benchmark-smoke.ts",
