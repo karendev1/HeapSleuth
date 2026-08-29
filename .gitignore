@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Runtime artifacts
+results/**
+!results/.gitkeep
+trajectories/**
+!trajectories/.gitkeep
+*.heapsnapshot
+
+# Logs and editor files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

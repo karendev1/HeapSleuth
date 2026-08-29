@@ -1,0 +1,7 @@
+coverage/
+dist/
+node_modules/
+results/
+trajectories/
+package-lock.json
+docs/PROJECT_PLAN.md
