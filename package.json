@@ -4,19 +4,28 @@
   "description": "Runtime-evidence workflow for diagnosing frontend memory leaks.",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "benchmark"
+  ],
   "engines": {
     "node": ">=20.19.0"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "benchmark": "npm run dev --workspace @heapsleuth/benchmark",
+    "build": "npm run build:core && npm run build:benchmark",
+    "build:benchmark": "npm run build --workspace @heapsleuth/benchmark",
+    "build:core": "tsc -p tsconfig.build.json",
     "dev": "tsx src/cli.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "node dist/cli.js",
+    "spike": "tsx src/browser/run-spike.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "npm run typecheck:core && npm run typecheck:benchmark",
+    "typecheck:benchmark": "npm run typecheck --workspace @heapsleuth/benchmark",
+    "typecheck:core": "tsc -p tsconfig.json",
     "validate": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
@@ -26,10 +35,12 @@
   "devDependencies": {
     "@types/node": "20.19.43",
     "eslint": "10.9.1",
+    "playwright-core": "1.62.1",
     "prettier": "3.9.6",
     "tsx": "4.23.12",
     "typescript": "5.9.3",
     "typescript-eslint": "8.68.0",
+    "vite": "8.2.2",
     "vitest": "4.1.11"
   }
 }

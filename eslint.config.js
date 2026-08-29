@@ -4,9 +4,9 @@ import tseslint from "typescript-eslint";
 export default defineConfig(
   {
     ignores: [
-      "coverage/**",
-      "dist/**",
-      "node_modules/**",
+      "**/coverage/**",
+      "**/dist/**",
+      "**/node_modules/**",
       "results/**",
       "trajectories/**",
     ],

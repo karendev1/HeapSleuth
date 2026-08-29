@@ -588,12 +588,12 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 2: Browser evidence spike - 1.5 hours
 
-- [ ] Build one minimal leaking benchmark case.
-- [ ] Run the interaction automatically.
-- [ ] Collect before/after evidence.
-- [ ] Verify that the evidence survives garbage collection.
-- [ ] Decide Chrome DevTools MCP or direct CDP fallback.
-- [ ] Record the decision in the improvement changelog.
+- [x] Build one minimal leaking benchmark case.
+- [x] Run the interaction automatically.
+- [x] Collect before/after evidence.
+- [x] Verify that the evidence survives garbage collection.
+- [x] Decide Chrome DevTools MCP or direct CDP fallback.
+- [x] Record the decision in the improvement changelog.
 
 #### Block 3: Benchmark dataset - 3 hours
 

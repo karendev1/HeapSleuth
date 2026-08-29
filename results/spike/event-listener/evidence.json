@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "startedAt": "2026-08-29T01:51:06.713Z",
+  "completedAt": "2026-08-29T01:51:11.932Z",
+  "durationMs": 5219,
+  "adapter": {
+    "kind": "direct-cdp",
+    "browserFamily": "chrome",
+    "browserVersion": "151.0.7922.174",
+    "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+  },
+  "benchmark": {
+    "origin": "http://127.0.0.1:61215",
+    "route": "/cases/event-listener"
+  },
+  "scenario": {
+    "warmupCycles": 3,
+    "measuredCycles": 20,
+    "completedWarmupCycles": 3,
+    "completedMeasuredCycles": 20,
+    "actionsPerCycle": 2
+  },
+  "samples": {
+    "baseline": {
+      "phase": "baseline",
+      "capturedAt": "2026-08-29T01:51:09.218Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage"
+      },
+      "heapUsage": {
+        "usedSize": 5237928,
+        "totalSize": 5898240,
+        "embedderHeapUsedSize": 437464,
+        "backingStorageSize": 4164969
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 42,
+        "jsEventListeners": 163
+      },
+      "targetEventListeners": 3,
+      "activeTargetHandlers": 3,
+      "listenerLocations": [
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        }
+      ]
+    },
+    "final": {
+      "phase": "final",
+      "capturedAt": "2026-08-29T01:51:11.348Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage"
+      },
+      "heapUsage": {
+        "usedSize": 5462604,
+        "totalSize": 6160384,
+        "embedderHeapUsedSize": 468336,
+        "backingStorageSize": 9407867
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 42,
+        "jsEventListeners": 183
+      },
+      "targetEventListeners": 23,
+      "activeTargetHandlers": 23,
+      "listenerLocations": [
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        },
+        {
+          "scriptId": "17",
+          "lineNumber": 21,
+          "columnNumber": 29
+        }
+      ]
+    }
+  },
+  "deltas": {
+    "usedHeapBytes": 224676,
+    "backingStorageBytes": 5242898,
+    "domNodes": 0,
+    "domEventListeners": 20,
+    "targetEventListeners": 20
+  },
+  "retention": {
+    "signal": "window-event-listener",
+    "eventType": "heapsleuth:notification",
+    "expectedMinimumListenerDelta": 20,
+    "observedListenerDelta": 20,
+    "survivedForcedGarbageCollection": true,
+    "explanation": "CDP still reports the target listeners on window after forced garbage collection, and dispatching the target event invokes the retained handlers."
+  },
+  "limitations": [
+    "The spike covers one synthetic, benchmark-controlled event-listener leak only.",
+    "JavaScript heap size is engine-sensitive; the retained listener signal is the primary evidence.",
+    "The spike records bounded CDP summaries and does not create or parse a full heap snapshot."
+  ]
+}

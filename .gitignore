@@ -11,6 +11,9 @@ coverage/
 # Runtime artifacts
 results/**
 !results/.gitkeep
+!results/spike/
+!results/spike/event-listener/
+!results/spike/event-listener/evidence.json
 trajectories/**
 !trajectories/.gitkeep
 *.heapsnapshot
