@@ -115,3 +115,82 @@ rerun passed formatting, linting, both strict TypeScript projects, 11 tests
 across 5 test files, the core production build, and the Vite production build.
 No diagnosis-accuracy improvement is claimed because baseline and solution
 evaluation have not run.
+
+## 2026-08-29 — Benchmark dataset architecture decision
+
+### Context
+
+Block 3 expands the proven single-case Vite benchmark into the complete P0
+dataset. The cases must remain deterministic and isolated, while hidden answers
+must never enter the browser bundle or a future agent input boundary.
+
+### Decision
+
+- Use one shared Vite/React shell with a safe browser manifest for route titles,
+  neutral descriptions, and case components.
+- Give every case the same recorded mount/unmount scenario contract and stable
+  selectors so one runner can exercise all routes without case-specific UI
+  automation.
+- Run every browser smoke scenario in a fresh browser context. Module-level
+  registries are therefore isolated between cases and each run starts from a
+  reproducible state.
+- Expose a small benchmark-controlled runtime state for bounded smoke
+  assertions. This state reports resource creation, retention, release, and
+  invocation counts; it is an observable test signal, not evaluator ground
+  truth.
+- Keep neutral case metadata in `dataset/cases.json` and evaluator answers in
+  the separate `dataset/ground-truth.json` file. Browser source code will not
+  import either dataset file, and the smoke runner will read only the neutral
+  case dataset.
+- Validate both JSON files with runtime schemas and cross-file invariant tests.
+  Bundle inspection will additionally reject hidden mechanism labels or ground
+  truth filenames in generated browser assets.
+- Preserve the Block 2 event-listener route and its direct-CDP instrumentation
+  so the original saved-evidence workflow remains a regression gate.
+
+### Expected effect
+
+This design should provide the eight reproducible P0 scenarios required for
+later fair baseline and agentic evaluation without implementing those later
+blocks or exposing their accepted answers.
+
+### Observed evidence
+
+The first `npm run smoke:benchmark` attempt stopped before case execution
+because Chrome requested an undefined favicon and Vite returned HTTP 404. A
+local SVG favicon and explicit document link removed the browser-console error;
+the complete clean rerun then passed.
+
+Chrome 151.0.7922.174 loaded the root index with all eight case links and ran
+each route in a fresh browser context. Every recorded scenario completed three
+mount/unmount cycles and six actions, followed by two forced garbage-collection
+requests. No route or browser-console error occurred. After garbage collection,
+each of the seven retention cases reported three created, active, and retained
+resources. The healthy control reported three created resources, zero active,
+zero retained, and three released resources.
+
+The dataset tests validate exact counts, unique IDs and routes, deterministic
+scenario records, source-file existence, seven-leak/one-control balance,
+complete evaluator metadata, cross-file ID alignment, and expected validation
+failures. The smoke runner imports only `dataset/cases.json`. Production bundle
+inspection found no ground-truth filename, evaluator field name, or accepted
+mechanism label in generated browser assets.
+
+The original Block 2 command also passed against the expanded shell: 20 measured
+cycles produced a +20 target-listener delta that survived forced garbage
+collection, a +243,460-byte used-heap delta, and a +5,242,898-byte
+backing-storage delta. This is a regression result for the existing synthetic
+case, not an evaluation result.
+
+### Limitations
+
+- The per-case counters are controlled observability hooks for deterministic
+  smoke testing. They do not replace later CDP heap summaries, retaining paths,
+  or case-specific evidence collection.
+- Three cycles verify scenario behavior and cleanup but are not a calibrated
+  memory-growth measurement.
+- The synthetic cases establish a reproducible dataset; they do not demonstrate
+  diagnosis accuracy or generalize retention behavior to arbitrary websites.
+
+No diagnosis-accuracy improvement is claimed because baseline and solution
+evaluation have not run.

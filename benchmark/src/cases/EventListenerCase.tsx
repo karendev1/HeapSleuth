@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 
+import {
+  createRetainedPayload,
+  getCaseRuntimeState,
+  updateChecksum,
+} from "../runtime-state.js";
+
 export const TARGET_EVENT_TYPE = "heapsleuth:notification";
-const RETAINED_PAYLOAD_BYTES = 256 * 1024;
 
 type EventListenerBenchmarkState = {
   createdInstances: number;
@@ -29,20 +34,24 @@ export function EventListenerCase() {
   useEffect(() => {
     const state = getBenchmarkState();
     const instanceId = ++state.createdInstances;
-    const retainedPayload = new Uint8Array(RETAINED_PAYLOAD_BYTES);
-    retainedPayload[0] = instanceId % 256;
+    const runtimeState = getCaseRuntimeState("event-listener");
+    runtimeState.createdInstances += 1;
+    runtimeState.activeResources += 1;
+    runtimeState.retainedResources += 1;
+    const retainedPayload = createRetainedPayload(instanceId);
 
     const handleNotification = () => {
       state.handlerInvocations += 1;
       state.retainedChecksum =
         (state.retainedChecksum + (retainedPayload[0] ?? 0) + instanceId) %
         65_535;
+      updateChecksum(runtimeState, retainedPayload, instanceId);
     };
 
     window.addEventListener(TARGET_EVENT_TYPE, handleNotification);
 
-    // Intentionally no cleanup: this is the single synthetic leak used by the
-    // Block 2 evidence spike.
+    // Intentionally no cleanup: Block 2 and the dataset use this retained
+    // listener as a synthetic, benchmark-controlled signal.
   }, []);
 
   return (

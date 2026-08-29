@@ -597,11 +597,11 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 3: Benchmark dataset - 3 hours
 
-- [ ] Implement all P0 leak cases.
-- [ ] Implement the healthy control.
-- [ ] Add deterministic scenarios.
-- [ ] Create hidden ground truth.
-- [ ] Add automated smoke tests for every route and scenario.
+- [x] Implement all P0 leak cases.
+- [x] Implement the healthy control.
+- [x] Add deterministic scenarios.
+- [x] Create hidden ground truth.
+- [x] Add automated smoke tests for every route and scenario.
 
 #### Block 4: Baseline - 1.5 hours
 

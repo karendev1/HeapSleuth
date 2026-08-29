@@ -21,6 +21,7 @@
     "lint": "eslint .",
     "start": "node dist/cli.js",
     "spike": "tsx src/browser/run-spike.ts",
+    "smoke:benchmark": "tsx src/browser/run-benchmark-smoke.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "npm run typecheck:core && npm run typecheck:benchmark",

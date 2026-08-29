@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "caseId": "event-listener",
-  "startedAt": "2026-08-29T01:51:06.713Z",
-  "completedAt": "2026-08-29T01:51:11.932Z",
-  "durationMs": 5219,
+  "startedAt": "2026-08-29T12:02:02.192Z",
+  "completedAt": "2026-08-29T12:02:06.425Z",
+  "durationMs": 4233,
   "adapter": {
     "kind": "direct-cdp",
     "browserFamily": "chrome",
@@ -11,7 +11,7 @@
     "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "benchmark": {
-    "origin": "http://127.0.0.1:61215",
+    "origin": "http://127.0.0.1:55883",
     "route": "/cases/event-listener"
   },
   "scenario": {
@@ -24,183 +24,183 @@
   "samples": {
     "baseline": {
       "phase": "baseline",
-      "capturedAt": "2026-08-29T01:51:09.218Z",
+      "capturedAt": "2026-08-29T12:02:04.188Z",
       "garbageCollection": {
         "forced": true,
         "method": "HeapProfiler.collectGarbage"
       },
       "heapUsage": {
-        "usedSize": 5237928,
+        "usedSize": 5353344,
         "totalSize": 5898240,
-        "embedderHeapUsedSize": 437464,
-        "backingStorageSize": 4164969
+        "embedderHeapUsedSize": 460752,
+        "backingStorageSize": 4219329
       },
       "domCounters": {
         "documents": 1,
-        "nodes": 42,
+        "nodes": 47,
         "jsEventListeners": 163
       },
       "targetEventListeners": 3,
       "activeTargetHandlers": 3,
       "listenerLocations": [
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         }
       ]
     },
     "final": {
       "phase": "final",
-      "capturedAt": "2026-08-29T01:51:11.348Z",
+      "capturedAt": "2026-08-29T12:02:06.087Z",
       "garbageCollection": {
         "forced": true,
         "method": "HeapProfiler.collectGarbage"
       },
       "heapUsage": {
-        "usedSize": 5462604,
+        "usedSize": 5596804,
         "totalSize": 6160384,
-        "embedderHeapUsedSize": 468336,
-        "backingStorageSize": 9407867
+        "embedderHeapUsedSize": 490192,
+        "backingStorageSize": 9462227
       },
       "domCounters": {
         "documents": 1,
-        "nodes": 42,
+        "nodes": 47,
         "jsEventListeners": 183
       },
       "targetEventListeners": 23,
       "activeTargetHandlers": 23,
       "listenerLocations": [
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         },
         {
-          "scriptId": "17",
-          "lineNumber": 21,
+          "scriptId": "20",
+          "lineNumber": 24,
           "columnNumber": 29
         }
       ]
     }
   },
   "deltas": {
-    "usedHeapBytes": 224676,
+    "usedHeapBytes": 243460,
     "backingStorageBytes": 5242898,
     "domNodes": 0,
     "domEventListeners": 20,

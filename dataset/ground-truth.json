@@ -1,0 +1,74 @@
+[
+  {
+    "caseId": "event-listener",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["event_listener_without_cleanup"],
+    "acceptedSourceFiles": ["benchmark/src/cases/EventListenerCase.tsx"],
+    "acceptedSymbols": ["EventListenerCase"],
+    "requiredEvidenceCategories": ["listener-retention", "runtime-retention"],
+    "evaluatorNotes": "The window listener remains registered after its component unmounts and retains the callback payload."
+  },
+  {
+    "caseId": "interval",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["interval_without_cleanup"],
+    "acceptedSourceFiles": ["benchmark/src/cases/IntervalCase.tsx"],
+    "acceptedSymbols": ["IntervalCase"],
+    "requiredEvidenceCategories": ["runtime-retention", "heap-retention"],
+    "evaluatorNotes": "The repeating timer is not cleared during unmount, so its callback and payload remain reachable."
+  },
+  {
+    "caseId": "resize-observer",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["resize_observer_without_disconnect"],
+    "acceptedSourceFiles": ["benchmark/src/cases/ResizeObserverCase.tsx"],
+    "acceptedSymbols": ["ResizeObserverCase"],
+    "requiredEvidenceCategories": ["runtime-retention", "heap-retention"],
+    "evaluatorNotes": "The observer keeps observing the document body because its unmount path never calls disconnect."
+  },
+  {
+    "caseId": "detached-dom",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["detached_dom_retained_by_javascript"],
+    "acceptedSourceFiles": ["benchmark/src/cases/DetachedDomCase.tsx"],
+    "acceptedSymbols": ["DetachedDomCase"],
+    "requiredEvidenceCategories": ["dom-retention", "heap-retention"],
+    "evaluatorNotes": "A module-level registry retains each artifact after the artifact is removed from the document."
+  },
+  {
+    "caseId": "global-cache",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["unbounded_global_collection"],
+    "acceptedSourceFiles": ["benchmark/src/cases/GlobalCacheCase.tsx"],
+    "acceptedSymbols": ["GlobalCacheCase"],
+    "requiredEvidenceCategories": ["runtime-retention", "heap-retention"],
+    "evaluatorNotes": "Every mount inserts a new payload into a process-lifetime map without eviction."
+  },
+  {
+    "caseId": "closure-registry",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["closure_retained_by_registry"],
+    "acceptedSourceFiles": ["benchmark/src/cases/ClosureRegistryCase.tsx"],
+    "acceptedSymbols": ["ClosureRegistryCase"],
+    "requiredEvidenceCategories": ["runtime-retention", "heap-retention"],
+    "evaluatorNotes": "A module-level registry stores callbacks whose closures capture one payload per mount."
+  },
+  {
+    "caseId": "event-bus",
+    "expectedVerdict": "leak",
+    "acceptedMechanisms": ["event_bus_subscription_without_cleanup"],
+    "acceptedSourceFiles": ["benchmark/src/cases/EventBusCase.tsx"],
+    "acceptedSymbols": ["EventBusCase"],
+    "requiredEvidenceCategories": ["runtime-retention", "heap-retention"],
+    "evaluatorNotes": "The component subscribes a payload-capturing callback to the shared event bus but never unsubscribes."
+  },
+  {
+    "caseId": "healthy-control",
+    "expectedVerdict": "no-leak",
+    "acceptedMechanisms": ["temporary_allocation_released"],
+    "acceptedSourceFiles": ["benchmark/src/cases/HealthyControlCase.tsx"],
+    "acceptedSymbols": ["HealthyControlCase"],
+    "requiredEvidenceCategories": ["cleanup-after-gc"],
+    "evaluatorNotes": "The cleanup removes the listener and releases the temporary payload after every unmount."
+  }
+]

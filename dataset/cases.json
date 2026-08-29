@@ -1,0 +1,106 @@
+[
+  {
+    "id": "event-listener",
+    "description": "Open and close a notification preview repeatedly.",
+    "route": "/cases/event-listener",
+    "sourceFiles": ["benchmark/src/cases/EventListenerCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "interval",
+    "description": "Open and close a live activity card repeatedly.",
+    "route": "/cases/interval",
+    "sourceFiles": ["benchmark/src/cases/IntervalCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "resize-observer",
+    "description": "Open and close a responsive preview repeatedly.",
+    "route": "/cases/resize-observer",
+    "sourceFiles": ["benchmark/src/cases/ResizeObserverCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "detached-dom",
+    "description": "Open and close a temporary details panel repeatedly.",
+    "route": "/cases/detached-dom",
+    "sourceFiles": ["benchmark/src/cases/DetachedDomCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "global-cache",
+    "description": "Open and close a recently viewed item repeatedly.",
+    "route": "/cases/global-cache",
+    "sourceFiles": ["benchmark/src/cases/GlobalCacheCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "closure-registry",
+    "description": "Open and close a report preview repeatedly.",
+    "route": "/cases/closure-registry",
+    "sourceFiles": ["benchmark/src/cases/ClosureRegistryCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "event-bus",
+    "description": "Open and close a message center repeatedly.",
+    "route": "/cases/event-bus",
+    "sourceFiles": ["benchmark/src/cases/EventBusCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  },
+  {
+    "id": "healthy-control",
+    "description": "Open and close a temporary summary repeatedly.",
+    "route": "/cases/healthy-control",
+    "sourceFiles": ["benchmark/src/cases/HealthyControlCase.tsx"],
+    "scenario": [
+      {
+        "action": "mount-unmount",
+        "target": "[data-heapsleuth-toggle]",
+        "repetitions": 3
+      }
+    ]
+  }
+]
