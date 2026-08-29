@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini request failed with HTTP 500.",
+  "attemptCount": 1
+}

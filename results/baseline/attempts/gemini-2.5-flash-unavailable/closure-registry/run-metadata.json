@@ -1,0 +1,26 @@
+{
+  "runId": "ce917550-dc69-4266-904f-a5cba944dd35",
+  "caseId": "closure-registry",
+  "approach": "baseline",
+  "status": "failed",
+  "startedAt": "2026-08-29T14:05:43.475Z",
+  "completedAt": "2026-08-29T14:05:44.096Z",
+  "durationMs": 621,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-2.5-flash",
+  "provider": "gemini-generate-content",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": 0,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 404: This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API."
+}

@@ -7,6 +7,10 @@ import {
 
 type RunStart = Pick<RunMetadata, "approach" | "caseId"> & {
   model?: string;
+  provider?: string;
+  promptVersion?: string;
+  requestSettings?: RunMetadata["requestSettings"];
+  attemptCount?: number;
 };
 
 export function createRunMetadata(
@@ -29,7 +33,14 @@ export function createRunMetadata(
 export function completeRunMetadata(
   metadata: RunMetadata,
   status: "succeeded" | "failed",
-  options: { completedAt?: Date; error?: string } = {},
+  options: {
+    completedAt?: Date;
+    error?: string;
+    errorCategory?: RunMetadata["errorCategory"];
+    attemptCount?: number;
+    usage?: RunMetadata["usage"];
+    providerResponseId?: string;
+  } = {},
 ): RunMetadata {
   const completedAt = options.completedAt ?? new Date();
   const durationMs = Math.max(
@@ -43,5 +54,15 @@ export function completeRunMetadata(
     completedAt: completedAt.toISOString(),
     durationMs,
     ...(options.error === undefined ? {} : { error: options.error }),
+    ...(options.errorCategory === undefined
+      ? {}
+      : { errorCategory: options.errorCategory }),
+    ...(options.attemptCount === undefined
+      ? {}
+      : { attemptCount: options.attemptCount }),
+    ...(options.usage === undefined ? {} : { usage: options.usage }),
+    ...(options.providerResponseId === undefined
+      ? {}
+      : { providerResponseId: options.providerResponseId }),
   });
 }

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "interval",
+  "approach": "baseline",
+  "description": "Open and close a live activity card repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/IntervalCase.tsx",
+      "byteCount": 795
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "28c71f21ba72cb304ba65ce48fee5b2f9156ebd1cfbb194d3daf0dadee50055d"
+  }
+}

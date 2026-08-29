@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "resize-observer",
+  "approach": "baseline",
+  "description": "Open and close a responsive preview repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/ResizeObserverCase.tsx",
+      "byteCount": 862
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "2009d9ead747104dd03dcddf8dee9b19061b930bcfa59bdd6393822e58cbbb42"
+  }
+}

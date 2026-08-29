@@ -4,11 +4,11 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { loadBenchmarkCases } from "../src/dataset/load-cases.js";
+import { benchmarkDatasetSchema } from "../src/schemas/case.js";
 import {
-  benchmarkDatasetSchema,
   groundTruthDatasetSchema,
   validateDatasetAlignment,
-} from "../src/schemas/case.js";
+} from "../src/schemas/ground-truth.js";
 
 const projectRoot = process.cwd();
 const answerPath = path.join(projectRoot, "dataset", "ground-truth.json");

@@ -1,0 +1,24 @@
+{
+  "caseId": "event-listener",
+  "verdict": "leak",
+  "mechanism": "Unremoved global event listener",
+  "rootCause": {
+    "file": "benchmark/src/cases/EventListenerCase.tsx",
+    "symbol": "EventListenerCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect attaches handleNotification to window via window.addEventListener(TARGET_EVENT_TYPE, handleNotification) without returning a cleanup function to removeEventListener."
+    },
+    {
+      "source": "source",
+      "claim": "handleNotification closes over retainedPayload and instanceId, keeping them reachable from global window object after unmount."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect that calls window.removeEventListener(TARGET_EVENT_TYPE, handleNotification).",
+  "limitations": [
+    "Static code review without runtime execution or heap snapshot confirmation."
+  ]
+}

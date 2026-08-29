@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "approach": "baseline",
+  "description": "Open and close a notification preview repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/EventListenerCase.tsx",
+      "byteCount": 1772
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "2455b789501e5080043b381c9ace9b5e2c1f2bea2c6f662f73f918b53f81209b"
+  }
+}

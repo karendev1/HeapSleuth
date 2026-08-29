@@ -1,0 +1,24 @@
+{
+  "caseId": "detached-dom",
+  "verdict": "leak",
+  "mechanism": "Detached DOM / Global reference retention",
+  "rootCause": {
+    "file": "benchmark/src/cases/DetachedDomCase.tsx",
+    "symbol": "artifactRegistry"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "The component pushes an object containing a newly created DOM element (`artifact`) and payload into the module-scope `artifactRegistry` array on mount."
+    },
+    {
+      "source": "source",
+      "claim": "The useEffect cleanup function calls `artifact.remove()`, detaching the element from the DOM tree, but does not remove the element or payload reference from `artifactRegistry`."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Remove the artifact entry from `artifactRegistry` in the useEffect cleanup function when the component unmounts.",
+  "limitations": [
+    "Analysis relies solely on static source code inspection without runtime heap snapshot measurements."
+  ]
+}

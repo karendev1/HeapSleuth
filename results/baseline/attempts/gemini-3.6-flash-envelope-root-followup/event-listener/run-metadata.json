@@ -1,0 +1,28 @@
+{
+  "runId": "03e46c70-7624-4a05-8988-d0e99d657125",
+  "caseId": "event-listener",
+  "approach": "baseline",
+  "status": "failed",
+  "startedAt": "2026-08-29T17:07:08.488Z",
+  "completedAt": "2026-08-29T17:07:31.546Z",
+  "durationMs": 23058,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini returned an invalid Interactions API envelope (root:invalid_union)."
+}

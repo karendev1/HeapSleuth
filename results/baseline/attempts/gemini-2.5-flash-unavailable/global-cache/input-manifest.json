@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "global-cache",
+  "approach": "baseline",
+  "description": "Open and close a recently viewed item repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/GlobalCacheCase.tsx",
+      "byteCount": 719
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "a95ae962b1611308ed0eac738667ca3506975735abf8cdfae46285d80fb8ee16"
+  }
+}

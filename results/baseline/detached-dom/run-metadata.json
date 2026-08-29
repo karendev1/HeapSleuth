@@ -1,0 +1,31 @@
+{
+  "runId": "b2c09577-4424-4585-b4fc-c02a46b15e4f",
+  "caseId": "detached-dom",
+  "approach": "baseline",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:13:58.925Z",
+  "completedAt": "2026-08-29T17:14:06.177Z",
+  "durationMs": 7252,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 652,
+    "outputTokens": 530,
+    "totalTokens": 1182
+  }
+}

@@ -7,8 +7,11 @@ Runtime-evidence workflow for diagnosing frontend memory leaks.
 Usage:
   npm run dev -- --help
 
-Commands for the baseline, browser evidence workflow, and evaluation will be added
-in their corresponding MVP execution blocks.
+Available model-backed command:
+  npm run baseline [-- --case <case-id>]
+
+Browser evidence and evaluation commands are added in their corresponding MVP
+execution blocks.
 `;
 
 function main(arguments_: readonly string[]): void {

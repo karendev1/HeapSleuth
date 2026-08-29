@@ -1,0 +1,31 @@
+{
+  "runId": "605394ff-6fc8-43ad-9187-b1a2bbb74ad2",
+  "caseId": "resize-observer",
+  "approach": "baseline",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:13:27.313Z",
+  "completedAt": "2026-08-29T17:13:32.065Z",
+  "durationMs": 4752,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 588,
+    "outputTokens": 641,
+    "totalTokens": 1229
+  }
+}

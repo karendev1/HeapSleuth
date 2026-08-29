@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "caseId": "global-cache",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini request could not be completed: fetch failed",
+  "attemptCount": 1
+}

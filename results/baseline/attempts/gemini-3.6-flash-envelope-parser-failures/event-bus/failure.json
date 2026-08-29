@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini returned an invalid Interactions API envelope.",
+  "attemptCount": 1
+}

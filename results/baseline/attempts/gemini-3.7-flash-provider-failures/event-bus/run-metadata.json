@@ -1,0 +1,28 @@
+{
+  "runId": "ffd6a36d-e030-4289-87cc-583ceec07a87",
+  "caseId": "event-bus",
+  "approach": "baseline",
+  "status": "failed",
+  "startedAt": "2026-08-29T14:39:19.713Z",
+  "completedAt": "2026-08-29T14:41:08.311Z",
+  "durationMs": 108598,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.7-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 429."
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "approach": "baseline",
+  "description": "Open and close a message center repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/EventBusCase.tsx",
+      "byteCount": 898
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "b8bfd32e8c1f6c06f93916c51a2e8e3326aedc39d201a423fbedb621ba98fd12"
+  }
+}

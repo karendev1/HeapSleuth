@@ -84,6 +84,7 @@ The MVP must:
 
 Only attempt these items after every MVP acceptance criterion passes:
 
+- expand the synthetic benchmark from eight MVP cases to twelve total cases;
 - generate a candidate code patch;
 - apply the patch in an isolated copy;
 - rerun the exact scenario and verify the memory behavior;
@@ -303,7 +304,12 @@ Any difference in model, token budget, or available context must be disclosed in
 | `handler-identity` | Cleanup uses a different callback identity | Leak | P1 |
 | `healthy-control` | Temporary allocation released after cleanup | No leak | P0 |
 
-If time becomes critical, reduce UI complexity rather than reducing evaluation integrity. The ten-case target should be preserved if possible.
+The MVP dataset is the eight P0 cases. Do not add dataset cases until every MVP
+acceptance criterion passes. After MVP acceptance, expand the benchmark to
+twelve total cases: retain the two listed P1 candidates and select two additional
+synthetic cases from failure modes observed during evaluation. If time becomes
+critical, preserve the integrity of the eight-case MVP evaluation before
+attempting this post-MVP expansion.
 
 ### Ground-truth schema
 
@@ -530,8 +536,8 @@ The submission must include `.env.example` but never `.env`.
 Example:
 
 ```env
-AI_API_KEY=
-AI_MODEL=
+GEMINI_API_KEY=
+AI_MODEL=gemini-3.6-flash
 BROWSER_HEADLESS=true
 RESULTS_DIR=results
 ```
@@ -605,10 +611,10 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 4: Baseline - 1.5 hours
 
-- [ ] Implement the one-prompt baseline.
-- [ ] Enforce the common result schema.
-- [ ] Run the first baseline batch.
-- [ ] Save all outputs, including failures.
+- [x] Implement the one-prompt baseline.
+- [x] Enforce the common result schema.
+- [x] Run the first baseline batch.
+- [x] Save all outputs, including failures.
 
 #### Block 5: Investigator - 3 hours
 
@@ -683,7 +689,7 @@ The fallback must remain honest about what it can and cannot prove.
 
 ### P1 - High-value enhancements
 
-- [ ] Ten total benchmark cases.
+- [ ] Twelve total benchmark cases, only after every MVP acceptance criterion passes.
 - [ ] Human-readable Markdown reports.
 - [ ] Automated cost and runtime tracking.
 - [ ] One-click reproduction command.

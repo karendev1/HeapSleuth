@@ -11,6 +11,7 @@
     "node": ">=20.19.0"
   },
   "scripts": {
+    "baseline": "tsx src/baseline/run-baseline.ts",
     "benchmark": "npm run dev --workspace @heapsleuth/benchmark",
     "build": "npm run build:core && npm run build:benchmark",
     "build:benchmark": "npm run build --workspace @heapsleuth/benchmark",

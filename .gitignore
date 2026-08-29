@@ -14,6 +14,12 @@ results/**
 !results/spike/
 !results/spike/event-listener/
 !results/spike/event-listener/evidence.json
+!results/baseline/
+!results/baseline/**/
+!results/baseline/**/failure.json
+!results/baseline/**/input-manifest.json
+!results/baseline/**/result.json
+!results/baseline/**/run-metadata.json
 trajectories/**
 !trajectories/.gitkeep
 *.heapsnapshot

@@ -1,0 +1,24 @@
+{
+  "caseId": "resize-observer",
+  "verdict": "leak",
+  "mechanism": "Missing ResizeObserver cleanup on unmount",
+  "rootCause": {
+    "file": "benchmark/src/cases/ResizeObserverCase.tsx",
+    "symbol": "ResizeObserverCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "The useEffect hook creates a ResizeObserver and observes document.body but returns no cleanup function to call observer.disconnect() or observer.unobserve(document.body) when unmounting."
+    },
+    {
+      "source": "source",
+      "claim": "The ResizeObserver callback closes over retained payload data and runtime state, keeping allocations reachable through the document.body observation after component reversal."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect that calls observer.disconnect() or observer.unobserve(document.body).",
+  "limitations": [
+    "Static source analysis only; runtime memory consumption and DOM state were not measured."
+  ]
+}

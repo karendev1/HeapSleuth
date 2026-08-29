@@ -6,9 +6,21 @@ const booleanFromEnvironmentSchema = z
   .default("true")
   .transform((value) => value === "true");
 
+function emptyStringToUndefined(value: unknown): unknown {
+  return typeof value === "string" && value.trim().length === 0
+    ? undefined
+    : value;
+}
+
 export const appConfigSchema = z.object({
-  AI_API_KEY: z.string().min(1).optional(),
-  AI_MODEL: z.string().min(1).optional(),
+  GEMINI_API_KEY: z.preprocess(
+    emptyStringToUndefined,
+    z.string().min(1).optional(),
+  ),
+  AI_MODEL: z.preprocess(
+    emptyStringToUndefined,
+    z.string().min(1).default("gemini-3.6-flash"),
+  ),
   BROWSER_HEADLESS: booleanFromEnvironmentSchema,
   RESULTS_DIR: z.string().min(1).default("results"),
 });

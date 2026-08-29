@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini request failed with HTTP 429.",
+  "attemptCount": 1
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "detached-dom",
+  "approach": "baseline",
+  "description": "Open and close a temporary details panel repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/DetachedDomCase.tsx",
+      "byteCount": 1080
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "12d66deaf42101e40a1664462e3061ed897b6c61dafef97cee755eea1e2d4950"
+  }
+}

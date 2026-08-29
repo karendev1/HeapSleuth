@@ -1,0 +1,28 @@
+{
+  "runId": "bbcf7c0f-0019-430f-86c0-c0925c877815",
+  "caseId": "detached-dom",
+  "approach": "baseline",
+  "status": "failed",
+  "startedAt": "2026-08-29T16:57:46.496Z",
+  "completedAt": "2026-08-29T16:57:50.471Z",
+  "durationMs": 3975,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini returned an invalid Interactions API envelope."
+}

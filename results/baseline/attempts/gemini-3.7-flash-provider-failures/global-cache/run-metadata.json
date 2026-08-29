@@ -1,0 +1,28 @@
+{
+  "runId": "7f898b7a-c13a-4fe9-92f3-58a40ffbe27a",
+  "caseId": "global-cache",
+  "approach": "baseline",
+  "status": "failed",
+  "startedAt": "2026-08-29T14:31:32.987Z",
+  "completedAt": "2026-08-29T14:36:37.699Z",
+  "durationMs": 304712,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.7-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini request could not be completed: fetch failed"
+}

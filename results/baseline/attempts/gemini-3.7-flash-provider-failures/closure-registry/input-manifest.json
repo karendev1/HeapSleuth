@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "approach": "baseline",
+  "description": "Open and close a report preview repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/ClosureRegistryCase.tsx",
+      "byteCount": 809
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "29bd2aae29bbc51360b52b4f5dbb78e3e45a536bb6906d44199adf377c710825"
+  }
+}
