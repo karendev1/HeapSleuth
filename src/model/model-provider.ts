@@ -3,6 +3,7 @@ import type { ModelRequestSettings, ModelUsage } from "./types.js";
 export type ModelProviderRequest = {
   caseId: string;
   prompt: string;
+  responseFormat?: "diagnosis" | "verification";
 };
 
 export type ModelProviderResponse = {

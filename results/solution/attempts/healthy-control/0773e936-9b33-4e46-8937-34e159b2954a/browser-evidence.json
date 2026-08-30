@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "healthy-control",
+  "startedAt": "2026-08-30T01:56:17.725Z",
+  "completedAt": "2026-08-30T01:56:21.024Z",
+  "durationMs": 3299,
+  "adapter": {
+    "kind": "direct-cdp",
+    "browserFamily": "chrome",
+    "browserVersion": "151.0.7922.174"
+  },
+  "benchmark": {
+    "route": "/cases/healthy-control"
+  },
+  "scenario": {
+    "warmupCycles": 1,
+    "measuredCycles": 3,
+    "completedWarmupCycles": 1,
+    "completedMeasuredCycles": 3,
+    "measuredActions": 6
+  },
+  "samples": {
+    "baseline": {
+      "phase": "baseline",
+      "capturedAt": "2026-08-30T01:56:20.685Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage",
+        "passes": 2
+      },
+      "heapUsage": {
+        "usedSize": 4867484,
+        "totalSize": 5111808,
+        "embedderHeapUsedSize": 438152,
+        "backingStorageSize": 3432273
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 45,
+        "jsEventListeners": 158
+      },
+      "runtimeState": {
+        "createdInstances": 0,
+        "activeResources": 0,
+        "retainedResources": 0,
+        "releasedResources": 0,
+        "invocations": 0,
+        "checksum": 0
+      }
+    },
+    "final": {
+      "phase": "final",
+      "capturedAt": "2026-08-30T01:56:21.017Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage",
+        "passes": 2
+      },
+      "heapUsage": {
+        "usedSize": 5354248,
+        "totalSize": 5898240,
+        "embedderHeapUsedSize": 459768,
+        "backingStorageSize": 3432737
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 47,
+        "jsEventListeners": 158
+      },
+      "runtimeState": {
+        "createdInstances": 3,
+        "activeResources": 0,
+        "retainedResources": 0,
+        "releasedResources": 3,
+        "invocations": 0,
+        "checksum": 0
+      }
+    }
+  },
+  "deltas": {
+    "usedHeapBytes": 486764,
+    "backingStorageBytes": 464,
+    "domNodes": 2,
+    "domEventListeners": 0,
+    "createdInstances": 3,
+    "activeResources": 0,
+    "retainedResources": 0,
+    "releasedResources": 3
+  },
+  "listeners": {
+    "baseline": {
+      "total": 1,
+      "byType": {
+        "beforeunload": 1
+      },
+      "locations": [
+        {
+          "type": "beforeunload",
+          "scriptId": "7",
+          "lineNumber": 911,
+          "columnNumber": 77
+        }
+      ]
+    },
+    "final": {
+      "total": 1,
+      "byType": {
+        "beforeunload": 1
+      },
+      "locations": [
+        {
+          "type": "beforeunload",
+          "scriptId": "7",
+          "lineNumber": 911,
+          "columnNumber": 77
+        }
+      ]
+    },
+    "deltaByType": {
+      "beforeunload": 0
+    }
+  },
+  "consoleEvents": [],
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

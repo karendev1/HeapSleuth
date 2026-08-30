@@ -17,6 +17,10 @@ import {
   runMetadataSchema,
   type RunMetadata,
 } from "../schemas/run-metadata.js";
+import {
+  verificationSchema,
+  type Verification,
+} from "../schemas/verification.js";
 
 async function writeAndValidate<T>(
   filePath: string,
@@ -53,8 +57,10 @@ const investigatorArtifactNames = [
   "browser-evidence.json",
   "failure.json",
   "input-manifest.json",
+  "investigator-result.json",
   "result.json",
   "run-metadata.json",
+  "verification.json",
 ] as const;
 
 export async function archiveExistingInvestigatorArtifacts(
@@ -152,14 +158,16 @@ async function persistShared(input: {
 
 export async function persistInvestigatorSuccess(input: {
   resultsRoot: string;
-  diagnosis: Diagnosis;
+  investigatorDiagnosis: Diagnosis;
+  verification: Verification;
+  finalDiagnosis: Diagnosis;
   metadata: RunMetadata;
   manifest: InvestigatorInputManifest;
   browserEvidence: InvestigatorBrowserEvidence;
 }): Promise<string> {
   const directory = await prepareCaseDirectory(
     input.resultsRoot,
-    input.diagnosis.caseId,
+    input.finalDiagnosis.caseId,
   );
   await rm(path.join(directory, "failure.json"), { force: true });
   await persistShared({
@@ -169,8 +177,18 @@ export async function persistInvestigatorSuccess(input: {
     browserEvidence: input.browserEvidence,
   });
   await writeAndValidate(
+    path.join(directory, "investigator-result.json"),
+    input.investigatorDiagnosis,
+    diagnosisSchema,
+  );
+  await writeAndValidate(
+    path.join(directory, "verification.json"),
+    input.verification,
+    verificationSchema,
+  );
+  await writeAndValidate(
     path.join(directory, "result.json"),
-    input.diagnosis,
+    input.finalDiagnosis,
     diagnosisSchema,
   );
   return directory;
@@ -182,12 +200,32 @@ export async function persistInvestigatorFailure(input: {
   metadata: RunMetadata;
   manifest: InvestigatorInputManifest;
   browserEvidence?: InvestigatorBrowserEvidence;
+  investigatorDiagnosis?: Diagnosis;
+  verification?: Verification;
 }): Promise<string> {
   const directory = await prepareCaseDirectory(
     input.resultsRoot,
     input.failure.caseId,
   );
   await rm(path.join(directory, "result.json"), { force: true });
+  if (input.investigatorDiagnosis === undefined) {
+    await rm(path.join(directory, "investigator-result.json"), { force: true });
+  } else {
+    await writeAndValidate(
+      path.join(directory, "investigator-result.json"),
+      input.investigatorDiagnosis,
+      diagnosisSchema,
+    );
+  }
+  if (input.verification === undefined) {
+    await rm(path.join(directory, "verification.json"), { force: true });
+  } else {
+    await writeAndValidate(
+      path.join(directory, "verification.json"),
+      input.verification,
+      verificationSchema,
+    );
+  }
   await persistShared({
     directory,
     metadata: input.metadata,

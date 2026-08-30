@@ -25,8 +25,10 @@ results/**
 !results/solution/**/browser-evidence.json
 !results/solution/**/failure.json
 !results/solution/**/input-manifest.json
+!results/solution/**/investigator-result.json
 !results/solution/**/result.json
 !results/solution/**/run-metadata.json
+!results/solution/**/verification.json
 trajectories/**
 !trajectories/.gitkeep
 !trajectories/**/

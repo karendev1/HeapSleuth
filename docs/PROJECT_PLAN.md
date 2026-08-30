@@ -628,10 +628,12 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 6: Verifier - 2 hours
 
-- [ ] Implement the verifier prompt and schema.
-- [ ] Add accept, revise, and inconclusive decisions.
-- [ ] Ensure verifier feedback appears in trajectories.
-- [ ] Test deliberate false-positive and weak-evidence scenarios.
+- [x] Implement the verifier prompt and schema.
+- [x] Add accept, revise, and inconclusive decisions.
+- [x] Ensure verifier feedback appears in trajectories.
+- [x] Test deliberate false-positive and weak-evidence scenarios.
+- [x] Complete a clean integrated healthy-control run with a verified `no-leak`
+      result while preserving the earlier rate-limit failures.
 
 #### Block 7: Full evaluation - 2 hours
 

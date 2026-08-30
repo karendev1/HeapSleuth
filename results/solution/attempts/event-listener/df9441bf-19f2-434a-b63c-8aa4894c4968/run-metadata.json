@@ -1,0 +1,31 @@
+{
+  "runId": "df9441bf-19f2-434a-b63c-8aa4894c4968",
+  "caseId": "event-listener",
+  "approach": "solution",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:58:51.208Z",
+  "completedAt": "2026-08-29T17:58:59.244Z",
+  "durationMs": 8036,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 2520,
+    "outputTokens": 358,
+    "totalTokens": 2878
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "runId": "00ea54f9-9701-48c4-baa3-4c32f961bc61",
+  "caseId": "healthy-control",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T01:45:31.737Z",
+  "completedAt": "2026-08-30T01:45:41.631Z",
+  "durationMs": 9894,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 2,
+  "usage": {
+    "inputTokens": 2144,
+    "outputTokens": 287,
+    "totalTokens": 2431
+  },
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 18.232592443s.\",\"code\":\"too_many_requests\"}}",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "succeeded",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T01:45:35.544Z",
+      "completedAt": "2026-08-30T01:45:41.293Z",
+      "durationMs": 5749,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2144,
+        "outputTokens": 287,
+        "totalTokens": 2431
+      }
+    },
+    {
+      "agent": "verifier",
+      "status": "failed",
+      "promptVersion": "verifier-v1",
+      "startedAt": "2026-08-30T01:45:41.296Z",
+      "completedAt": "2026-08-30T01:45:41.629Z",
+      "durationMs": 333,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 18.232592443s.\",\"code\":\"too_many_requests\"}}"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "runId": "1af62190-5e8f-404c-b4fb-fb79adb111b9",
+  "caseId": "healthy-control",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T01:44:57.139Z",
+  "completedAt": "2026-08-30T01:45:01.738Z",
+  "durationMs": 4599,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 58.137033601s.\",\"code\":\"too_many_requests\"}}",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "failed",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T01:45:00.621Z",
+      "completedAt": "2026-08-30T01:45:01.737Z",
+      "durationMs": 1116,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 58.137033601s.\",\"code\":\"too_many_requests\"}}"
+    }
+  ]
+}

@@ -23,11 +23,20 @@ export class InvestigatorTrajectory {
     summary: string,
     data?: Record<string, unknown>,
   ): void {
+    this.addFor("investigator", type, summary, data);
+  }
+
+  addFor(
+    agent: TrajectoryEvent["agent"],
+    type: TrajectoryEvent["type"],
+    summary: string,
+    data?: Record<string, unknown>,
+  ): void {
     this.events.push(
       trajectoryEventSchema.parse({
         timestamp: this.now().toISOString(),
         caseId: this.caseId,
-        agent: "investigator",
+        agent,
         type,
         summary,
         ...(data === undefined ? {} : { data }),

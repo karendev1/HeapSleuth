@@ -18,6 +18,7 @@ import {
 } from "../src/schemas/investigator.js";
 import { runMetadataSchema } from "../src/schemas/run-metadata.js";
 import { trajectoryEventSchema } from "../src/schemas/trajectory.js";
+import { verificationSchema } from "../src/schemas/verification.js";
 import { createInvestigatorEvidence } from "./investigator-test-fixture.js";
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
@@ -44,7 +45,17 @@ function validDiagnosis(
   });
 }
 
-class FakeProvider implements ModelProvider {
+function acceptedVerification() {
+  return JSON.stringify({
+    decision: "accept",
+    issues: [],
+    revisedDiagnosis: null,
+    verificationSummary:
+      "The diagnosis is supported by current-run listener and source evidence.",
+  });
+}
+
+class QueueFakeProvider implements ModelProvider {
   readonly kind = "test-provider";
   readonly model = "test-model";
   readonly settings = {
@@ -57,13 +68,17 @@ class FakeProvider implements ModelProvider {
   };
   readonly requests: ModelProviderRequest[] = [];
 
-  constructor(private readonly responseText: string) {}
+  constructor(private readonly responseTexts: readonly string[]) {}
 
   generate(request: ModelProviderRequest) {
     this.requests.push(request);
+    const responseText = this.responseTexts[this.requests.length - 1];
+    if (responseText === undefined) {
+      throw new Error("Unexpected extra model request.");
+    }
     return Promise.resolve({
-      text: this.responseText,
-      responseId: "response-1",
+      text: responseText,
+      responseId: `response-${this.requests.length}`,
       usage: { inputTokens: 100, outputTokens: 50, totalTokens: 150 },
     });
   }
@@ -90,8 +105,11 @@ describe("Investigator runner", () => {
     await rm(temporaryRoot, { recursive: true, force: true });
   });
 
-  it("runs one bounded diagnosis request and saves validated artifacts and trajectory", async () => {
-    const provider = new FakeProvider(validDiagnosis());
+  it("runs one Investigator and one Verifier request and saves distinct validated artifacts", async () => {
+    const provider = new QueueFakeProvider([
+      validDiagnosis(),
+      acceptedVerification(),
+    ]);
     const execution = await runInvestigatorCase({
       caseId: "event-listener",
       provider,
@@ -116,15 +134,38 @@ describe("Investigator runner", () => {
     });
 
     expect(execution.status).toBe("succeeded");
-    expect(execution.attemptCount).toBe(1);
-    expect(provider.requests).toHaveLength(1);
+    expect(execution).toMatchObject({
+      attemptCount: 2,
+      investigatorAttemptCount: 1,
+      verifierAttemptCount: 1,
+      verificationDecision: "accept",
+      finalDiagnosis: { verdict: "leak" },
+    });
+    expect(provider.requests).toHaveLength(2);
+    expect(
+      provider.requests.map(({ responseFormat }) => responseFormat),
+    ).toEqual(["diagnosis", "verification"]);
     expect(provider.requests[0]?.prompt).toContain(
       "Validated browser evidence",
     );
     expect(provider.requests[0]?.prompt).toContain("EventListenerCase");
     expect(provider.requests[0]?.prompt).not.toContain("acceptedMechanisms");
+    expect(provider.requests[1]?.prompt).toContain(
+      "Validated Investigator diagnosis to challenge",
+    );
+    expect(provider.requests[1]?.prompt).not.toContain("acceptedMechanisms");
 
     const caseDirectory = path.join(resultsRoot, "solution", "event-listener");
+    const investigatorDiagnosis = diagnosisSchema.parse(
+      await readJson(path.join(caseDirectory, "investigator-result.json")),
+    );
+    const finalDiagnosis = diagnosisSchema.parse(
+      await readJson(path.join(caseDirectory, "result.json")),
+    );
+    expect(finalDiagnosis).toEqual(investigatorDiagnosis);
+    verificationSchema.parse(
+      await readJson(path.join(caseDirectory, "verification.json")),
+    );
     diagnosisSchema.parse(
       await readJson(path.join(caseDirectory, "result.json")),
     );
@@ -140,9 +181,13 @@ describe("Investigator runner", () => {
     expect(metadata).toMatchObject({
       approach: "solution",
       status: "succeeded",
-      attemptCount: 1,
-      usage: { totalTokens: 150 },
+      attemptCount: 2,
+      usage: { totalTokens: 300 },
     });
+    expect(metadata.agentRuns).toMatchObject([
+      { agent: "investigator", status: "succeeded", attemptCount: 1 },
+      { agent: "verifier", status: "succeeded", attemptCount: 1 },
+    ]);
 
     const trajectoryText = await readFile(execution.trajectoryPath, "utf8");
     const events = trajectoryText
@@ -152,17 +197,21 @@ describe("Investigator runner", () => {
     expect(events.some(({ type }) => type === "instruction")).toBe(true);
     expect(events.some(({ type }) => type === "tool-call")).toBe(true);
     expect(events.at(-1)).toMatchObject({
+      agent: "verifier",
       type: "final-result",
       data: { status: "succeeded" },
     });
+    expect(new Set(events.map(({ agent }) => agent))).toEqual(
+      new Set(["investigator", "verifier"]),
+    );
     expect(trajectoryText).not.toContain("test-secret");
     expect(trajectoryText).not.toContain("acceptedMechanisms");
   });
 
   it("saves a schema failure without retrying or retaining a result", async () => {
-    const provider = new FakeProvider(
+    const provider = new QueueFakeProvider([
       validDiagnosis("dataset/ground-truth.json"),
-    );
+    ]);
     const execution = await runInvestigatorCase({
       caseId: "event-listener",
       provider,
@@ -177,6 +226,8 @@ describe("Investigator runner", () => {
     expect(execution).toMatchObject({
       status: "failed",
       attemptCount: 1,
+      investigatorAttemptCount: 1,
+      verifierAttemptCount: 0,
       errorCategory: "schema-validation",
     });
     expect(provider.requests).toHaveLength(1);
@@ -188,6 +239,55 @@ describe("Investigator runner", () => {
     ).toMatchObject({ category: "schema-validation", attemptCount: 1 });
     await expect(
       readFile(path.join(caseDirectory, "result.json")),
+    ).rejects.toThrow();
+    await expect(
+      readFile(path.join(caseDirectory, "verification.json")),
+    ).rejects.toThrow();
+  });
+
+  it("fails closed when the Verifier output is invalid and preserves only the Investigator handoff", async () => {
+    const provider = new QueueFakeProvider([
+      validDiagnosis(),
+      JSON.stringify({
+        decision: "accept",
+        issues: ["An accept decision cannot report unresolved issues."],
+        revisedDiagnosis: null,
+        verificationSummary: "Invalid combination for a deliberate test.",
+      }),
+    ]);
+    const execution = await runInvestigatorCase({
+      caseId: "event-listener",
+      provider,
+      resultsRoot,
+      trajectoriesRoot,
+      headless: true,
+      projectRoot: repositoryRoot,
+      collectBrowserEvidence: async ({ benchmarkCase }) =>
+        createInvestigatorEvidence(benchmarkCase.id, true),
+    });
+
+    expect(execution).toMatchObject({
+      status: "failed",
+      attemptCount: 2,
+      investigatorAttemptCount: 1,
+      verifierAttemptCount: 1,
+      errorCategory: "schema-validation",
+    });
+    expect(provider.requests).toHaveLength(2);
+    const caseDirectory = path.join(resultsRoot, "solution", "event-listener");
+    diagnosisSchema.parse(
+      await readJson(path.join(caseDirectory, "investigator-result.json")),
+    );
+    expect(
+      investigatorFailureSchema.parse(
+        await readJson(path.join(caseDirectory, "failure.json")),
+      ),
+    ).toMatchObject({ stage: "verifier", attemptCount: 2 });
+    await expect(
+      readFile(path.join(caseDirectory, "result.json")),
+    ).rejects.toThrow();
+    await expect(
+      readFile(path.join(caseDirectory, "verification.json")),
     ).rejects.toThrow();
   });
 });

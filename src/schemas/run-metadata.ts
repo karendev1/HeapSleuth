@@ -29,6 +29,20 @@ export const modelRequestSettingsSchema = z.object({
   thinkingLevel: z.enum(["minimal", "low", "medium", "high"]).optional(),
 });
 
+export const agentRunMetadataSchema = z.object({
+  agent: z.enum(["investigator", "verifier"]),
+  status: z.enum(["succeeded", "failed"]),
+  promptVersion: z.string().min(1),
+  startedAt: z.iso.datetime(),
+  completedAt: z.iso.datetime(),
+  durationMs: z.number().int().nonnegative(),
+  attemptCount: z.number().int().nonnegative(),
+  providerResponseId: z.string().min(1).optional(),
+  usage: modelUsageSchema.optional(),
+  errorCategory: runErrorCategorySchema.optional(),
+  error: z.string().min(1).optional(),
+});
+
 export const runMetadataSchema = z.object({
   runId: z.uuid(),
   caseId: caseIdSchema,
@@ -51,6 +65,8 @@ export const runMetadataSchema = z.object({
   usage: modelUsageSchema.optional(),
   errorCategory: runErrorCategorySchema.optional(),
   error: z.string().min(1).optional(),
+  agentRuns: z.array(agentRunMetadataSchema).max(2).optional(),
 });
 
 export type RunMetadata = z.infer<typeof runMetadataSchema>;
+export type AgentRunMetadata = z.infer<typeof agentRunMetadataSchema>;

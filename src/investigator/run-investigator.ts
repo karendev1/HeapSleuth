@@ -47,6 +47,14 @@ async function main(): Promise<void> {
   process.stdout.write(`${execution.caseId}: ${detail}\n`);
   process.stdout.write(`Results: ${execution.outputDirectory}\n`);
   process.stdout.write(`Trajectory: ${execution.trajectoryPath}\n`);
+  process.stdout.write(
+    `Requests: investigator=${execution.investigatorAttemptCount}, verifier=${execution.verifierAttemptCount}\n`,
+  );
+  if (execution.verificationDecision !== undefined) {
+    process.stdout.write(
+      `Verification: ${execution.verificationDecision}; final verdict: ${execution.finalDiagnosis?.verdict ?? "unavailable"}\n`,
+    );
+  }
   if (execution.browserEvidence !== undefined) {
     process.stdout.write(
       `${JSON.stringify(

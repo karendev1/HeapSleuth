@@ -1,0 +1,31 @@
+{
+  "runId": "2e3f7194-2ed0-4a84-9409-57d4c6c69152",
+  "caseId": "healthy-control",
+  "approach": "solution",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:59:20.433Z",
+  "completedAt": "2026-08-29T17:59:37.379Z",
+  "durationMs": 16946,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 2144,
+    "outputTokens": 491,
+    "totalTokens": 2635
+  }
+}

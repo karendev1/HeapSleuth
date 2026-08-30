@@ -1,11 +1,11 @@
 {
-  "runId": "2e3f7194-2ed0-4a84-9409-57d4c6c69152",
+  "runId": "86f9706c-2a32-4701-8ca0-05e9ba24ce8d",
   "caseId": "healthy-control",
   "approach": "solution",
   "status": "succeeded",
-  "startedAt": "2026-08-29T17:59:20.433Z",
-  "completedAt": "2026-08-29T17:59:37.379Z",
-  "durationMs": 16946,
+  "startedAt": "2026-08-30T02:10:22.549Z",
+  "completedAt": "2026-08-30T02:10:31.576Z",
+  "durationMs": 9027,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",
@@ -13,7 +13,7 @@
   },
   "model": "gemini-3.6-flash",
   "provider": "gemini-interactions",
-  "promptVersion": "investigator-v1",
+  "promptVersion": "investigator-v1+verifier-v1",
   "requestSettings": {
     "temperature": null,
     "maxOutputTokens": 1200,
@@ -22,10 +22,40 @@
     "seed": 0,
     "thinkingLevel": "low"
   },
-  "attemptCount": 1,
+  "attemptCount": 2,
   "usage": {
-    "inputTokens": 2144,
-    "outputTokens": 491,
-    "totalTokens": 2635
-  }
+    "inputTokens": 4584,
+    "outputTokens": 713,
+    "totalTokens": 5297
+  },
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "succeeded",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T02:10:25.788Z",
+      "completedAt": "2026-08-30T02:10:30.195Z",
+      "durationMs": 4407,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2144,
+        "outputTokens": 628,
+        "totalTokens": 2772
+      }
+    },
+    {
+      "agent": "verifier",
+      "status": "succeeded",
+      "promptVersion": "verifier-v1",
+      "startedAt": "2026-08-30T02:10:30.196Z",
+      "completedAt": "2026-08-30T02:10:31.576Z",
+      "durationMs": 1380,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2440,
+        "outputTokens": 85,
+        "totalTokens": 2525
+      }
+    }
+  ]
 }

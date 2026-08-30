@@ -118,6 +118,48 @@ describe("Gemini Interactions provider", () => {
     expect(fetchImplementation).toHaveBeenCalledTimes(1);
   });
 
+  it("selects the independent verification response schema", async () => {
+    const fetchImplementation = vi.fn<typeof fetch>(async () =>
+      Promise.resolve(
+        new Response(
+          JSON.stringify({
+            id: "verification-1",
+            status: "completed",
+            output_text:
+              '{"decision":"accept","issues":[],"revisedDiagnosis":null,"verificationSummary":"Supported."}',
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        ),
+      ),
+    );
+    const provider = new GeminiInteractionsProvider(
+      "gemini-3.6-flash",
+      "test-secret",
+      fetchImplementation,
+    );
+
+    await provider.generate({
+      caseId: "event-listener",
+      prompt: "Verifier prompt",
+      responseFormat: "verification",
+    });
+
+    const [, options] = fetchImplementation.mock.calls[0] ?? [];
+    const body = JSON.parse(String(options?.body));
+    expect(body.response_format.schema).toMatchObject({
+      type: "object",
+      required: [
+        "decision",
+        "issues",
+        "revisedDiagnosis",
+        "verificationSummary",
+      ],
+      properties: {
+        decision: { enum: ["accept", "revise", "inconclusive"] },
+      },
+    });
+  });
+
   it("accepts a wrapped legacy output with partial usage fields", async () => {
     const fetchImplementation = vi.fn<typeof fetch>(async () =>
       Promise.resolve(

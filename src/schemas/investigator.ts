@@ -238,6 +238,20 @@ export const investigatorInputManifestSchema = z.object({
       .regex(/^[a-f0-9]{64}$/)
       .nullable(),
   }),
+  verifier: z
+    .object({
+      promptVersion: z.string().min(1),
+      promptSha256: z
+        .string()
+        .regex(/^[a-f0-9]{64}$/)
+        .nullable(),
+      investigatorDiagnosisSha256: z
+        .string()
+        .regex(/^[a-f0-9]{64}$/)
+        .nullable(),
+    })
+    .nullable()
+    .optional(),
 });
 
 export const investigatorFailureSchema = z.object({
@@ -247,6 +261,7 @@ export const investigatorFailureSchema = z.object({
   category: runErrorCategorySchema,
   message: z.string().min(1),
   attemptCount: z.number().int().nonnegative(),
+  stage: z.enum(["investigator", "verifier"]).optional(),
 });
 
 export type CaseRuntimeState = z.infer<typeof caseRuntimeStateSchema>;

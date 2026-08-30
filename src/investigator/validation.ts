@@ -17,6 +17,40 @@ export class InvestigatorOutputError extends Error {
   }
 }
 
+export function validateDiagnosisGrounding(input: {
+  diagnosis: Diagnosis;
+  expectedCaseId: string;
+  allowedSourcePaths: readonly string[];
+  availableEvidenceSources: ReadonlySet<EvidenceSource>;
+}): Diagnosis {
+  const { diagnosis } = input;
+  if (diagnosis.caseId !== input.expectedCaseId) {
+    throw new InvestigatorOutputError(
+      "schema-validation",
+      `The diagnosis returned case ID ${diagnosis.caseId} instead of ${input.expectedCaseId}.`,
+    );
+  }
+  if (
+    diagnosis.rootCause !== null &&
+    !input.allowedSourcePaths.includes(diagnosis.rootCause.file)
+  ) {
+    throw new InvestigatorOutputError(
+      "schema-validation",
+      `The diagnosis cited an unlisted root-cause file: ${diagnosis.rootCause.file}.`,
+    );
+  }
+  const unsupportedEvidence = diagnosis.evidence.find(
+    ({ source }) => !input.availableEvidenceSources.has(source),
+  );
+  if (unsupportedEvidence !== undefined) {
+    throw new InvestigatorOutputError(
+      "schema-validation",
+      `The diagnosis cited unavailable ${unsupportedEvidence.source} evidence.`,
+    );
+  }
+  return diagnosis;
+}
+
 export function parseInvestigatorDiagnosis(input: {
   text: string;
   expectedCaseId: string;
@@ -40,31 +74,10 @@ export function parseInvestigatorDiagnosis(input: {
       "The Investigator response did not match the diagnosis schema.",
     );
   }
-  const diagnosis = parsed.data;
-  if (diagnosis.caseId !== input.expectedCaseId) {
-    throw new InvestigatorOutputError(
-      "schema-validation",
-      `The Investigator returned case ID ${diagnosis.caseId} instead of ${input.expectedCaseId}.`,
-    );
-  }
-  if (
-    diagnosis.rootCause !== null &&
-    !input.allowedSourcePaths.includes(diagnosis.rootCause.file)
-  ) {
-    throw new InvestigatorOutputError(
-      "schema-validation",
-      `The Investigator cited an unlisted root-cause file: ${diagnosis.rootCause.file}.`,
-    );
-  }
-  const unsupportedEvidence = diagnosis.evidence.find(
-    ({ source }) => !input.availableEvidenceSources.has(source),
-  );
-  if (unsupportedEvidence !== undefined) {
-    throw new InvestigatorOutputError(
-      "schema-validation",
-      `The Investigator cited unavailable ${unsupportedEvidence.source} evidence.`,
-    );
-  }
-
-  return diagnosis;
+  return validateDiagnosisGrounding({
+    diagnosis: parsed.data,
+    expectedCaseId: input.expectedCaseId,
+    allowedSourcePaths: input.allowedSourcePaths,
+    availableEvidenceSources: input.availableEvidenceSources,
+  });
 }

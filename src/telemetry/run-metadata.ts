@@ -40,6 +40,7 @@ export function completeRunMetadata(
     attemptCount?: number;
     usage?: RunMetadata["usage"];
     providerResponseId?: string;
+    agentRuns?: RunMetadata["agentRuns"];
   } = {},
 ): RunMetadata {
   const completedAt = options.completedAt ?? new Date();
@@ -64,5 +65,8 @@ export function completeRunMetadata(
     ...(options.providerResponseId === undefined
       ? {}
       : { providerResponseId: options.providerResponseId }),
+    ...(options.agentRuns === undefined
+      ? {}
+      : { agentRuns: options.agentRuns }),
   });
 }

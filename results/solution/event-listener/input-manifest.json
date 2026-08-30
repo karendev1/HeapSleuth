@@ -11,9 +11,14 @@
       "sha256": "5f109829008b0db37f784abb27db3f8084d55a30839ebf36a74f4b81720bd5b2"
     }
   ],
-  "browserEvidenceSha256": "ccf7063f16d8d579a2131366728951f0305ae7b455424aaa14ffd4c8131e4dea",
+  "browserEvidenceSha256": "b32fcb1ee1009af5b3d0df2626c82467c3c086d0a84b7a1a6a80b5664a4b43b3",
   "prompt": {
     "version": "investigator-v1",
-    "sha256": "ddcb824536bd834ee0b5595df08aefeec4c47dd560040ca610daf25272dfb102"
+    "sha256": "21612fa19d70e61bde3ca814c858aef75a09209664779f869b4036e699e9f139"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v1",
+    "promptSha256": "65221d4db8e6b042e0764877b5b509e6a62226b256b693851783ca2c66a2bf51",
+    "investigatorDiagnosisSha256": "b1b44c35e7c6ac37d82b93b85ed22af470821ef6ed570caae881bd692eb3512a"
   }
 }

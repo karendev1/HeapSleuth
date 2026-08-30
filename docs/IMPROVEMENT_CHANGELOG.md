@@ -613,3 +613,121 @@ search. Block 5 tests only one known leak case and the healthy control; the
 Verifier, full dataset run, evaluator, automatic repair, and broader benchmark
 remain later work. These two diagnoses are acceptance checks, not an accuracy
 evaluation, so no diagnosis-accuracy improvement is claimed.
+
+## 2026-08-29 — Independent Verifier protocol decision
+
+### Context
+
+Block 6 must challenge a validated Investigator diagnosis without rerunning the
+browser, consulting the baseline, or exposing evaluator-only answers. The
+current solution already produces fresh, schema-valid browser evidence and a
+bounded source set, while the Gemini provider currently supports only the
+diagnosis response shape.
+
+### Decision
+
+- Keep one integrated solution run: collect fresh evidence, run and validate the
+  Investigator, then hand the same bounded inputs and original diagnosis to a
+  separately prompted Verifier.
+- Treat independence as a distinct skeptical role, prompt, model request,
+  validation boundary, metadata stage, and trajectory identity. Reuse the same
+  model family and deterministic settings so the later comparison does not add a
+  model-change confounder.
+- Extend the provider request with a closed response-format selector for only
+  `diagnosis` and `verification`. Do not expose arbitrary schemas or add another
+  provider.
+- Replace the permissive verification object with a discriminated union:
+  `accept` requires no issues and no revision, `revise` requires issues and a
+  revised diagnosis, and `inconclusive` requires issues and an inconclusive
+  revised diagnosis.
+- Apply the same case ID, allowed-source, and supplied-evidence grounding checks
+  to every revised diagnosis. Resolve the final diagnosis with a pure function
+  rather than model-dependent post-processing.
+- Persist the original Investigator diagnosis, Verifier output, final verified
+  diagnosis, fresh browser evidence, input hashes, per-agent request metadata,
+  failures, and one linked JSONL trajectory containing both agent identities.
+- Archive the current Block 5 active artifacts before the first integrated run.
+  Preserve all earlier successful and failed artifacts.
+- Fail closed: one request per agent, no automatic retry, no Verifier call after
+  an Investigator failure, and no unverified final result after a Verifier
+  failure.
+
+### Acceptance checklist
+
+1. A versioned English Verifier prompt attempts to falsify the original
+   diagnosis and receives only the neutral case, authorized sources, current-run
+   browser evidence, original diagnosis, and explicit limitations.
+2. Strict runtime validation enforces accept, revise, and inconclusive
+   invariants plus case, source, and evidence grounding.
+3. A deterministic resolver selects the original, revised, or inconclusive final
+   diagnosis exactly as specified.
+4. The integrated command makes exactly one Investigator request and one
+   Verifier request, never calls the Verifier after an Investigator failure,
+   never retries automatically, and preserves every failure.
+5. Saved artifacts distinguish the original diagnosis, verification, and final
+   result; metadata and trajectories expose per-agent observable actions,
+   latency, usage, prompts, and handoff without secrets or evaluator data.
+6. Focused tests cover accept, deliberate false-positive revision, weak-evidence
+   inconclusive, invalid combinations, grounding failures, request counts,
+   failure behavior, saved-file round trips, and final-result resolution.
+7. Clean integrated event-listener and healthy-control runs, independent
+   artifact validation, `npm run validate`, and the eight-case browser smoke
+   regression pass with at least one successful Verifier trajectory.
+
+### Evidence status
+
+The bounded implementation is now in place. It adds the versioned English
+Verifier prompt, discriminated validation schema, grounded revision checks,
+deterministic final-result resolver, separate provider response format, distinct
+Investigator/Verifier/final artifacts, per-agent metadata, and a shared
+trajectory with explicit agent identities. No additional provider, benchmark
+case, evaluator, repair flow, dashboard, or later-block feature was added.
+
+Focused tests passed for all three decisions, deliberate healthy-control false
+positive revision, deliberately weak-evidence inconclusive handling, invalid
+decision combinations, malformed JSON, ungrounded revisions, exact request
+counts, fail-closed behavior, prompt isolation, saved artifact round trips, and
+provider schema selection. The focused run passed 22 tests across 4 files. The
+full validation gate passed 69 tests across 18 files, formatting, linting,
+strict TypeScript checks for the core and benchmark, and both production builds.
+
+The clean integrated `event-listener` run `5159cfc3-2b45-484e-aefd-e91e72a32390`
+succeeded with one Investigator request and one Verifier request. The Verifier
+decision was `accept`, and the final verdict remained `leak`. After two forced
+garbage-collection passes per sample, the run retained 3 resources and 3
+`heapsleuth:notification` listeners; used heap increased by 487,160 bytes and
+backing storage by 786,944 bytes. Total model usage was 6,144 tokens: 2,894 for
+the Investigator and 3,250 for the Verifier. The integrated run took 9,440 ms.
+
+The healthy-control browser evidence was also reproducible: the measured runs
+created 3 resources, released all 3, retained 0, and had a listener delta of 0
+after forced garbage collection. Initial bounded attempts received Gemini HTTP
+429 at either the Investigator or Verifier stage. Each failure was saved and
+archived without an automatic retry or an unverified final result. After the
+free-tier key was replaced, clean integrated run
+`86f9706c-2a32-4701-8ca0-05e9ba24ce8d` succeeded with one Investigator request
+and one Verifier request. The Investigator returned `no-leak`, the Verifier
+returned `accept`, and the final verdict remained `no-leak`. Used heap changed
+from 4,867,840 to 5,354,644 bytes, but backing storage changed by only 464
+bytes, the listener delta remained 0, all 3 resources were released, and none
+remained active or retained after forced garbage collection. Total model usage
+was 5,297 tokens: 2,772 for the Investigator and 2,525 for the Verifier. The
+integrated run took 9,027 ms. Acceptance item 7 is now satisfied and Block 6 is
+complete.
+
+An independent local audit parsed 45 solution artifacts, 10 trajectory files,
+and 213 trajectory events with the compiled schemas. The active healthy-control
+audit also confirmed that the accepted final result exactly matches the
+Investigator diagnosis and that both agent identities appear across its 26
+events. A separate scan found no evaluator answer fields, ground-truth path,
+environment-key name, or Gemini key pattern in solution artifacts or
+trajectories. The eight-case browser smoke regression passed in Chrome
+151.0.7922.174 with forced garbage collection and no browser errors.
+
+Known limitations remain explicit: both agents use separate requests to the same
+model family and deterministic settings; free-tier rate limits can prevent a
+complete two-request run; browser evidence is bounded to the synthetic benchmark
+and does not provide arbitrary production retaining-path search; and heap-size
+deltas alone are not treated as leak proof. These checks validate the Verifier
+workflow, not diagnosis accuracy. No accuracy-improvement claim is made because
+evaluation has not run.

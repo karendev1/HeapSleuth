@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "caseId": "healthy-control",
-  "startedAt": "2026-08-29T17:59:20.443Z",
-  "completedAt": "2026-08-29T17:59:24.348Z",
-  "durationMs": 3905,
+  "startedAt": "2026-08-30T02:10:22.552Z",
+  "completedAt": "2026-08-30T02:10:25.523Z",
+  "durationMs": 2971,
   "adapter": {
     "kind": "direct-cdp",
     "browserFamily": "chrome",
@@ -22,17 +22,17 @@
   "samples": {
     "baseline": {
       "phase": "baseline",
-      "capturedAt": "2026-08-29T17:59:23.982Z",
+      "capturedAt": "2026-08-30T02:10:25.201Z",
       "garbageCollection": {
         "forced": true,
         "method": "HeapProfiler.collectGarbage",
         "passes": 2
       },
       "heapUsage": {
-        "usedSize": 4867992,
-        "totalSize": 5636096,
-        "embedderHeapUsedSize": 439760,
-        "backingStorageSize": 3432378
+        "usedSize": 4867840,
+        "totalSize": 5373952,
+        "embedderHeapUsedSize": 438392,
+        "backingStorageSize": 3432369
       },
       "domCounters": {
         "documents": 1,
@@ -50,17 +50,17 @@
     },
     "final": {
       "phase": "final",
-      "capturedAt": "2026-08-29T17:59:24.342Z",
+      "capturedAt": "2026-08-30T02:10:25.518Z",
       "garbageCollection": {
         "forced": true,
         "method": "HeapProfiler.collectGarbage",
         "passes": 2
       },
       "heapUsage": {
-        "usedSize": 5354696,
+        "usedSize": 5354644,
         "totalSize": 5898240,
-        "embedderHeapUsedSize": 462360,
-        "backingStorageSize": 3432855
+        "embedderHeapUsedSize": 460392,
+        "backingStorageSize": 3432833
       },
       "domCounters": {
         "documents": 1,
@@ -78,8 +78,8 @@
     }
   },
   "deltas": {
-    "usedHeapBytes": 486704,
-    "backingStorageBytes": 477,
+    "usedHeapBytes": 486804,
+    "backingStorageBytes": 464,
     "domNodes": 2,
     "domEventListeners": 0,
     "createdInstances": 3,

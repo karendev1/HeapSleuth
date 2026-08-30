@@ -106,7 +106,7 @@ function describeEnvelopeShape(payload: unknown): string {
     : `root{${rootShape}} nested{${nestedShape}}`;
 }
 
-const diagnosisJsonSchema = {
+export const diagnosisJsonSchema = {
   type: "object",
   additionalProperties: false,
   required: [
@@ -158,6 +158,23 @@ const diagnosisJsonSchema = {
   },
 } as const;
 
+export const verificationJsonSchema = {
+  type: "object",
+  additionalProperties: false,
+  required: ["decision", "issues", "revisedDiagnosis", "verificationSummary"],
+  properties: {
+    decision: {
+      type: "string",
+      enum: ["accept", "revise", "inconclusive"],
+    },
+    issues: { type: "array", items: { type: "string" } },
+    revisedDiagnosis: {
+      anyOf: [diagnosisJsonSchema, { type: "null" }],
+    },
+    verificationSummary: { type: "string" },
+  },
+} as const;
+
 function extractOutputText(
   interaction: z.infer<typeof geminiInteractionSchema>,
 ): string {
@@ -189,7 +206,7 @@ function extractOutputText(
     if (legacyOutput.length > 0) return legacyOutput;
 
     throw new ProviderRequestError(
-      "Gemini returned no output text for the baseline interaction.",
+      "Gemini returned no output text for the structured interaction.",
     );
   }
 
@@ -228,7 +245,10 @@ export class GeminiInteractionsProvider implements ModelProvider {
           response_format: {
             type: "text",
             mime_type: "application/json",
-            schema: diagnosisJsonSchema,
+            schema:
+              request.responseFormat === "verification"
+                ? verificationJsonSchema
+                : diagnosisJsonSchema,
           },
           generation_config: {
             max_output_tokens: this.settings.maxOutputTokens,
