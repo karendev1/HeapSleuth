@@ -11,7 +11,7 @@ HeapSleuth is an agentic workflow that reproduces, diagnoses, explains, and veri
 
 The project is designed for frontend engineers and technical evolution teams that currently investigate memory leaks through a slow, specialist-heavy process involving issue reproduction, heap inspection, source-code analysis, hypothesis formation, and repeated verification.
 
-HeapSleuth will compare two approaches on the same synthetic benchmark:
+HeapSleuth compares two approaches on the same synthetic benchmark:
 
 1. A simple baseline that asks a general-purpose language model to diagnose a case from its description and source code.
 2. An agentic solution that reproduces the behavior in a browser, collects memory evidence, inspects relevant source code, forms a hypothesis, and asks an independent verifier to challenge the diagnosis.
@@ -46,7 +46,7 @@ HeapSleuth aims to reduce diagnosis time and produce a report that is:
 
 > Frontend debugging agents do not primarily need more reasoning. They need controlled reproduction, runtime evidence, and permission to reject their first hypothesis.
 
-This wording is provisional. The final hot take must reflect an observed failure mode from the actual experiments.
+The final wording reflects the measured result: browser-grounded investigation improved strict diagnosis quality, while a prompt-only attempt to make the Verifier stricter regressed and was removed.
 
 ## 3. Hackathon Alignment
 
@@ -56,8 +56,8 @@ HeapSleuth is designed to answer the four core hackathon questions:
 | --- | --- |
 | Who has the problem? | Frontend engineers responsible for performance and architecture. |
 | What bottleneck makes it worth solving? | Runtime memory diagnosis is slow, specialized, and difficult to reproduce consistently. |
-| Does the agent solve it well? | This will be measured against a static baseline on the same benchmark cases. |
-| Can another person reproduce the result? | The submission will include exact setup, baseline, solution, and evaluation commands. |
+| Does the agent solve it well? | On the frozen eight-case cohort, RCLA improved from 3/8 for the static baseline to 5/8 for the agentic solution. |
+| Can another person reproduce the result? | The repository includes exact setup, baseline, solution, evaluation, and evidence-audit commands. |
 
 The project will prioritize purposeful agent design over the number of agents.
 
@@ -111,12 +111,12 @@ Only attempt these items after every MVP acceptance criterion passes:
 | Runtime | Node.js with TypeScript | Matches the frontend domain and keeps the project in one ecosystem. |
 | Interface | Command-line interface | Fast to build, easy to reproduce, and suitable for automated evaluation. |
 | Benchmark UI | Vite-based frontend application | Fast local startup and simple isolated routes for synthetic cases. |
-| Browser control | Chrome DevTools MCP preferred; direct CDP/Playwright fallback | Provides runtime browser evidence while preserving a fallback if the preferred integration is unstable. |
-| Model access | Provider adapter using an environment variable | Keeps credentials outside the submission and limits provider coupling. |
+| Browser control | Direct CDP through Playwright Core | The Block 2 spike found no available Chrome DevTools MCP and validated reproducible retained evidence with direct CDP. |
+| Model access | Gemini Interactions provider with environment-based credentials | Keeps credentials outside the submission and records request settings, usage, and provider failures. |
 | Outputs | JSON for machines, Markdown for reviewers | Supports automated scoring and readable evidence. |
 | Validation | Runtime schemas | Prevents malformed model output from silently corrupting the evaluation. |
 
-Exact dependency versions will be pinned after the technical spike and recorded in the reproduction guide.
+All direct dependencies are pinned exactly in the package manifests and lockfile. Runtime, dependency, browser, provider, and model versions are recorded in `docs/REPRODUCTION.md`.
 
 ### High-level system diagram
 
@@ -378,26 +378,27 @@ The required challenging case will be `healthy-control`. It intentionally alloca
 
 ### Per-case result
 
-Each run will create:
+Each baseline run creates the files below; a solution run also creates browser evidence, Investigator output, and Verifier output:
 
 ```text
 results/<approach>/<case-id>/
+  browser-evidence.json       # solution only
+  input-manifest.json
+  investigator-result.json   # solution only
   result.json
   report.md
   metrics.json
   run-metadata.json
+  verification.json          # solution only
 ```
 
 ### Trajectories
 
-Each agentic run will create:
+Each agentic run creates one integrated, validated event stream containing both agents:
 
 ```text
 trajectories/<case-id>/
-  investigator.jsonl
-  investigator.md
-  verifier.jsonl
-  verifier.md
+  <run-id>.jsonl
 ```
 
 Trajectories must show:
@@ -423,12 +424,11 @@ results/summary/
   changelog-evidence.json
 ```
 
-## 12. Planned Repository Structure
+## 12. Implemented Repository Structure
 
 ```text
 heapsleuth/
   README.md
-  LICENSE
   package.json
   package-lock.json
   tsconfig.json
@@ -436,48 +436,32 @@ heapsleuth/
   .gitignore
 
   src/
-    cli.ts
     config.ts
-    orchestrator.ts
 
-    agents/
-      investigator.ts
-      verifier.ts
-
+    baseline/
+    investigator/
+    verifier/
     prompts/
-      baseline.md
-      investigator.md
-      verifier.md
 
     browser/
-      evidence-provider.ts
-      chrome-devtools-mcp.ts
-      direct-cdp-fallback.ts
       scenario-runner.ts
 
     model/
       model-provider.ts
 
     schemas/
-      case.ts
-      diagnosis.ts
-      verification.ts
-      trajectory.ts
 
     evaluation/
-      evaluator.ts
-      rubric.ts
-      report-writer.ts
+      run-evaluation.ts
+      scoring.ts
+      reports.ts
 
     telemetry/
-      trajectory-writer.ts
-      run-metadata.ts
 
   benchmark/
     package.json
     src/
       cases/
-      scenarios/
       app/
 
   dataset/
@@ -496,38 +480,34 @@ heapsleuth/
     IMPROVEMENT_CHANGELOG.md
     REPRODUCTION.md
     EVALUATION.md
-    VIDEO_SCRIPT.md
+    TRAJECTORIES.md
 ```
 
-The final implementation may simplify this structure. Avoid creating empty abstractions solely to match the plan.
+The structure reflects the implemented MVP at the end of Block 9. It intentionally avoids empty abstractions and later-block features.
 
 ## 13. Command Contract
 
-The intended evaluator experience is:
+The evaluator can audit the saved frozen result without an API key:
 
 ```bash
-npm install
-cp .env.example .env
-# Add the evaluator's API key to .env
-
-npm run baseline
-npm run solution
+npm ci
+npm run validate
+npm run smoke:benchmark
 npm run evaluate
 ```
 
-Convenience commands:
+Live model regeneration requires `.env` credentials. The actual commands are:
 
 ```bash
-npm run setup
+npm run baseline
+npm run baseline -- --case event-listener
+npm run solution -- --case event-listener
+npm run evaluate
 npm run benchmark
-npm run demo -- --case detached-dom
-npm run reproduce
-npm test
+npm run spike
 ```
 
-`npm run reproduce` should run the benchmark server, baseline, agentic solution, and evaluation with minimal manual intervention.
-
-Windows PowerShell equivalents must be included in `docs/REPRODUCTION.md` if any command differs.
+The solution command is deliberately single-case so provider failures remain attributable and recoverable. `docs/REPRODUCTION.md` includes POSIX and Windows PowerShell loops for the frozen eight-case order, plus quota, archive, and failure behavior.
 
 ## 14. Configuration and Security
 
@@ -540,6 +520,7 @@ GEMINI_API_KEY=
 AI_MODEL=gemini-3.6-flash
 BROWSER_HEADLESS=true
 RESULTS_DIR=results
+CHROME_PATH=
 ```
 
 Security requirements:
@@ -550,7 +531,7 @@ Security requirements:
 - do not perform external consequential actions;
 - keep benchmark data synthetic;
 - document model-provider terms and required access;
-- include approximate runtime and API cost.
+- include measured runtime and tokens, and mark API cost unavailable when billing evidence is absent.
 
 ## 15. Technical Spike and Pivot Rule
 
@@ -653,13 +634,13 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 9: Documentation and polish - 2.5 hours
 
-- [ ] Complete `README.md`.
-- [ ] Complete clean-environment reproduction guide.
-- [ ] Record exact dependency and model versions.
-- [ ] Record runtime and cost.
-- [ ] Produce final comparison tables.
-- [ ] Select representative trajectories for both agents.
-- [ ] Check that all project artifacts are in English.
+- [x] Complete `README.md`.
+- [x] Complete clean-environment reproduction guide.
+- [x] Record exact dependency and model versions.
+- [x] Record runtime and cost.
+- [x] Produce final comparison tables.
+- [x] Select representative trajectories for both agents.
+- [x] Check that all project artifacts are in English.
 
 #### Block 10: Video and submission - 2 hours
 
@@ -675,17 +656,17 @@ The fallback must remain honest about what it can and cannot prove.
 
 ### P0 - Submission blockers
 
-- [ ] Reproducible benchmark application.
-- [ ] At least one healthy control.
-- [ ] Static baseline.
-- [ ] Runtime-evidence investigator.
-- [ ] Independent verifier.
-- [ ] Ground-truth evaluator.
-- [ ] Complete results for all submitted cases.
-- [ ] Improvement changelog based on real experiments.
-- [ ] Representative trajectories for every agent.
-- [ ] Clean-environment reproduction guide.
-- [ ] English README and documentation.
+- [x] Reproducible benchmark application.
+- [x] At least one healthy control.
+- [x] Static baseline.
+- [x] Runtime-evidence investigator.
+- [x] Independent verifier.
+- [x] Ground-truth evaluator.
+- [x] Complete results for all submitted cases.
+- [x] Improvement changelog based on real experiments.
+- [x] Representative trajectories for every agent.
+- [x] Clean-environment reproduction guide.
+- [x] English README and documentation.
 - [ ] Five-minute solution video.
 - [ ] Final ZIP without credentials or private data.
 
@@ -729,10 +710,10 @@ Do not fabricate the removed experiment. If no planned feature is removed natura
 | --- | --- | --- |
 | Heap snapshots are too large or slow | Blocks agent context and evaluation | Send bounded summaries, cache locally, and use the pivot rule. |
 | Garbage collection creates noisy measurements | Causes false positives | Warm up, force GC when supported, repeat cycles, and include a healthy control. |
-| Browser integration is unstable | Breaks reproducibility | Complete the spike first and preserve a direct CDP fallback. |
+| Browser integration is unstable | Breaks reproducibility | Use the spike-validated direct CDP adapter and an explicit `CHROME_PATH` override. |
 | Model output is inconsistent | Weakens evaluation | Use schemas, low-variance settings, explicit inconclusive state, and full failure logs. |
 | Ground truth leaks into prompts | Invalidates results | Store it in an evaluator-only path and test agent file boundaries. |
-| Ten cases take too long | Threatens submission quality | Reuse one benchmark shell and implement small isolated mechanisms. |
+| Eight cases take too long | Threatens submission quality | Reuse one benchmark shell, run one solution case at a time, and preserve partial failures. |
 | Scope expands into automatic repair | Delays the core result | Treat patching as stretch scope until diagnosis metrics pass. |
 | API credentials leak | Disqualifies or creates security risk | Use `.env.example`, secret scanning, and final ZIP inspection. |
 | Live demo fails | Hurts presentation | Use one deterministic case and keep representative saved results as backup. |
@@ -743,13 +724,13 @@ Do not fabricate the removed experiment. If no planned feature is removed natura
 The project is ready for submission only when:
 
 - [ ] A new user can follow the reproduction guide from a clean directory.
-- [ ] The baseline and agentic solution run on the same cases.
-- [ ] The evaluation produces the documented primary metric.
-- [ ] All submitted result claims link to saved evidence.
-- [ ] The healthy control is included and explained.
-- [ ] Every agent has a representative readable trajectory.
-- [ ] All meaningful iterations are documented honestly.
-- [ ] Runtime, cost, model, and dependency versions are documented.
+- [x] The baseline and agentic solution run on the same cases.
+- [x] The evaluation produces the documented primary metric.
+- [x] All submitted result claims link to saved evidence.
+- [x] The healthy control is included and explained.
+- [x] Every agent has a representative readable trajectory.
+- [x] All meaningful iterations are documented honestly.
+- [x] Runtime, cost, model, and dependency versions are documented.
 - [ ] No API key, `.env`, personal data, or private file is present.
 - [ ] The final output is polished and entirely in English.
 - [ ] The video is no longer than five minutes.
@@ -789,8 +770,6 @@ The recommended final decision is to keep a cleaned, accurate version under `doc
 
 ## 23. Immediate Next Actions
 
-1. Approve the problem statement and MVP boundary.
-2. Initialize the Node.js/TypeScript repository.
-3. Implement the 90-minute browser-memory evidence spike.
-4. Record the first real architecture decision in the improvement changelog.
-5. Continue only after the spike produces structured runtime evidence.
+1. Continue to Block 10 without adding stretch scope.
+2. Write and rehearse the five-minute video script around one deterministic case.
+3. Create the final credential-free ZIP and test it from a clean directory.

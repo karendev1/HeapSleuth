@@ -941,3 +941,63 @@ browser errors. Independent checks parsed 55 archived JSON files and all 8
 archived JSONL trajectories, found no secret or evaluator-answer pattern in
 model-visible artifacts, confirmed that no `verifier-v2` reference remains in
 active source, tests, or results, and passed `git diff --check`.
+
+## 2026-08-30 — Block 9 documentation protocol
+
+### Acceptance checklist
+
+Block 9 is limited to documenting and validating the frozen MVP. It must not
+rerun model evaluation, change the active cohort, or add a later-block feature.
+The block is accepted only when:
+
+- the README leads with the measured claim and its boundary, explains the
+  architecture, and provides a no-key review path;
+- the reproduction guide documents the actual commands, POSIX and PowerShell
+  differences, browser and API prerequisites, quota and failure behavior, and
+  artifact locations;
+- the evaluation guide defines RCLA, scorer isolation, fairness controls, exact
+  results, runtime, tokens, unavailable monetary cost, limitations, cohort hash,
+  and the removed experiment;
+- exact direct dependency, runtime, browser, provider, model, and prompt
+  versions are recorded from manifests and validated run metadata;
+- representative integrated trajectories expose both Investigator and Verifier
+  behavior for one leak and the healthy control;
+- links, commands, English-language content, credential boundaries, formatting,
+  tests, types, linting, builds, and the browser smoke suite pass validation.
+
+### Documentation decisions
+
+The reviewer flow is split into a no-key audit of the committed frozen evidence
+and an optional live regeneration. This prevents the documentation from implying
+that an evaluator must spend API quota to inspect the submission. It also states
+that a live case archives the current active artifact and that model output may
+not reproduce byte-for-byte.
+
+The docs report the measured 287.515 seconds and 51,900 tokens across both
+approaches. Estimated list cost and actual billed cost remain unavailable
+because the validated metadata contains no billing evidence. Free-tier
+credentials are not treated as proof of zero monetary cost.
+
+### Evidence status
+
+The completed block added `README.md`, `docs/REPRODUCTION.md`,
+`docs/EVALUATION.md`, `docs/TRAJECTORIES.md`, a documented optional
+`CHROME_PATH`, and focused documentation contract tests. All relative links in
+the four reviewer-facing documents resolve, every documented npm script exists,
+the two selected trajectories parse as JSONL and contain both agents plus a
+final result, and the environment template contains no credential.
+
+`npm run validate` passed formatting, linting, strict TypeScript, 88 tests
+across 23 files, and both production builds. `npm run smoke:benchmark` passed
+the index and all eight routes in Chrome 151.0.7922.174 with forced garbage
+collection and no browser errors. The healthy control created and released three
+resources with zero retained resources; each intentional leak case retained
+three.
+
+Repository-wide scans found no tracked Gemini key pattern and no selected common
+Portuguese-language terms in source, documentation, tests, dataset, saved
+results, or trajectories. `.env` remains ignored and untracked,
+`git diff --check` passed, and no file under active `results/` or
+`trajectories/` changed. No model request or evaluation rerun occurred during
+Block 9. The final clean-ZIP extraction test remains explicitly assigned to
+Block 10.
