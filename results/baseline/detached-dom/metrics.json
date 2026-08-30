@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "detached-dom",
+  "approach": "baseline",
+  "runId": "0f3c70c1-12fb-4a58-be24-e133f285b6bb",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Detached DOM / Global reference retention",
+    "rootCauseFile": "benchmark/src/cases/DetachedDomCase.tsx",
+    "rootCauseSymbol": "artifactRegistry",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": true,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 16864,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 652,
+    "outputTokens": 530,
+    "totalTokens": 1182
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Analysis relies solely on static source code inspection without runtime heap snapshot measurements.",
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/detached-dom/run-metadata.json",
+    "manifest": "results/baseline/detached-dom/input-manifest.json",
+    "result": "results/baseline/detached-dom/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "caseId": "event-listener",
+  "verdict": "leak",
+  "mechanism": "Unremoved global window event listener attached during component mount, retaining closures across unmount cycles",
+  "rootCause": {
+    "file": "benchmark/src/cases/EventListenerCase.tsx",
+    "symbol": "EventListenerCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect attaches a 'heapsleuth:notification' event listener to window via window.addEventListener without returning a cleanup function to remove it upon unmount."
+    },
+    {
+      "source": "runtime",
+      "claim": "After 3 mount-unmount cycles, domEventListeners increases by 3 (from 160 to 163) and activeResources remains at 3 post-GC."
+    },
+    {
+      "source": "heap",
+      "claim": "Used heap size grew by 487,160 bytes after forced garbage collection post-unmount."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect in EventListenerCase that calls window.removeEventListener(TARGET_EVENT_TYPE, handleNotification).",
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

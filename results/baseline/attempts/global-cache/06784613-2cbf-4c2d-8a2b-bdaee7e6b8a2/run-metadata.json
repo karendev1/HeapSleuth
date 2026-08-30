@@ -1,0 +1,31 @@
+{
+  "runId": "06784613-2cbf-4c2d-8a2b-bdaee7e6b8a2",
+  "caseId": "global-cache",
+  "approach": "baseline",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:14:40.225Z",
+  "completedAt": "2026-08-29T17:14:46.922Z",
+  "durationMs": 6697,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 564,
+    "outputTokens": 371,
+    "totalTokens": 935
+  }
+}

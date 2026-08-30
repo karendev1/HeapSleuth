@@ -637,11 +637,11 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 7: Full evaluation - 2 hours
 
-- [ ] Complete remaining benchmark cases.
-- [ ] Run baseline on every case.
-- [ ] Run solution on every case.
-- [ ] Calculate primary and secondary metrics.
-- [ ] Investigate failures without hiding them.
+- [x] Complete remaining benchmark cases.
+- [x] Run baseline on every case.
+- [x] Run solution on every case.
+- [x] Calculate primary and secondary metrics.
+- [x] Investigate failures without hiding them.
 
 #### Block 8: Evidence-driven iteration - 2 hours
 

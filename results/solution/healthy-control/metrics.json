@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "healthy-control",
+  "approach": "solution",
+  "runId": "26d5d537-0007-4963-b12b-816cfdfdbaed",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "no-leak",
+    "mechanism": null,
+    "rootCauseFile": null,
+    "rootCauseSymbol": null,
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": null,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 1,
+    "representedCategoryCount": 1,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 12452,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 4626,
+    "outputTokens": 502,
+    "totalTokens": 5128
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/healthy-control/run-metadata.json",
+    "manifest": "results/solution/healthy-control/input-manifest.json",
+    "result": "results/solution/healthy-control/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/healthy-control/browser-evidence.json",
+    "investigatorResult": "results/solution/healthy-control/investigator-result.json",
+    "verification": "results/solution/healthy-control/verification.json",
+    "trajectory": "trajectories/healthy-control/26d5d537-0007-4963-b12b-816cfdfdbaed.jsonl"
+  }
+}

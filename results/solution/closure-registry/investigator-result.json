@@ -1,0 +1,30 @@
+{
+  "caseId": "closure-registry",
+  "verdict": "leak",
+  "mechanism": "Module-scope callback registry retains closures and payloads across component unmounts without cleanup",
+  "rootCause": {
+    "file": "benchmark/src/cases/ClosureRegistryCase.tsx",
+    "symbol": "ClosureRegistryCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect pushes a callback capturing payload into module-scoped reportCallbacks array without returning a cleanup function to remove it upon unmount."
+    },
+    {
+      "source": "runtime",
+      "claim": "runtimeState shows retainedResources and activeResources growing to 3 after 3 mount-unmount cycles while releasedResources remains 0."
+    },
+    {
+      "source": "heap",
+      "claim": "usedSize increased by 486,692 bytes post forced garbage collection across 3 mount-unmount cycles."
+    }
+  ],
+  "confidence": 0.98,
+  "recommendedFix": "Return a cleanup function from useEffect in ClosureRegistryCase to unregister/remove the callback from reportCallbacks on unmount.",
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

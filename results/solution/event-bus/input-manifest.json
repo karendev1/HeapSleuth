@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "approach": "solution",
+  "description": "Open and close a message center repeatedly.",
+  "route": "/cases/event-bus",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/EventBusCase.tsx",
+      "byteCount": 898,
+      "sha256": "10d5ec290192040b72b778d2bfe1846816aaabaee80efc9d130a23ba4ec37dd8"
+    }
+  ],
+  "browserEvidenceSha256": "9b46735872ef2fb4d7fdd0659131f1a900a93d68d706dba589721f4f512ad3b5",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "558b36159bc69b0e100c51883e8d2727b67daaf636a214183f7f87442302a867"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v1",
+    "promptSha256": "479f6261b122e47c8282a521b666c80ca15fce8b287da22b610a732099a02fc2",
+    "investigatorDiagnosisSha256": "600ab98219b0a8cd13c31f9b86365fd734117c37eda7a1883a1b8ffcd8f8e7ff"
+  }
+}

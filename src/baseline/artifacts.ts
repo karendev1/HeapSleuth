@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import type { ZodType } from "zod";
@@ -50,6 +50,85 @@ async function prepareCaseDirectory(
   return caseDirectory;
 }
 
+const baselineArtifactNames = [
+  "failure.json",
+  "input-manifest.json",
+  "metrics.json",
+  "report.md",
+  "result.json",
+  "run-metadata.json",
+] as const;
+
+export async function archiveExistingBaselineArtifacts(
+  resultsRoot: string,
+  caseId: string,
+): Promise<string | undefined> {
+  const caseDirectory = path.join(resultsRoot, "baseline", caseId);
+  let metadata: RunMetadata;
+  try {
+    metadata = runMetadataSchema.parse(
+      JSON.parse(
+        await readFile(path.join(caseDirectory, "run-metadata.json"), "utf8"),
+      ),
+    );
+  } catch (error) {
+    if (
+      error !== null &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      return undefined;
+    }
+    const message = error instanceof Error ? error.message : String(error);
+    throw new PersistenceError(
+      `Could not validate existing baseline artifacts before archiving: ${message}`,
+    );
+  }
+  if (metadata.caseId !== caseId || metadata.approach !== "baseline") {
+    throw new PersistenceError(
+      "Existing baseline metadata does not match the requested case.",
+    );
+  }
+  const archiveDirectory = path.join(
+    resultsRoot,
+    "baseline",
+    "attempts",
+    caseId,
+    metadata.runId,
+  );
+  await mkdir(archiveDirectory, { recursive: true });
+  for (const artifactName of baselineArtifactNames) {
+    try {
+      await copyFile(
+        path.join(caseDirectory, artifactName),
+        path.join(archiveDirectory, artifactName),
+      );
+    } catch (error) {
+      if (
+        error !== null &&
+        typeof error === "object" &&
+        "code" in error &&
+        error.code === "ENOENT"
+      ) {
+        continue;
+      }
+      const message = error instanceof Error ? error.message : String(error);
+      throw new PersistenceError(
+        `Could not archive existing baseline ${artifactName}: ${message}`,
+      );
+    }
+  }
+  return archiveDirectory;
+}
+
+async function removeStaleEvaluationArtifacts(
+  caseDirectory: string,
+): Promise<void> {
+  await rm(path.join(caseDirectory, "metrics.json"), { force: true });
+  await rm(path.join(caseDirectory, "report.md"), { force: true });
+}
+
 export async function persistBaselineSuccess(input: {
   resultsRoot: string;
   diagnosis: Diagnosis;
@@ -60,6 +139,7 @@ export async function persistBaselineSuccess(input: {
     input.resultsRoot,
     input.diagnosis.caseId,
   );
+  await removeStaleEvaluationArtifacts(caseDirectory);
   await rm(path.join(caseDirectory, "failure.json"), { force: true });
   await writeAndValidate(
     path.join(caseDirectory, "input-manifest.json"),
@@ -89,6 +169,7 @@ export async function persistBaselineFailure(input: {
     input.resultsRoot,
     input.failure.caseId,
   );
+  await removeStaleEvaluationArtifacts(caseDirectory);
   await rm(path.join(caseDirectory, "result.json"), { force: true });
   await writeAndValidate(
     path.join(caseDirectory, "input-manifest.json"),

@@ -17,6 +17,7 @@
     "build:benchmark": "npm run build --workspace @heapsleuth/benchmark",
     "build:core": "tsc -p tsconfig.build.json",
     "dev": "tsx src/cli.ts",
+    "evaluate": "tsx src/evaluation/run-evaluation.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",

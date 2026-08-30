@@ -1,11 +1,11 @@
 {
-  "runId": "86f9706c-2a32-4701-8ca0-05e9ba24ce8d",
+  "runId": "26d5d537-0007-4963-b12b-816cfdfdbaed",
   "caseId": "healthy-control",
   "approach": "solution",
   "status": "succeeded",
-  "startedAt": "2026-08-30T02:10:22.549Z",
-  "completedAt": "2026-08-30T02:10:31.576Z",
-  "durationMs": 9027,
+  "startedAt": "2026-08-30T03:02:18.619Z",
+  "completedAt": "2026-08-30T03:02:31.071Z",
+  "durationMs": 12452,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",
@@ -24,37 +24,37 @@
   },
   "attemptCount": 2,
   "usage": {
-    "inputTokens": 4584,
-    "outputTokens": 713,
-    "totalTokens": 5297
+    "inputTokens": 4626,
+    "outputTokens": 502,
+    "totalTokens": 5128
   },
   "agentRuns": [
     {
       "agent": "investigator",
       "status": "succeeded",
       "promptVersion": "investigator-v1",
-      "startedAt": "2026-08-30T02:10:25.788Z",
-      "completedAt": "2026-08-30T02:10:30.195Z",
-      "durationMs": 4407,
+      "startedAt": "2026-08-30T03:02:21.807Z",
+      "completedAt": "2026-08-30T03:02:28.906Z",
+      "durationMs": 7099,
       "attemptCount": 1,
       "usage": {
         "inputTokens": 2144,
-        "outputTokens": 628,
-        "totalTokens": 2772
+        "outputTokens": 300,
+        "totalTokens": 2444
       }
     },
     {
       "agent": "verifier",
       "status": "succeeded",
       "promptVersion": "verifier-v1",
-      "startedAt": "2026-08-30T02:10:30.196Z",
-      "completedAt": "2026-08-30T02:10:31.576Z",
-      "durationMs": 1380,
+      "startedAt": "2026-08-30T03:02:28.908Z",
+      "completedAt": "2026-08-30T03:02:31.070Z",
+      "durationMs": 2162,
       "attemptCount": 1,
       "usage": {
-        "inputTokens": 2440,
-        "outputTokens": 85,
-        "totalTokens": 2525
+        "inputTokens": 2482,
+        "outputTokens": 202,
+        "totalTokens": 2684
       }
     }
   ]

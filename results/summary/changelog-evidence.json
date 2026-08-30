@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-30T03:03:04.831Z",
+  "cohortSha256": "6c8c0f3f9fa017deb386e9b947c5a897a41dbb9d152f5157eadea6fa50980dff",
+  "baselineRcla": {
+    "numerator": 3,
+    "denominator": 8,
+    "rate": 0.375
+  },
+  "solutionRcla": {
+    "numerator": 5,
+    "denominator": 8,
+    "rate": 0.625
+  },
+  "rclaRateDelta": 0.25,
+  "primaryMetricImproved": true,
+  "solutionFailureCounts": {
+    "providerOrExecution": 0,
+    "inconclusive": 0,
+    "verdict": 0,
+    "mechanism": 3,
+    "localization": 0
+  },
+  "candidateBlock8FailureMode": "Mechanism classification is the first candidate for Block 8 investigation.",
+  "claimBoundary": "This comparison supports claims only for the frozen eight-case synthetic MVP cohort."
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "approach": "baseline",
+  "runId": "bb2df9bc-cd2a-4ced-a03c-078a39faf166",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Missing event subscriber cleanup on component unmount",
+    "rootCauseFile": "benchmark/src/cases/EventBusCase.tsx",
+    "rootCauseSymbol": "EventBusCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": true,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 32183,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 596,
+    "outputTokens": 587,
+    "totalTokens": 1183
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Static analysis performed without runtime heap snapshot measurements.",
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/event-bus/run-metadata.json",
+    "manifest": "results/baseline/event-bus/input-manifest.json",
+    "result": "results/baseline/event-bus/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

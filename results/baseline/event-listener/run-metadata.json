@@ -1,11 +1,11 @@
 {
-  "runId": "5400d4dd-6d06-44da-be8c-ef5062aa01e7",
+  "runId": "97d4dd08-64e4-4cd7-9714-10d7b984d9af",
   "caseId": "event-listener",
   "approach": "baseline",
   "status": "succeeded",
-  "startedAt": "2026-08-29T17:12:25.463Z",
-  "completedAt": "2026-08-29T17:12:29.306Z",
-  "durationMs": 3843,
+  "startedAt": "2026-08-30T02:45:41.898Z",
+  "completedAt": "2026-08-30T02:45:48.084Z",
+  "durationMs": 6186,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",
@@ -25,7 +25,7 @@
   "attemptCount": 1,
   "usage": {
     "inputTokens": 853,
-    "outputTokens": 409,
-    "totalTokens": 1262
+    "outputTokens": 381,
+    "totalTokens": 1234
   }
 }

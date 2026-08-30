@@ -1,0 +1,30 @@
+{
+  "caseId": "global-cache",
+  "verdict": "leak",
+  "mechanism": "Module-scope Map (`viewedItemCache`) stores retained payloads on component mount without removing them on unmount or bounding cache size.",
+  "rootCause": {
+    "file": "benchmark/src/cases/GlobalCacheCase.tsx",
+    "symbol": "viewedItemCache"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "The module-level map `viewedItemCache` receives payload entries in `useEffect` when `GlobalCacheCase` mounts, but no cleanup function is returned to delete entries upon unmount."
+    },
+    {
+      "source": "runtime",
+      "claim": "Across 3 mount-unmount cycles, `retainedResources` and `activeResources` grow from 0 to 3 while `releasedResources` remains at 0."
+    },
+    {
+      "source": "heap",
+      "claim": "After forced GC, retained heap usage increased by 486,180 bytes and backing storage increased by 786,877 bytes across the test scenario."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Remove payload entries from `viewedItemCache` in the `useEffect` cleanup function or use a cache eviction strategy / WeakMap if object keys are used.",
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

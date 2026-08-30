@@ -11,14 +11,14 @@
       "sha256": "5f109829008b0db37f784abb27db3f8084d55a30839ebf36a74f4b81720bd5b2"
     }
   ],
-  "browserEvidenceSha256": "b32fcb1ee1009af5b3d0df2626c82467c3c086d0a84b7a1a6a80b5664a4b43b3",
+  "browserEvidenceSha256": "ea8423c90209c867734ac8fbdea90a96c211d492dd597407e5bafd64bff208e9",
   "prompt": {
     "version": "investigator-v1",
-    "sha256": "21612fa19d70e61bde3ca814c858aef75a09209664779f869b4036e699e9f139"
+    "sha256": "b3eb06fd2293b91bb17f8e7e230bbfcfa9a7468f51219465182fe34c43fd96a7"
   },
   "verifier": {
     "promptVersion": "verifier-v1",
-    "promptSha256": "65221d4db8e6b042e0764877b5b509e6a62226b256b693851783ca2c66a2bf51",
-    "investigatorDiagnosisSha256": "b1b44c35e7c6ac37d82b93b85ed22af470821ef6ed570caae881bd692eb3512a"
+    "promptSha256": "1c24999bedaf1d9ee35ec73fb34f677ac8fe9fbd3ba397869f9625c933c75913",
+    "investigatorDiagnosisSha256": "16cc29bd31589cf8d16d5828a29a7588a63c6d60b638d84a2ecefef98e45262f"
   }
 }

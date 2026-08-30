@@ -1,0 +1,22 @@
+{
+  "caseId": "interval",
+  "verdict": "leak",
+  "mechanism": "uncleared-interval",
+  "rootCause": {
+    "file": "benchmark/src/cases/IntervalCase.tsx",
+    "symbol": "IntervalCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect initiates a window.setInterval timer but does not return a cleanup function to call clearInterval when the component unmounts."
+    },
+    {
+      "source": "source",
+      "claim": "The interval callback retains references to 'state', 'payload', and 'instanceId', keeping them reachable via the global window object across unmounts."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Store the handle returned by window.setInterval and return a cleanup function from useEffect that calls clearInterval(handle).",
+  "limitations": []
+}

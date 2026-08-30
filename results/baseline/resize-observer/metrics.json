@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "resize-observer",
+  "approach": "baseline",
+  "runId": "bf7bc7d2-f31f-4f00-ae05-ea4fd43692d8",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "uncleaned-resize-observer",
+    "rootCauseFile": "benchmark/src/cases/ResizeObserverCase.tsx",
+    "rootCauseSymbol": "ResizeObserverCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": true,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 3978,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 588,
+    "outputTokens": 437,
+    "totalTokens": 1025
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Static code review without runtime heap snapshot analysis.",
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/resize-observer/run-metadata.json",
+    "manifest": "results/baseline/resize-observer/input-manifest.json",
+    "result": "results/baseline/resize-observer/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

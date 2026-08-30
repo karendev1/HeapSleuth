@@ -2,5 +2,5 @@
   "decision": "accept",
   "issues": [],
   "revisedDiagnosis": null,
-  "verificationSummary": " verified that `EventListenerCase` attaches a global `heapsleuth:notification` event listener to `window` inside `useEffect` without returning a cleanup function. Evidence confirms a net accumulation of 3 `heapsleuth:notification` event listeners on `window` and 3 active/retained resources post-GC after 3 mount-unmount cycles."
+  "verificationSummary": " verified that EventListenerCase in benchmark/src/cases/EventListenerCase.tsx attaches a window event listener for 'heapsleuth:notification' inside useEffect without returning a cleanup function. Validated runtime and heap evidence confirms that after 3 mount-unmount cycles and forced garbage collection, 3 window event listeners remain retained alongside an increase in retained resources and used heap."
 }

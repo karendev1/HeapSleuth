@@ -1,0 +1,15 @@
+{
+  "caseId": "healthy-control",
+  "verdict": "no-leak",
+  "mechanism": null,
+  "rootCause": null,
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "In HealthyControlCase.tsx, useEffect attaches event listener 'window.addEventListener(HEALTHY_EVENT_TYPE, handleSummary)' and correctly removes it in its cleanup function via 'window.removeEventListener(HEALTHY_EVENT_TYPE, handleSummary)'."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": null,
+  "limitations": []
+}

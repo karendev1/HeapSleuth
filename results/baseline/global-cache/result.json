@@ -1,7 +1,7 @@
 {
   "caseId": "global-cache",
   "verdict": "leak",
-  "mechanism": "Unbounded module-level cache retains unmounted component payloads indefinitely",
+  "mechanism": "Unbounded Module-Scoped Cache Accumulation",
   "rootCause": {
     "file": "benchmark/src/cases/GlobalCacheCase.tsx",
     "symbol": "viewedItemCache"
@@ -9,12 +9,14 @@
   "evidence": [
     {
       "source": "source",
-      "claim": "The module-scoped 'viewedItemCache' Map stores payloads on component mount via useEffect, but no cleanup function is returned to remove the cached item when the component unmounts."
+      "claim": "viewedItemCache is declared at module scope as a Map<number, Uint8Array>."
+    },
+    {
+      "source": "source",
+      "claim": "Inside useEffect, viewedItemCache.set(instanceId, createRetainedPayload(instanceId)) adds a retained payload for every mount instance without returning a cleanup function or removing entries on unmount."
     }
   ],
   "confidence": 1,
-  "recommendedFix": "Clear or remove the item from 'viewedItemCache' in the useEffect cleanup callback, or use an eviction policy/LRU cache with a limited capacity.",
-  "limitations": [
-    "Static code review without runtime measurements or heap snapshot verification."
-  ]
+  "recommendedFix": "Remove cached entries in the useEffect cleanup return callback or implement an eviction policy for viewedItemCache.",
+  "limitations": []
 }

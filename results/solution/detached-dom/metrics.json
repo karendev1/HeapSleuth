@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "detached-dom",
+  "approach": "solution",
+  "runId": "316e895c-d85e-4860-bbf0-9f39a2d55e04",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Module-scoped registry retains references to detached DOM elements and binary payloads after component unmount.",
+    "rootCauseFile": "benchmark/src/cases/DetachedDomCase.tsx",
+    "rootCauseSymbol": "artifactRegistry",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 11534,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 4696,
+    "outputTokens": 1021,
+    "totalTokens": 5717
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/detached-dom/run-metadata.json",
+    "manifest": "results/solution/detached-dom/input-manifest.json",
+    "result": "results/solution/detached-dom/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/detached-dom/browser-evidence.json",
+    "investigatorResult": "results/solution/detached-dom/investigator-result.json",
+    "verification": "results/solution/detached-dom/verification.json",
+    "trajectory": "trajectories/detached-dom/316e895c-d85e-4860-bbf0-9f39a2d55e04.jsonl"
+  }
+}

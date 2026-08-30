@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "approach": "baseline",
+  "runId": "97d4dd08-64e4-4cd7-9714-10d7b984d9af",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Unremoved Event Listener",
+    "rootCauseFile": "benchmark/src/cases/EventListenerCase.tsx",
+    "rootCauseSymbol": "EventListenerCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 6186,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 853,
+    "outputTokens": 381,
+    "totalTokens": 1234
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/event-listener/run-metadata.json",
+    "manifest": "results/baseline/event-listener/input-manifest.json",
+    "result": "results/baseline/event-listener/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

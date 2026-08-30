@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "approach": "baseline",
+  "runId": "90a17e11-eb05-4e83-88fb-072f2864f051",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Uncleaned module-scoped closure array",
+    "rootCauseFile": "benchmark/src/cases/ClosureRegistryCase.tsx",
+    "rootCauseSymbol": "ClosureRegistryCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": true,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 3156,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 575,
+    "outputTokens": 451,
+    "totalTokens": 1026
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Static source code review performed without runtime heap profiling.",
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/closure-registry/run-metadata.json",
+    "manifest": "results/baseline/closure-registry/input-manifest.json",
+    "result": "results/baseline/closure-registry/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

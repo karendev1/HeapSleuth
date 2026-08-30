@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "healthy-control",
+  "approach": "baseline",
+  "runId": "dd297af6-e47e-4f13-935d-004aa0857fc6",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "no-leak",
+    "mechanism": null,
+    "rootCauseFile": null,
+    "rootCauseSymbol": null,
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": null,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 1,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 2755,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 647,
+    "outputTokens": 251,
+    "totalTokens": 898
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/healthy-control/run-metadata.json",
+    "manifest": "results/baseline/healthy-control/input-manifest.json",
+    "result": "results/baseline/healthy-control/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

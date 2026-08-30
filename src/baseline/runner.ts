@@ -21,6 +21,7 @@ import {
   createRunMetadata,
 } from "../telemetry/run-metadata.js";
 import {
+  archiveExistingBaselineArtifacts,
   PersistenceError,
   persistBaselineFailure,
   persistBaselineSuccess,
@@ -176,6 +177,7 @@ async function runCase(input: {
   options: BaselineRunnerOptions;
 }): Promise<BaselineCaseExecution> {
   const caseId = input.benchmarkCase.id;
+  await archiveExistingBaselineArtifacts(input.options.resultsRoot, caseId);
   const sourceRoot = input.options.projectRoot ?? projectRoot;
   let sources: LoadedSourceFile[] = [];
   let promptSha256: string | null = null;

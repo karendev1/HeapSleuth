@@ -1,11 +1,11 @@
 {
-  "runId": "605394ff-6fc8-43ad-9187-b1a2bbb74ad2",
+  "runId": "bf7bc7d2-f31f-4f00-ae05-ea4fd43692d8",
   "caseId": "resize-observer",
   "approach": "baseline",
   "status": "succeeded",
-  "startedAt": "2026-08-29T17:13:27.313Z",
-  "completedAt": "2026-08-29T17:13:32.065Z",
-  "durationMs": 4752,
+  "startedAt": "2026-08-30T02:46:22.480Z",
+  "completedAt": "2026-08-30T02:46:26.458Z",
+  "durationMs": 3978,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",
@@ -25,7 +25,7 @@
   "attemptCount": 1,
   "usage": {
     "inputTokens": 588,
-    "outputTokens": 641,
-    "totalTokens": 1229
+    "outputTokens": 437,
+    "totalTokens": 1025
   }
 }

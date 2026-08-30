@@ -1,0 +1,31 @@
+{
+  "runId": "5d768c85-7986-4d28-bee2-d5174989362f",
+  "caseId": "interval",
+  "approach": "baseline",
+  "status": "succeeded",
+  "startedAt": "2026-08-29T17:12:48.081Z",
+  "completedAt": "2026-08-29T17:12:52.165Z",
+  "durationMs": 4084,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "baseline-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "usage": {
+    "inputTokens": 579,
+    "outputTokens": 323,
+    "totalTokens": 902
+  }
+}

@@ -1,11 +1,11 @@
 {
-  "runId": "48885351-c154-404b-9ca7-9f27585f1e87",
+  "runId": "90a17e11-eb05-4e83-88fb-072f2864f051",
   "caseId": "closure-registry",
   "approach": "baseline",
   "status": "succeeded",
-  "startedAt": "2026-08-29T17:15:18.505Z",
-  "completedAt": "2026-08-29T17:15:22.037Z",
-  "durationMs": 3532,
+  "startedAt": "2026-08-30T02:47:40.439Z",
+  "completedAt": "2026-08-30T02:47:43.595Z",
+  "durationMs": 3156,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",

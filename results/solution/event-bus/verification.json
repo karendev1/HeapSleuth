@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The Investigator's diagnosis is fully supported. The source code in `benchmark/src/cases/EventBusCase.tsx` explicitly adds `subscriber` callbacks to a module-scoped `Set` (`messageSubscribers`) within `useEffect` without returning a cleanup function upon unmount. Post-GC runtime measurements confirm that 3 instances created 3 retained resources (`retainedResources` grew from 0 to 3) with zero released resources, confirming a true memory leak."
+}

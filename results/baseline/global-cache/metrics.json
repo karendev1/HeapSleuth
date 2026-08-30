@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "global-cache",
+  "approach": "baseline",
+  "runId": "b82c04a6-169b-4f53-a6c5-b1cc3bcc9e95",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Unbounded Module-Scoped Cache Accumulation",
+    "rootCauseFile": "benchmark/src/cases/GlobalCacheCase.tsx",
+    "rootCauseSymbol": "viewedItemCache",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 11841,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 564,
+    "outputTokens": 493,
+    "totalTokens": 1057
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/global-cache/run-metadata.json",
+    "manifest": "results/baseline/global-cache/input-manifest.json",
+    "result": "results/baseline/global-cache/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "runId": "de53f99f-6005-46c1-aee1-774b18076b6d",
+  "caseId": "global-cache",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T02:53:02.023Z",
+  "completedAt": "2026-08-30T02:53:15.195Z",
+  "durationMs": 13172,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 44.659796796s.\",\"code\":\"too_many_requests\"}}",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "failed",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T02:53:05.265Z",
+      "completedAt": "2026-08-30T02:53:15.194Z",
+      "durationMs": 9929,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini request failed with HTTP 429: {\"error\":{\"message\":\"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash\\nPlease retry in 44.659796796s.\",\"code\":\"too_many_requests\"}}"
+    }
+  ]
+}

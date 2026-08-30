@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "interval",
+  "approach": "baseline",
+  "runId": "219f5fc4-6235-40bf-bf23-c6bc7957c889",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Uncleared setInterval timer",
+    "rootCauseFile": "benchmark/src/cases/IntervalCase.tsx",
+    "rootCauseSymbol": "IntervalCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 1,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": true,
+    "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+  },
+  "durationMs": 4226,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 579,
+    "outputTokens": 503,
+    "totalTokens": 1082
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Static source code review only; runtime timer execution and memory retention were not directly measured.",
+    "Human time and monetary cost are unavailable from validated run artifacts.",
+    "The baseline receives source code only, so runtime evidence categories are not represented."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/baseline/interval/run-metadata.json",
+    "manifest": "results/baseline/interval/input-manifest.json",
+    "result": "results/baseline/interval/result.json",
+    "failure": null,
+    "browserEvidence": null,
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": null
+  }
+}

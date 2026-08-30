@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "approach": "solution",
+  "runId": "890e02a2-d6f4-4f5c-997b-ab3a35416cba",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Unremoved window event listener on unmount",
+    "rootCauseFile": "benchmark/src/cases/EventListenerCase.tsx",
+    "rootCauseSymbol": "EventListenerCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 39404,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 5403,
+    "outputTokens": 704,
+    "totalTokens": 6107
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/event-listener/run-metadata.json",
+    "manifest": "results/solution/event-listener/input-manifest.json",
+    "result": "results/solution/event-listener/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/event-listener/browser-evidence.json",
+    "investigatorResult": "results/solution/event-listener/investigator-result.json",
+    "verification": "results/solution/event-listener/verification.json",
+    "trajectory": "trajectories/event-listener/890e02a2-d6f4-4f5c-997b-ab3a35416cba.jsonl"
+  }
+}

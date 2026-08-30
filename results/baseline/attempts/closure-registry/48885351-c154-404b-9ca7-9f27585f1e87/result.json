@@ -1,0 +1,24 @@
+{
+  "caseId": "closure-registry",
+  "verdict": "leak",
+  "mechanism": "Uncleaned module-scoped closure array",
+  "rootCause": {
+    "file": "benchmark/src/cases/ClosureRegistryCase.tsx",
+    "symbol": "ClosureRegistryCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect pushes a callback capturing payload into the module-scoped reportCallbacks array on mount."
+    },
+    {
+      "source": "source",
+      "claim": "useEffect provides no cleanup function to remove the callback from reportCallbacks when the component unmounts."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect that removes the registered callback from reportCallbacks upon component unmount.",
+  "limitations": [
+    "Static source code review performed without runtime heap profiling."
+  ]
+}

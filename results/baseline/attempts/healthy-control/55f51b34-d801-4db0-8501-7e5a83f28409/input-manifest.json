@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "caseId": "healthy-control",
+  "approach": "baseline",
+  "description": "Open and close a temporary summary repeatedly.",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/HealthyControlCase.tsx",
+      "byteCount": 1024
+    }
+  ],
+  "prompt": {
+    "version": "baseline-v1",
+    "sha256": "6a3bea8d6d85c48f643e7d8d59fee55144c478f0c501ffca26e2c22c1e240baa"
+  }
+}

@@ -2,6 +2,7 @@ export * from "./browser-evidence.js";
 export * from "./baseline.js";
 export * from "./case.js";
 export * from "./diagnosis.js";
+export * from "./evaluation.js";
 export * from "./ground-truth.js";
 export * from "./investigator.js";
 export * from "./run-metadata.js";

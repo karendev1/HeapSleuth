@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "healthy-control",
+  "approach": "solution",
+  "description": "Open and close a temporary summary repeatedly.",
+  "route": "/cases/healthy-control",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/HealthyControlCase.tsx",
+      "byteCount": 1024,
+      "sha256": "12e9f5f072f35271d4b888b7f06d501c572d260057081ce7c9a2ac469056c10f"
+    }
+  ],
+  "browserEvidenceSha256": "e8d74729909091b2d82dea2c2f0535b3408197c182e46a639b6d9a94f737e9ee",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "4717e8f38b40f006938ffefba8a6f073e283f028195f07a76b5c8de98ea87746"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v1",
+    "promptSha256": "1763565b4156fa2e228be7f4919653f5dfe73e9f5e57b53aca8f79f935341bae",
+    "investigatorDiagnosisSha256": "2ff7e1436f8665aee24917d9c7b85852bc585ebf6d701164d5d441e42ed30a15"
+  }
+}

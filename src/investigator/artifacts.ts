@@ -58,6 +58,8 @@ const investigatorArtifactNames = [
   "failure.json",
   "input-manifest.json",
   "investigator-result.json",
+  "metrics.json",
+  "report.md",
   "result.json",
   "run-metadata.json",
   "verification.json",
@@ -169,6 +171,8 @@ export async function persistInvestigatorSuccess(input: {
     input.resultsRoot,
     input.finalDiagnosis.caseId,
   );
+  await rm(path.join(directory, "metrics.json"), { force: true });
+  await rm(path.join(directory, "report.md"), { force: true });
   await rm(path.join(directory, "failure.json"), { force: true });
   await persistShared({
     directory,
@@ -207,6 +211,8 @@ export async function persistInvestigatorFailure(input: {
     input.resultsRoot,
     input.failure.caseId,
   );
+  await rm(path.join(directory, "metrics.json"), { force: true });
+  await rm(path.join(directory, "report.md"), { force: true });
   await rm(path.join(directory, "result.json"), { force: true });
   if (input.investigatorDiagnosis === undefined) {
     await rm(path.join(directory, "investigator-result.json"), { force: true });

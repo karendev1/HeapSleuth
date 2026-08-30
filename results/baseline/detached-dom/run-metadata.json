@@ -1,11 +1,11 @@
 {
-  "runId": "b2c09577-4424-4585-b4fc-c02a46b15e4f",
+  "runId": "0f3c70c1-12fb-4a58-be24-e133f285b6bb",
   "caseId": "detached-dom",
   "approach": "baseline",
   "status": "succeeded",
-  "startedAt": "2026-08-29T17:13:58.925Z",
-  "completedAt": "2026-08-29T17:14:06.177Z",
-  "durationMs": 7252,
+  "startedAt": "2026-08-30T02:46:41.550Z",
+  "completedAt": "2026-08-30T02:46:58.414Z",
+  "durationMs": 16864,
   "runtime": {
     "nodeVersion": "v20.19.0",
     "platform": "win32",

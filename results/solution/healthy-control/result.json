@@ -6,21 +6,22 @@
   "evidence": [
     {
       "source": "source",
-      "claim": "HealthyControlCase correctly removes its window event listener and decrements activeResources and retainedResources in the useEffect cleanup function."
+      "claim": "useEffect correctly cleans up window.addEventListener('heapsleuth:summary', handleSummary) with removeEventListener and decrements active/retained resource counters upon unmount."
     },
     {
       "source": "runtime",
-      "claim": "Final runtime state shows activeResources: 0, retainedResources: 0, and releasedResources: 3 across 3 mount-unmount cycles."
+      "claim": "The runtime state deltas show 3 created instances, 0 active resources, 0 retained resources, and 3 released resources after 3 mount-unmount cycles."
     },
     {
-      "source": "heap",
-      "claim": "Window event listener count remains unchanged at 3 total listeners with a delta of 0 between baseline and final samples."
+      "source": "runtime",
+      "claim": "Window event listener count remained unchanged at 3 total listeners before and after the test run."
     }
   ],
   "confidence": 1,
   "recommendedFix": null,
   "limitations": [
-    "Heap-size deltas in V8 can fluctuate naturally even when memory is properly reclaimed after forced GC.",
-    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application."
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
   ]
 }

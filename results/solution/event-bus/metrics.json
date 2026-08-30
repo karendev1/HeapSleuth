@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "approach": "solution",
+  "runId": "8f59f6a1-f033-4b5d-ad94-4c9aab3beda8",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Module-scope subscriber set retains event listener callbacks and payload closures indefinitely after component unmount due to missing cleanup in useEffect.",
+    "rootCauseFile": "benchmark/src/cases/EventBusCase.tsx",
+    "rootCauseSymbol": "EventBusCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": false,
+    "localizationCorrect": true,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 83353,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 4617,
+    "outputTokens": 637,
+    "totalTokens": 5254
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/event-bus/run-metadata.json",
+    "manifest": "results/solution/event-bus/input-manifest.json",
+    "result": "results/solution/event-bus/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/event-bus/browser-evidence.json",
+    "investigatorResult": "results/solution/event-bus/investigator-result.json",
+    "verification": "results/solution/event-bus/verification.json",
+    "trajectory": "trajectories/event-bus/8f59f6a1-f033-4b5d-ad94-4c9aab3beda8.jsonl"
+  }
+}

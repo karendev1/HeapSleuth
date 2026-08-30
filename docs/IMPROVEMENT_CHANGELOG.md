@@ -731,3 +731,120 @@ and does not provide arbitrary production retaining-path search; and heap-size
 deltas alone are not treated as leak proof. These checks validate the Verifier
 workflow, not diagnosis accuracy. No accuracy-improvement claim is made because
 evaluation has not run.
+
+## 2026-08-29 — Frozen full-evaluation protocol decision
+
+### Context
+
+Block 7 must compare the static baseline with the verified runtime-evidence
+solution across the same eight-case MVP without tuning either approach after
+seeing scores. Before this decision, commit `c5043e3` passed the full validation
+gate with 69 tests and the Chrome smoke regression for all eight cases. The
+active `event-listener` and `healthy-control` solution artifacts also passed
+schema, request-count, and trajectory checks as clean one-Investigator plus
+one-Verifier runs.
+
+### Frozen protocol
+
+- Freeze the eight entries in `dataset/cases.json`, benchmark sources and
+  scenarios, direct-CDP evidence collector, baseline/Investigator/Verifier
+  prompts, diagnosis and verification schemas, `gemini-3.6-flash`, and the
+  recorded deterministic provider settings at commit `c5043e3`.
+- Run one new official baseline batch and one new official solution run for
+  every case. Requests remain sequential, bounded, and without automatic retry.
+  Provider failures remain evaluation outcomes and are never deleted.
+- Archive every previously active raw run before replacement. The evaluator
+  selects only the active run present when `npm run evaluate` starts; it never
+  searches archives for a better answer. The cohort manifest records each
+  selected run ID, status, frozen settings, artifact paths, and the fixed
+  selection reason before ground truth is loaded or a score is calculated.
+- Keep `dataset/ground-truth.json` evaluator-only. Baseline, Investigator,
+  Verifier, prompts, browser and source tools, input manifests, and trajectories
+  remain unable to import it. The scorer is deterministic and uses no model.
+- Count all eight cases in each RCLA denominator. A case is correct only when
+  verdict and accepted mechanism match and, for a leak, either accepted source
+  file or accepted symbol matches. Failed and inconclusive cases score as not
+  RCLA-correct and remain visible.
+- Derive runtime and token counts only from validated run metadata. Human time
+  is `null` because no reliable per-case human timer exists. Estimated list cost
+  is also `null` unless an official, model-specific price can be represented
+  without inference; actual billed cost is `null` because the evaluator cannot
+  inspect the Google project's billing ledger.
+- Implement the qualitative evidence rubric as a documented conservative
+  mechanical score: 0 for no evidence or an invalid/failed result; 1 when cited
+  evidence lacks the required category or contradicts the verdict; 2 when the
+  required category is represented but limitations are absent; and 3 only when
+  required evidence is represented, the structured observations support the
+  verdict, and limitations are acknowledged. Any signal mapping is explicit in
+  evaluator code and tests.
+- Generate per-case JSON and Markdown from one validated evaluation object, then
+  generate the ordered comparison and changelog evidence from those same
+  objects. Raw model, browser, and trajectory artifacts are never rewritten by
+  scoring.
+
+### Acceptance checklist
+
+1. All eight cases have one selected baseline run and one selected solution run
+   under the frozen protocol, including explicit failed or inconclusive states.
+2. Ground truth is loaded only inside the deterministic evaluator and evaluator
+   fields do not appear in any model-visible or trajectory artifact.
+3. Strict schemas and focused tests cover RCLA, every documented secondary
+   metric, failure states, evidence scores 0 through 3, stable ordering, and
+   JSON/Markdown consistency.
+4. `results/summary/evaluation-cohort.json` is written before scoring and uses
+   the predetermined active-run selection rule without archive cherry-picking.
+5. Per-case `metrics.json` and `report.md` plus summary comparison and changelog
+   evidence artifacts are reproducible from validated raw artifacts.
+6. Every provider interruption and additional attempt is preserved and reported
+   without silently changing the official scoring rule.
+7. Independent artifact, isolation, and report-consistency audits pass together
+   with `npm run evaluate`, `npm run validate`, `npm run smoke:benchmark`, and
+   `git diff --check`.
+8. Only measured results determine whether runtime browser evidence improved
+   RCLA; no improvement claim is made before the complete comparison exists.
+
+### Evidence status
+
+The deterministic evaluator and official Block 7 cohort completed on 2026-08-30
+without changing the frozen dataset, prompts, model, provider settings, or
+scoring rule after results were visible.
+
+- The official baseline completed all eight cases with one request per case: 8/8
+  runs succeeded, total recorded runtime was 81,189 ms, and recorded usage was
+  8,687 tokens.
+- The official solution completed all eight cases with one Investigator and one
+  Verifier request per selected run: 8/8 selected runs succeeded, total recorded
+  runtime was 206,326 ms, and recorded usage was 43,213 tokens. The Verifier
+  accepted seven `leak` diagnoses and the `healthy-control` `no-leak` diagnosis.
+- The first `global-cache` attempt reached the Verifier before HTTP 429, and two
+  controlled resumes failed at the Investigator while the original key remained
+  rate-limited. Run IDs `90cc2ba1-244b-43d1-9980-9e22d1427c00`,
+  `de53f99f-6005-46c1-aee1-774b18076b6d`, and
+  `62c13691-22f1-4dcf-bd6d-a408351a1561` remain preserved under
+  `results/solution/attempts/global-cache/`. After the user configured a key
+  with available quota, only the missing case resumed; selected run
+  `daf38717-f707-4796-a283-1715021fd90a` then succeeded. No already successful
+  case was rerun for score selection.
+- Primary RCLA improved from 3/8 (37.5%) for the baseline to 5/8 (62.5%) for the
+  solution, a measured increase of 25 percentage points on the frozen eight-case
+  synthetic cohort.
+- Both approaches achieved 8/8 verdict accuracy, 0/1 false positives, 7/7 source
+  localization, and 0/8 inconclusive results. Mechanism classification improved
+  from 2/7 to 4/7. Mean deterministic evidence-grounding score improved from 1.0
+  to 3.0.
+- The three remaining solution RCLA misses localized the correct source but did
+  not satisfy the predeclared accepted-mechanism token rule. Mechanism
+  classification is therefore the evidence-selected candidate for Block 8; no
+  Block 8 prompt or implementation change is included here.
+- Human time, estimated list cost, and actual billed cost remain `null` because
+  validated run artifacts do not contain reliable values. The result is limited
+  to synthetic benchmark cases, and both Investigator and Verifier use the same
+  Gemini model family.
+
+The selected cohort and its hash are saved in
+`results/summary/evaluation-cohort.json`. Machine-readable and rendered
+comparisons are saved in `results/summary/comparison.json` and
+`results/summary/comparison.md`; every baseline and solution case also contains
+validated `metrics.json` and `report.md` artifacts. The measured claim above is
+derived from cohort SHA-256
+`6c8c0f3f9fa017deb386e9b947c5a897a41dbb9d152f5157eadea6fa50980dff`.

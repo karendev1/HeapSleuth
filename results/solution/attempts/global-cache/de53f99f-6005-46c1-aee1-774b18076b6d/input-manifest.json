@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "caseId": "global-cache",
+  "approach": "solution",
+  "description": "Open and close a recently viewed item repeatedly.",
+  "route": "/cases/global-cache",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/GlobalCacheCase.tsx",
+      "byteCount": 719,
+      "sha256": "bcd326df6941e4695c836f82cea1d6adb61c4915dd7f22392e727fd31c37c4d8"
+    }
+  ],
+  "browserEvidenceSha256": "5b324b795464d58253d9b8e2bf020605e4737b0def9c16d82a4a0b5030469aad",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "0c1d7f50c2bb3f3831643571ec7e0175fa0fae92f7d50cc57201f93661eebd73"
+  },
+  "verifier": null
+}

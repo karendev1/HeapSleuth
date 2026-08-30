@@ -1,0 +1,20 @@
+{
+  "caseId": "event-bus",
+  "verdict": "leak",
+  "mechanism": "Uncleaned module-level subscription holding closure scope",
+  "rootCause": {
+    "file": "benchmark/src/cases/EventBusCase.tsx",
+    "symbol": "EventBusCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect adds subscriber closure (which retains payload) to module-scoped messageSubscribers Set without returning a cleanup function to delete it on unmount."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect that deletes subscriber from messageSubscribers and updates activeResources/retainedResources count.",
+  "limitations": [
+    "Static code analysis only; no runtime heap measurements performed."
+  ]
+}
