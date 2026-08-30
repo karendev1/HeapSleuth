@@ -1,0 +1,29 @@
+{
+  "caseId": "interval",
+  "verdict": "leak",
+  "mechanism": "Uncleared setInterval callback retaining component payload and closure state after unmount",
+  "rootCause": {
+    "file": "benchmark/src/cases/IntervalCase.tsx",
+    "symbol": "IntervalCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "window.setInterval is invoked inside useEffect without returning a cleanup function that calls clearInterval."
+    },
+    {
+      "source": "runtime",
+      "claim": "Runtime state after 3 mount-unmount cycles shows 3 created instances and 3 active resources (retainedResources delta = 3, releasedResources = 0)."
+    },
+    {
+      "source": "heap",
+      "claim": "Post-forced-GC heap used size grew by 486,644 bytes (from 4,868,032 to 5,354,676 bytes) across the scenario cycles."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Store the interval timer ID returned by window.setInterval and return a cleanup function from useEffect that calls window.clearInterval(timerId) and updates runtime state.",
+  "limitations": [
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

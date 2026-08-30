@@ -1,0 +1,60 @@
+{
+  "runId": "4c4bb71d-8aba-474a-8416-0b2db00ae986",
+  "caseId": "resize-observer",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T15:49:48.137Z",
+  "completedAt": "2026-08-30T15:50:42.158Z",
+  "durationMs": 54021,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v2",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 2,
+  "usage": {
+    "inputTokens": 2089,
+    "outputTokens": 359,
+    "totalTokens": 2448
+  },
+  "errorCategory": "provider",
+  "error": "Gemini request failed with HTTP 500: {\"error\":{\"message\":\"gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.\",\"code\":\"api_error\"}}",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "succeeded",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T15:49:51.485Z",
+      "completedAt": "2026-08-30T15:50:06.088Z",
+      "durationMs": 14603,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2089,
+        "outputTokens": 359,
+        "totalTokens": 2448
+      }
+    },
+    {
+      "agent": "verifier",
+      "status": "failed",
+      "promptVersion": "verifier-v2",
+      "startedAt": "2026-08-30T15:50:06.091Z",
+      "completedAt": "2026-08-30T15:50:42.157Z",
+      "durationMs": 36066,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini request failed with HTTP 500: {\"error\":{\"message\":\"gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.\",\"code\":\"api_error\"}}"
+    }
+  ]
+}

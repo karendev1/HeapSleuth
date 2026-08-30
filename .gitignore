@@ -37,6 +37,11 @@ results/**
 !results/summary/**/
 !results/summary/**/*.json
 !results/summary/**/*.md
+!results/iterations/
+!results/iterations/**/
+!results/iterations/**/*.json
+!results/iterations/**/*.jsonl
+!results/iterations/**/*.md
 trajectories/**
 !trajectories/.gitkeep
 !trajectories/**/

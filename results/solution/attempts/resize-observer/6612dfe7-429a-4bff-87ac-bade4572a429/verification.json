@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is fully supported. The source code in ResizeObserverCase explicitly creates a ResizeObserver and observes document.body within useEffect without returning a cleanup function to disconnect or unobserve upon component unmount. Runtime evidence confirms that activeResources and retainedResources increased by 3 while releasedResources remained 0 after forced GC passes."
+}

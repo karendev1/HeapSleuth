@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is strongly supported by source analysis and runtime metrics. `ClosureRegistryCase` registers closures referencing payload objects into module-scoped `reportCallbacks` during `useEffect` without providing an unmount cleanup function. Runtime state confirms `retainedResources` and `activeResources` incremented to 3 across 3 mount-unmount cycles while `releasedResources` remained 0 post forced GC."
+}

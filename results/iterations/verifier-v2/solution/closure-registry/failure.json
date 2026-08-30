@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini interaction did not complete successfully: incomplete.",
+  "attemptCount": 1,
+  "stage": "investigator"
+}

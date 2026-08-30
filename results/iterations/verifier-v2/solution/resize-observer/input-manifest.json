@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "resize-observer",
+  "approach": "solution",
+  "description": "Open and close a responsive preview repeatedly.",
+  "route": "/cases/resize-observer",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/ResizeObserverCase.tsx",
+      "byteCount": 862,
+      "sha256": "e5182d1dae6f13e137ab54724fa741fc2028d801515d764efe2240d0687182ba"
+    }
+  ],
+  "browserEvidenceSha256": "e82a6675f4809443a5ae94e967f947cb8b3646cd921183107d41567c62464b14",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "7b8e341e09e35186ed0faabbc7d1f2d0355d5298a6bf83520dc18fd06fab92e2"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v2",
+    "promptSha256": "65eadf91082be67b8448d80644e3a17235b6e16e12a5c5d4ca320809c528d0f0",
+    "investigatorDiagnosisSha256": "5a4614ceea59f3694c71fb380e13d5ed55b5a90116ab8e966eb702bf825669b2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is fully supported by source code and runtime evidence. `EventListenerCase` attaches a `heapsleuth:notification` event listener to `window` during `useEffect` on mount but fails to return a cleanup function to invoke `removeEventListener` on unmount, causing event listeners and closures to accumulate on `window` across mount/unmount cycles."
+}

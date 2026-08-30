@@ -1,0 +1,29 @@
+{
+  "caseId": "detached-dom",
+  "verdict": "leak",
+  "mechanism": "Module-scoped registry retains references to detached DOM elements and binary payloads after component unmount.",
+  "rootCause": {
+    "file": "benchmark/src/cases/DetachedDomCase.tsx",
+    "symbol": "artifactRegistry"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "The component pushes DOM elements and payloads to module-scoped `artifactRegistry` on mount, but cleanup only calls `artifact.remove()` without removing entries from `artifactRegistry`."
+    },
+    {
+      "source": "runtime",
+      "claim": "Runtime state reports `retainedResources` and `activeResources` increased by 3 across 3 mount-unmount cycles."
+    },
+    {
+      "source": "heap",
+      "claim": "Used heap size increased by 487,964 bytes and backing storage increased by 786,918 bytes post-forced GC."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Remove the element and payload entry from `artifactRegistry` or decrement active runtime tracking within the component cleanup function.",
+  "limitations": [
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-08-30T03:03:04.831Z",
+  "frozenProtocol": {
+    "diagnosisProtocolCommit": "c5043e3",
+    "datasetSha256": "866b95f6193bf7e7580d2d0b8ba2b0a6062abbbbe1b30de6d390da9f3da12ea9",
+    "caseIds": [
+      "event-listener",
+      "interval",
+      "resize-observer",
+      "detached-dom",
+      "global-cache",
+      "closure-registry",
+      "event-bus",
+      "healthy-control"
+    ],
+    "model": "gemini-3.6-flash",
+    "provider": "gemini-interactions",
+    "baselinePromptVersion": "baseline-v1",
+    "solutionPromptVersion": "investigator-v1+verifier-v1",
+    "selectionRule": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+    "scorer": "deterministic-ground-truth-v1"
+  },
+  "entries": [
+    {
+      "caseId": "event-listener",
+      "approach": "baseline",
+      "runId": "97d4dd08-64e4-4cd7-9714-10d7b984d9af",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "2455b789501e5080043b381c9ace9b5e2c1f2bea2c6f662f73f918b53f81209b",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/event-listener/run-metadata.json",
+        "manifest": "results/baseline/event-listener/input-manifest.json",
+        "result": "results/baseline/event-listener/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "event-listener",
+      "approach": "solution",
+      "runId": "890e02a2-d6f4-4f5c-997b-ab3a35416cba",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "b3eb06fd2293b91bb17f8e7e230bbfcfa9a7468f51219465182fe34c43fd96a7",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/event-listener/run-metadata.json",
+        "manifest": "results/solution/event-listener/input-manifest.json",
+        "result": "results/solution/event-listener/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/event-listener/browser-evidence.json",
+        "investigatorResult": "results/solution/event-listener/investigator-result.json",
+        "verification": "results/solution/event-listener/verification.json",
+        "trajectory": "trajectories/event-listener/890e02a2-d6f4-4f5c-997b-ab3a35416cba.jsonl"
+      }
+    },
+    {
+      "caseId": "interval",
+      "approach": "baseline",
+      "runId": "219f5fc4-6235-40bf-bf23-c6bc7957c889",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "28c71f21ba72cb304ba65ce48fee5b2f9156ebd1cfbb194d3daf0dadee50055d",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/interval/run-metadata.json",
+        "manifest": "results/baseline/interval/input-manifest.json",
+        "result": "results/baseline/interval/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "interval",
+      "approach": "solution",
+      "runId": "b56780ad-aece-4f55-855c-5fa5e34f39d8",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "4795f12ed3315f444d5660ca044f6ab82c7237add75b7d32dfdde665fd942e3b",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/interval/run-metadata.json",
+        "manifest": "results/solution/interval/input-manifest.json",
+        "result": "results/solution/interval/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/interval/browser-evidence.json",
+        "investigatorResult": "results/solution/interval/investigator-result.json",
+        "verification": "results/solution/interval/verification.json",
+        "trajectory": "trajectories/interval/b56780ad-aece-4f55-855c-5fa5e34f39d8.jsonl"
+      }
+    },
+    {
+      "caseId": "resize-observer",
+      "approach": "baseline",
+      "runId": "bf7bc7d2-f31f-4f00-ae05-ea4fd43692d8",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "2009d9ead747104dd03dcddf8dee9b19061b930bcfa59bdd6393822e58cbbb42",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/resize-observer/run-metadata.json",
+        "manifest": "results/baseline/resize-observer/input-manifest.json",
+        "result": "results/baseline/resize-observer/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "resize-observer",
+      "approach": "solution",
+      "runId": "6612dfe7-429a-4bff-87ac-bade4572a429",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "d8f50297e5a9af8fafa1eddb5a5ac3455d9428bcd920f4c4382ef990fff97dbc",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/resize-observer/run-metadata.json",
+        "manifest": "results/solution/resize-observer/input-manifest.json",
+        "result": "results/solution/resize-observer/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/resize-observer/browser-evidence.json",
+        "investigatorResult": "results/solution/resize-observer/investigator-result.json",
+        "verification": "results/solution/resize-observer/verification.json",
+        "trajectory": "trajectories/resize-observer/6612dfe7-429a-4bff-87ac-bade4572a429.jsonl"
+      }
+    },
+    {
+      "caseId": "detached-dom",
+      "approach": "baseline",
+      "runId": "0f3c70c1-12fb-4a58-be24-e133f285b6bb",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "12d66deaf42101e40a1664462e3061ed897b6c61dafef97cee755eea1e2d4950",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/detached-dom/run-metadata.json",
+        "manifest": "results/baseline/detached-dom/input-manifest.json",
+        "result": "results/baseline/detached-dom/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "detached-dom",
+      "approach": "solution",
+      "runId": "316e895c-d85e-4860-bbf0-9f39a2d55e04",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "1b8e2a3bed4028704e7d760e15ab423977beb2a63a75cecb927d5f510b6e4beb",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/detached-dom/run-metadata.json",
+        "manifest": "results/solution/detached-dom/input-manifest.json",
+        "result": "results/solution/detached-dom/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/detached-dom/browser-evidence.json",
+        "investigatorResult": "results/solution/detached-dom/investigator-result.json",
+        "verification": "results/solution/detached-dom/verification.json",
+        "trajectory": "trajectories/detached-dom/316e895c-d85e-4860-bbf0-9f39a2d55e04.jsonl"
+      }
+    },
+    {
+      "caseId": "global-cache",
+      "approach": "baseline",
+      "runId": "b82c04a6-169b-4f53-a6c5-b1cc3bcc9e95",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "a95ae962b1611308ed0eac738667ca3506975735abf8cdfae46285d80fb8ee16",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/global-cache/run-metadata.json",
+        "manifest": "results/baseline/global-cache/input-manifest.json",
+        "result": "results/baseline/global-cache/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "global-cache",
+      "approach": "solution",
+      "runId": "daf38717-f707-4796-a283-1715021fd90a",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "a16069506d7941808ac19945a745e1d6efe14ff26aa1a725b85e33c40d664c77",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/global-cache/run-metadata.json",
+        "manifest": "results/solution/global-cache/input-manifest.json",
+        "result": "results/solution/global-cache/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/global-cache/browser-evidence.json",
+        "investigatorResult": "results/solution/global-cache/investigator-result.json",
+        "verification": "results/solution/global-cache/verification.json",
+        "trajectory": "trajectories/global-cache/daf38717-f707-4796-a283-1715021fd90a.jsonl"
+      }
+    },
+    {
+      "caseId": "closure-registry",
+      "approach": "baseline",
+      "runId": "90a17e11-eb05-4e83-88fb-072f2864f051",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "29bd2aae29bbc51360b52b4f5dbb78e3e45a536bb6906d44199adf377c710825",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/closure-registry/run-metadata.json",
+        "manifest": "results/baseline/closure-registry/input-manifest.json",
+        "result": "results/baseline/closure-registry/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "closure-registry",
+      "approach": "solution",
+      "runId": "46d48615-bf6e-48a1-89d5-4795b42a5753",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "f7145eab1d28109da327afbf3ecc408ead6e7a90b79ccf9b882bd4150f910e05",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/closure-registry/run-metadata.json",
+        "manifest": "results/solution/closure-registry/input-manifest.json",
+        "result": "results/solution/closure-registry/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/closure-registry/browser-evidence.json",
+        "investigatorResult": "results/solution/closure-registry/investigator-result.json",
+        "verification": "results/solution/closure-registry/verification.json",
+        "trajectory": "trajectories/closure-registry/46d48615-bf6e-48a1-89d5-4795b42a5753.jsonl"
+      }
+    },
+    {
+      "caseId": "event-bus",
+      "approach": "baseline",
+      "runId": "bb2df9bc-cd2a-4ced-a03c-078a39faf166",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "b8bfd32e8c1f6c06f93916c51a2e8e3326aedc39d201a423fbedb621ba98fd12",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/event-bus/run-metadata.json",
+        "manifest": "results/baseline/event-bus/input-manifest.json",
+        "result": "results/baseline/event-bus/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "event-bus",
+      "approach": "solution",
+      "runId": "8f59f6a1-f033-4b5d-ad94-4c9aab3beda8",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "558b36159bc69b0e100c51883e8d2727b67daaf636a214183f7f87442302a867",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/event-bus/run-metadata.json",
+        "manifest": "results/solution/event-bus/input-manifest.json",
+        "result": "results/solution/event-bus/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/event-bus/browser-evidence.json",
+        "investigatorResult": "results/solution/event-bus/investigator-result.json",
+        "verification": "results/solution/event-bus/verification.json",
+        "trajectory": "trajectories/event-bus/8f59f6a1-f033-4b5d-ad94-4c9aab3beda8.jsonl"
+      }
+    },
+    {
+      "caseId": "healthy-control",
+      "approach": "baseline",
+      "runId": "dd297af6-e47e-4f13-935d-004aa0857fc6",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "baseline-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 1,
+      "promptSha256": "6a3bea8d6d85c48f643e7d8d59fee55144c478f0c501ffca26e2c22c1e240baa",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/baseline/healthy-control/run-metadata.json",
+        "manifest": "results/baseline/healthy-control/input-manifest.json",
+        "result": "results/baseline/healthy-control/result.json",
+        "failure": null,
+        "browserEvidence": null,
+        "investigatorResult": null,
+        "verification": null,
+        "trajectory": null
+      }
+    },
+    {
+      "caseId": "healthy-control",
+      "approach": "solution",
+      "runId": "26d5d537-0007-4963-b12b-816cfdfdbaed",
+      "runStatus": "succeeded",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini-interactions",
+      "promptVersion": "investigator-v1+verifier-v1",
+      "requestSettings": {
+        "temperature": null,
+        "maxOutputTokens": 1200,
+        "store": false,
+        "toolsEnabled": false,
+        "seed": 0,
+        "thinkingLevel": "low"
+      },
+      "attemptCount": 2,
+      "promptSha256": "92fed151cefde7cfd130f2d9b7a4df5f90355d1f92d56e2b9f92d54d0b4931c9",
+      "selectionReason": "Select the active per-case run present when evaluation starts; never search archived attempts for a better result.",
+      "artifacts": {
+        "metadata": "results/solution/healthy-control/run-metadata.json",
+        "manifest": "results/solution/healthy-control/input-manifest.json",
+        "result": "results/solution/healthy-control/result.json",
+        "failure": null,
+        "browserEvidence": "results/solution/healthy-control/browser-evidence.json",
+        "investigatorResult": "results/solution/healthy-control/investigator-result.json",
+        "verification": "results/solution/healthy-control/verification.json",
+        "trajectory": "trajectories/healthy-control/26d5d537-0007-4963-b12b-816cfdfdbaed.jsonl"
+      }
+    }
+  ]
+}

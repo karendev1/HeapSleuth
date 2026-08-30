@@ -1,0 +1,41 @@
+{
+  "runId": "2f84835d-f5c7-44a8-ad9f-b9e232a690c8",
+  "caseId": "closure-registry",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T15:54:47.844Z",
+  "completedAt": "2026-08-30T15:55:11.793Z",
+  "durationMs": 23949,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v2",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 1,
+  "errorCategory": "provider",
+  "error": "Gemini interaction did not complete successfully: incomplete.",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "failed",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T15:54:52.626Z",
+      "completedAt": "2026-08-30T15:55:11.792Z",
+      "durationMs": 19166,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini interaction did not complete successfully: incomplete."
+    }
+  ]
+}

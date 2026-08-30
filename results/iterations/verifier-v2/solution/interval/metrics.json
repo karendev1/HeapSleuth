@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "interval",
+  "approach": "solution",
+  "runId": "fc4bd88b-7975-4f90-9d70-db2534297424",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Uncleared setInterval callback retaining component payload and closure state after unmount",
+    "rootCauseFile": "benchmark/src/cases/IntervalCase.tsx",
+    "rootCauseSymbol": "IntervalCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 39447,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 4743,
+    "outputTokens": 961,
+    "totalTokens": 5704
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/interval/run-metadata.json",
+    "manifest": "results/solution/interval/input-manifest.json",
+    "result": "results/solution/interval/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/interval/browser-evidence.json",
+    "investigatorResult": "results/solution/interval/investigator-result.json",
+    "verification": "results/solution/interval/verification.json",
+    "trajectory": "trajectories/interval/fc4bd88b-7975-4f90-9d70-db2534297424.jsonl"
+  }
+}

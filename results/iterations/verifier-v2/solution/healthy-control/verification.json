@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis correctly concludes 'no-leak'. The source code cleanup function in useEffect removes the window event listener upon unmount, and runtime metrics confirm activeResources and retainedResources return to 0 with 3 released instances and no lingering event listeners."
+}

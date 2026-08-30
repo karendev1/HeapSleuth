@@ -1,0 +1,27 @@
+{
+  "caseId": "healthy-control",
+  "verdict": "no-leak",
+  "mechanism": null,
+  "rootCause": null,
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "useEffect in HealthyControlCase correctly removes the 'heapsleuth:summary' window event listener and decrements activeResources/retainedResources during cleanup."
+    },
+    {
+      "source": "runtime",
+      "claim": "The runtime state delta shows activeResources and retainedResources remaining at 0, while releasedResources increased by 3 matching createdInstances."
+    },
+    {
+      "source": "runtime",
+      "claim": "The event listener delta for the window object between baseline and final post-GC samples is 0."
+    }
+  ],
+  "confidence": 0.98,
+  "recommendedFix": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "startedAt": "2026-08-30T15:54:47.893Z",
+  "completedAt": "2026-08-30T15:54:51.933Z",
+  "durationMs": 4040,
+  "adapter": {
+    "kind": "direct-cdp",
+    "browserFamily": "chrome",
+    "browserVersion": "151.0.7922.174"
+  },
+  "benchmark": {
+    "route": "/cases/closure-registry"
+  },
+  "scenario": {
+    "warmupCycles": 1,
+    "measuredCycles": 3,
+    "completedWarmupCycles": 1,
+    "completedMeasuredCycles": 3,
+    "measuredActions": 6
+  },
+  "samples": {
+    "baseline": {
+      "phase": "baseline",
+      "capturedAt": "2026-08-30T15:54:51.526Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage",
+        "passes": 2
+      },
+      "heapUsage": {
+        "usedSize": 4868024,
+        "totalSize": 5636096,
+        "embedderHeapUsedSize": 438992,
+        "backingStorageSize": 3432374
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 45,
+        "jsEventListeners": 160
+      },
+      "runtimeState": {
+        "createdInstances": 0,
+        "activeResources": 0,
+        "retainedResources": 0,
+        "releasedResources": 0,
+        "invocations": 0,
+        "checksum": 0
+      }
+    },
+    "final": {
+      "phase": "final",
+      "capturedAt": "2026-08-30T15:54:51.926Z",
+      "garbageCollection": {
+        "forced": true,
+        "method": "HeapProfiler.collectGarbage",
+        "passes": 2
+      },
+      "heapUsage": {
+        "usedSize": 5354688,
+        "totalSize": 5898240,
+        "embedderHeapUsedSize": 460624,
+        "backingStorageSize": 4219268
+      },
+      "domCounters": {
+        "documents": 1,
+        "nodes": 47,
+        "jsEventListeners": 160
+      },
+      "runtimeState": {
+        "createdInstances": 3,
+        "activeResources": 3,
+        "retainedResources": 3,
+        "releasedResources": 0,
+        "invocations": 0,
+        "checksum": 0
+      }
+    }
+  },
+  "deltas": {
+    "usedHeapBytes": 486664,
+    "backingStorageBytes": 786894,
+    "domNodes": 2,
+    "domEventListeners": 0,
+    "createdInstances": 3,
+    "activeResources": 3,
+    "retainedResources": 3,
+    "releasedResources": 0
+  },
+  "listeners": {
+    "baseline": {
+      "total": 3,
+      "byType": {
+        "beforeunload": 1,
+        "error": 1,
+        "unhandledrejection": 1
+      },
+      "locations": [
+        {
+          "type": "beforeunload",
+          "scriptId": "7",
+          "lineNumber": 911,
+          "columnNumber": 77
+        },
+        {
+          "type": "error",
+          "scriptId": "7",
+          "lineNumber": 537,
+          "columnNumber": 35
+        },
+        {
+          "type": "unhandledrejection",
+          "scriptId": "7",
+          "lineNumber": 545,
+          "columnNumber": 48
+        }
+      ]
+    },
+    "final": {
+      "total": 3,
+      "byType": {
+        "beforeunload": 1,
+        "error": 1,
+        "unhandledrejection": 1
+      },
+      "locations": [
+        {
+          "type": "beforeunload",
+          "scriptId": "7",
+          "lineNumber": 911,
+          "columnNumber": 77
+        },
+        {
+          "type": "error",
+          "scriptId": "7",
+          "lineNumber": 537,
+          "columnNumber": 35
+        },
+        {
+          "type": "unhandledrejection",
+          "scriptId": "7",
+          "lineNumber": 545,
+          "columnNumber": 48
+        }
+      ]
+    },
+    "deltaByType": {
+      "beforeunload": 0,
+      "error": 0,
+      "unhandledrejection": 0
+    }
+  },
+  "consoleEvents": [],
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

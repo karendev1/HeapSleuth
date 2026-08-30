@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "approach": "solution",
+  "runId": "68cf1e98-6982-486b-a0f9-f329559eb3ca",
+  "status": "failed",
+  "observedDiagnosis": null,
+  "checks": {
+    "verdictCorrect": false,
+    "mechanismCorrect": false,
+    "localizationCorrect": false,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 0,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+  },
+  "durationMs": 134983,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 2096,
+    "outputTokens": 452,
+    "totalTokens": 2548
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": {
+    "category": "provider",
+    "stage": "verifier"
+  },
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/event-bus/run-metadata.json",
+    "manifest": "results/solution/event-bus/input-manifest.json",
+    "result": null,
+    "failure": "results/solution/event-bus/failure.json",
+    "browserEvidence": "results/solution/event-bus/browser-evidence.json",
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": "trajectories/event-bus/68cf1e98-6982-486b-a0f9-f329559eb3ca.jsonl"
+  }
+}

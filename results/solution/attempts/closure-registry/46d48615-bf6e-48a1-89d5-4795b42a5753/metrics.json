@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "approach": "solution",
+  "runId": "46d48615-bf6e-48a1-89d5-4795b42a5753",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Module-scope callback registry retains closures and payloads across component unmounts without cleanup",
+    "rootCauseFile": "benchmark/src/cases/ClosureRegistryCase.tsx",
+    "rootCauseSymbol": "ClosureRegistryCase",
+    "confidence": 0.98
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 13212,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 4549,
+    "outputTokens": 689,
+    "totalTokens": 5238
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/closure-registry/run-metadata.json",
+    "manifest": "results/solution/closure-registry/input-manifest.json",
+    "result": "results/solution/closure-registry/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/closure-registry/browser-evidence.json",
+    "investigatorResult": "results/solution/closure-registry/investigator-result.json",
+    "verification": "results/solution/closure-registry/verification.json",
+    "trajectory": "trajectories/closure-registry/46d48615-bf6e-48a1-89d5-4795b42a5753.jsonl"
+  }
+}

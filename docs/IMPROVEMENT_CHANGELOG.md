@@ -848,3 +848,96 @@ comparisons are saved in `results/summary/comparison.json` and
 validated `metrics.json` and `report.md` artifacts. The measured claim above is
 derived from cohort SHA-256
 `6c8c0f3f9fa017deb386e9b947c5a897a41dbb9d152f5157eadea6fa50980dff`.
+
+## 2026-08-30 — Block 8 mechanism-precision experiment
+
+### Observed failure
+
+The frozen Block 7 solution localized all seven leak cases and classified every
+verdict correctly, but only four of seven mechanism descriptions satisfied the
+predeclared mechanism matcher. The `detached-dom`, `global-cache`, and
+`event-bus` final diagnoses described relevant source behavior but omitted one
+or more distinguishing concepts required by the frozen rule. The Verifier
+accepted all three instead of challenging their imprecise mechanism wording.
+
+### Hypothesis and focused intervention
+
+Change only the Verifier prompt. Require it to check whether a supported leak
+mechanism explicitly distinguishes the retained resource or relationship, its
+owning scope, and the lifecycle cleanup failure or growth bound. If the verdict,
+evidence, and source are supported but those mechanism dimensions are materially
+incomplete, the Verifier must return a grounded revision instead of accepting
+the diagnosis.
+
+The prompt will use generic frontend memory terminology and will not contain
+case IDs, accepted mechanism labels, evaluator notes, or mappings from cases to
+answers. The Investigator prompt, model, provider settings, dataset, benchmark,
+browser evidence, schemas, evaluator ground truth, and deterministic scoring
+rule remain unchanged.
+
+### Evaluation protocol and keep/remove rule
+
+- Increment only the Verifier prompt version and rerun the complete integrated
+  solution on the same eight cases. Keep the committed Block 7 baseline as the
+  unchanged reference; rerunning a stochastic baseline would add cost and an
+  unrelated source of variation.
+- Preserve every Block 7 solution artifact before replacement and preserve any
+  provider failure or additional attempt. Do not retry automatically.
+- Run the same deterministic evaluator after all eight cases are represented.
+- Keep the prompt change only if solution RCLA exceeds 5/8 and mechanism
+  classification exceeds 4/7, with no regression from 8/8 verdict accuracy, 0/1
+  false positives, 7/7 localization, or mean evidence score 3.0.
+- In addition to the cohort score, require attribution evidence: at least one
+  previously mechanism-incorrect pattern must be corrected by a Verifier
+  `revise` decision rather than only by variation in a new Investigator
+  response. Otherwise remove the prompt change even if the aggregate score
+  happens to improve.
+
+### Evidence status
+
+The pre-change worktree at commit `0d35152` was clean, and `npm run validate`
+passed formatting, linting, strict TypeScript, 79 tests across 22 files, and
+both production builds. The focused v2 prompt and version-boundary tests then
+passed before any model request; the complete gate passed 80 tests.
+
+The eight-case integrated iteration produced five successful runs and three
+preserved provider failures. `resize-observer` received an HTTP 500 high-demand
+response at the Verifier, `closure-registry` received an incomplete response at
+the Investigator, and `event-bus` timed out after 120 seconds at the Verifier.
+No failed case was retried. The deterministic cohort scorer reported:
+
+| Metric                   | Block 7 solution | Verifier v2 iteration |
+| ------------------------ | ---------------: | --------------------: |
+| RCLA                     |              5/8 |                   3/8 |
+| Mechanism classification |              4/7 |                   2/7 |
+| Verdict accuracy         |              8/8 |                   5/8 |
+| Source localization      |              7/7 |                   4/7 |
+| False positives          |              0/1 |                   0/1 |
+| Mean evidence grounding  |              3.0 |                 1.875 |
+
+The iteration recorded 34,129 tokens and 410,551 ms across its eight selected
+runs. Its cohort SHA-256 is
+`f997b454ca63b4f6952eb0fa2227683ad078b0705c8a15bd268310e1e49fccaf`.
+
+The attribution rule also failed independently of provider reliability.
+`detached-dom` and `global-cache` completed, but v2 returned `accept` for both
+Investigator mechanisms rather than the required targeted revision. The third
+target, `event-bus`, reached the Verifier but timed out. No previously incorrect
+mechanism pattern was demonstrably corrected by a v2 `revise` decision.
+
+The prompt change was therefore removed. Active code, prompt version, solution
+artifacts, and summary reports were restored to the committed Block 7 state. The
+complete rejected experiment remains under `results/iterations/verifier-v2/`,
+including the candidate prompt, per-case artifacts, trajectories, failures,
+cohort manifest, and comparison. Original Block 7 artifacts copied before the
+experiment remain under `results/solution/attempts/`, and the pre-iteration
+summary remains under `results/summary/attempts/`. This is a measured removed
+experiment, not an improvement claim.
+
+After restoration, `npm run validate` passed formatting, linting, strict
+TypeScript, all 79 active tests across 22 files, and both production builds. The
+eight-case Chrome smoke regression passed with forced garbage collection and no
+browser errors. Independent checks parsed 55 archived JSON files and all 8
+archived JSONL trajectories, found no secret or evaluator-answer pattern in
+model-visible artifacts, confirmed that no `verifier-v2` reference remains in
+active source, tests, or results, and passed `git diff --check`.

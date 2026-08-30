@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "caseId": "resize-observer",
+  "approach": "solution",
+  "runId": "4c4bb71d-8aba-474a-8416-0b2db00ae986",
+  "status": "failed",
+  "observedDiagnosis": null,
+  "checks": {
+    "verdictCorrect": false,
+    "mechanismCorrect": false,
+    "localizationCorrect": false,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 0,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+  },
+  "durationMs": 54021,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 2089,
+    "outputTokens": 359,
+    "totalTokens": 2448
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": {
+    "category": "provider",
+    "stage": "verifier"
+  },
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/resize-observer/run-metadata.json",
+    "manifest": "results/solution/resize-observer/input-manifest.json",
+    "result": null,
+    "failure": "results/solution/resize-observer/failure.json",
+    "browserEvidence": "results/solution/resize-observer/browser-evidence.json",
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": "trajectories/resize-observer/4c4bb71d-8aba-474a-8416-0b2db00ae986.jsonl"
+  }
+}

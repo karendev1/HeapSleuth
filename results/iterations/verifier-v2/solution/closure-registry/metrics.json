@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "approach": "solution",
+  "runId": "2f84835d-f5c7-44a8-ad9f-b9e232a690c8",
+  "status": "failed",
+  "observedDiagnosis": null,
+  "checks": {
+    "verdictCorrect": false,
+    "mechanismCorrect": false,
+    "localizationCorrect": false,
+    "rclaCorrect": false
+  },
+  "evidenceGrounding": {
+    "score": 0,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 0,
+    "supportsVerdict": false,
+    "hasLimitations": false,
+    "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+  },
+  "durationMs": 23949,
+  "humanTimeMs": null,
+  "usage": null,
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": {
+    "category": "provider",
+    "stage": "investigator"
+  },
+  "limitations": [
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/closure-registry/run-metadata.json",
+    "manifest": "results/solution/closure-registry/input-manifest.json",
+    "result": null,
+    "failure": "results/solution/closure-registry/failure.json",
+    "browserEvidence": "results/solution/closure-registry/browser-evidence.json",
+    "investigatorResult": null,
+    "verification": null,
+    "trajectory": "trajectories/closure-registry/2f84835d-f5c7-44a8-ad9f-b9e232a690c8.jsonl"
+  }
+}

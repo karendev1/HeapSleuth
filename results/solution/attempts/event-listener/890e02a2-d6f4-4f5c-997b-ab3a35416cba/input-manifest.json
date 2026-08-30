@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "approach": "solution",
+  "description": "Open and close a notification preview repeatedly.",
+  "route": "/cases/event-listener",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/EventListenerCase.tsx",
+      "byteCount": 1772,
+      "sha256": "5f109829008b0db37f784abb27db3f8084d55a30839ebf36a74f4b81720bd5b2"
+    }
+  ],
+  "browserEvidenceSha256": "ea8423c90209c867734ac8fbdea90a96c211d492dd597407e5bafd64bff208e9",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "b3eb06fd2293b91bb17f8e7e230bbfcfa9a7468f51219465182fe34c43fd96a7"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v1",
+    "promptSha256": "1c24999bedaf1d9ee35ec73fb34f677ac8fe9fbd3ba397869f9625c933c75913",
+    "investigatorDiagnosisSha256": "16cc29bd31589cf8d16d5828a29a7588a63c6d60b638d84a2ecefef98e45262f"
+  }
+}

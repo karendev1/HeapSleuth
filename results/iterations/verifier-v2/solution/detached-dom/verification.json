@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is fully supported by the provided source code and runtime evidence. `artifactRegistry` retains references to DOM elements (`artifact`) and Uint8Array payloads in module scope while the cleanup function only detaches the element from the DOM (`artifact.remove()`), leading to unbounded retaining of detached DOM nodes and memory post-GC."
+}

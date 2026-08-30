@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is fully supported. Source code confirms `viewedItemCache` is a module-scoped Map that stores newly generated retained payloads on each `useEffect` execution without returning a cleanup function or implementing eviction. Post-GC runtime evidence confirms `retainedResources` grew by 3 alongside a retained heap increase of ~486 KB across the 3 mount/unmount cycles."
+}

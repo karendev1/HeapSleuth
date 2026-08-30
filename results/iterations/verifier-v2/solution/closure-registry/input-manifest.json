@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "caseId": "closure-registry",
+  "approach": "solution",
+  "description": "Open and close a report preview repeatedly.",
+  "route": "/cases/closure-registry",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/ClosureRegistryCase.tsx",
+      "byteCount": 809,
+      "sha256": "81f51c4fea4ea40f91489f6b6ede81c0cd0dd00763e68cf45439f4fe00dd41a3"
+    }
+  ],
+  "browserEvidenceSha256": "6fbdd84b9d711ebacc278747b46fd371dbe5ac3de18b931c3cecc525aa453ba0",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "c5de6c4cebefe97d8ad3cabc224d2c4cca0170f471b4a423728c0486e639feb3"
+  },
+  "verifier": null
+}

@@ -1,0 +1,60 @@
+{
+  "runId": "68cf1e98-6982-486b-a0f9-f329559eb3ca",
+  "caseId": "event-bus",
+  "approach": "solution",
+  "status": "failed",
+  "startedAt": "2026-08-30T15:55:30.739Z",
+  "completedAt": "2026-08-30T15:57:45.722Z",
+  "durationMs": 134983,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v2",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 2,
+  "usage": {
+    "inputTokens": 2096,
+    "outputTokens": 452,
+    "totalTokens": 2548
+  },
+  "errorCategory": "provider",
+  "error": "Gemini request timed out after 120000 ms.",
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "succeeded",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T15:55:34.347Z",
+      "completedAt": "2026-08-30T15:55:45.667Z",
+      "durationMs": 11320,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2096,
+        "outputTokens": 452,
+        "totalTokens": 2548
+      }
+    },
+    {
+      "agent": "verifier",
+      "status": "failed",
+      "promptVersion": "verifier-v2",
+      "startedAt": "2026-08-30T15:55:45.669Z",
+      "completedAt": "2026-08-30T15:57:45.719Z",
+      "durationMs": 120050,
+      "attemptCount": 1,
+      "errorCategory": "provider",
+      "error": "Gemini request timed out after 120000 ms."
+    }
+  ]
+}

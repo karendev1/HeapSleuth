@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": "The diagnosis is fully supported by the source code and runtime evidence. `viewedItemCache` is a module-scoped Map that continuously adds entries on component mount without any cleanup mechanism, resulting in retained resources and post-GC heap growth across cycles."
+}

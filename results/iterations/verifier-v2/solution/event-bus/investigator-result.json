@@ -1,0 +1,30 @@
+{
+  "caseId": "event-bus",
+  "verdict": "leak",
+  "mechanism": "Unsubscribing/removing listeners from a module-level event bus state (`messageSubscribers` set) is omitted upon React component unmount, retaining component closures and associated retained payloads across remounts.",
+  "rootCause": {
+    "file": "benchmark/src/cases/EventBusCase.tsx",
+    "symbol": "EventBusCase"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "In benchmark/src/cases/EventBusCase.tsx, useEffect adds a subscriber closure containing created payloads to module-level `messageSubscribers` Set without returning a cleanup function to delete the subscriber on unmount."
+    },
+    {
+      "source": "runtime",
+      "claim": "After 3 mount-unmount cycles and forced garbage collection, runtimeState shows createdInstances=3, activeResources=3, and retainedResources=3 with releasedResources=0."
+    },
+    {
+      "source": "heap",
+      "claim": "Used heap size increased by 486,616 bytes (from 4,868,008 to 5,354,624 bytes) post-forced GC across the 3 cycles."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Return a cleanup function from useEffect in EventBusCase that removes the subscriber from `messageSubscribers` (e.g., `return () => { messageSubscribers.delete(subscriber); };`).",
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

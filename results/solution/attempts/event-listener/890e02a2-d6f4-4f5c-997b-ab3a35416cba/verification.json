@@ -1,0 +1,6 @@
+{
+  "decision": "accept",
+  "issues": [],
+  "revisedDiagnosis": null,
+  "verificationSummary": " verified that EventListenerCase in benchmark/src/cases/EventListenerCase.tsx attaches a window event listener for 'heapsleuth:notification' inside useEffect without returning a cleanup function. Validated runtime and heap evidence confirms that after 3 mount-unmount cycles and forced garbage collection, 3 window event listeners remain retained alongside an increase in retained resources and used heap."
+}

@@ -1,0 +1,61 @@
+{
+  "runId": "46d48615-bf6e-48a1-89d5-4795b42a5753",
+  "caseId": "closure-registry",
+  "approach": "solution",
+  "status": "succeeded",
+  "startedAt": "2026-08-30T03:00:08.366Z",
+  "completedAt": "2026-08-30T03:00:21.578Z",
+  "durationMs": 13212,
+  "runtime": {
+    "nodeVersion": "v20.19.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "model": "gemini-3.6-flash",
+  "provider": "gemini-interactions",
+  "promptVersion": "investigator-v1+verifier-v1",
+  "requestSettings": {
+    "temperature": null,
+    "maxOutputTokens": 1200,
+    "store": false,
+    "toolsEnabled": false,
+    "seed": 0,
+    "thinkingLevel": "low"
+  },
+  "attemptCount": 2,
+  "usage": {
+    "inputTokens": 4549,
+    "outputTokens": 689,
+    "totalTokens": 5238
+  },
+  "agentRuns": [
+    {
+      "agent": "investigator",
+      "status": "succeeded",
+      "promptVersion": "investigator-v1",
+      "startedAt": "2026-08-30T03:00:11.781Z",
+      "completedAt": "2026-08-30T03:00:15.660Z",
+      "durationMs": 3879,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2075,
+        "outputTokens": 359,
+        "totalTokens": 2434
+      }
+    },
+    {
+      "agent": "verifier",
+      "status": "succeeded",
+      "promptVersion": "verifier-v1",
+      "startedAt": "2026-08-30T03:00:15.662Z",
+      "completedAt": "2026-08-30T03:00:21.578Z",
+      "durationMs": 5916,
+      "attemptCount": 1,
+      "usage": {
+        "inputTokens": 2474,
+        "outputTokens": 330,
+        "totalTokens": 2804
+      }
+    }
+  ]
+}

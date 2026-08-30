@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "detached-dom",
+  "approach": "solution",
+  "description": "Open and close a temporary details panel repeatedly.",
+  "route": "/cases/detached-dom",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/DetachedDomCase.tsx",
+      "byteCount": 1080,
+      "sha256": "111758144b526d5747c1b84f6aecda00eb72d21357ef2f15f0b3cbb4878cc1bc"
+    }
+  ],
+  "browserEvidenceSha256": "1ffbd1e07b5a27bf4670b84489a456105d026e31ff9523688522395ba9c54c13",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "04511e7dddebade08513e87c13972cfcc5fa67769a15179667302babf0a90074"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v2",
+    "promptSha256": "1aa544776c19505cc85370f72d681245a6c7a18b1bbb24c401c741b10a33981b",
+    "investigatorDiagnosisSha256": "1d0024bd871cc8199a1a0f5bd9520559d432baef11b73c40ee1389eae39ce661"
+  }
+}

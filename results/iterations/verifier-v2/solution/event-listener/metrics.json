@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-listener",
+  "approach": "solution",
+  "runId": "1f3589d7-5325-4636-b089-e6d409e5c596",
+  "status": "succeeded",
+  "observedDiagnosis": {
+    "verdict": "leak",
+    "mechanism": "Uncleaned global event listener attached to window in useEffect hook upon component unmount",
+    "rootCauseFile": "benchmark/src/cases/EventListenerCase.tsx",
+    "rootCauseSymbol": "EventListenerCase",
+    "confidence": 1
+  },
+  "checks": {
+    "verdictCorrect": true,
+    "mechanismCorrect": true,
+    "localizationCorrect": true,
+    "rclaCorrect": true
+  },
+  "evidenceGrounding": {
+    "score": 3,
+    "requiredCategoryCount": 2,
+    "representedCategoryCount": 2,
+    "supportsVerdict": true,
+    "hasLimitations": true,
+    "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+  },
+  "durationMs": 13670,
+  "humanTimeMs": null,
+  "usage": {
+    "inputTokens": 5616,
+    "outputTokens": 1248,
+    "totalTokens": 6864
+  },
+  "estimatedListCostUsd": null,
+  "actualBilledCostUsd": null,
+  "failure": null,
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+    "Human time and monetary cost are unavailable from validated run artifacts."
+  ],
+  "rawArtifacts": {
+    "metadata": "results/solution/event-listener/run-metadata.json",
+    "manifest": "results/solution/event-listener/input-manifest.json",
+    "result": "results/solution/event-listener/result.json",
+    "failure": null,
+    "browserEvidence": "results/solution/event-listener/browser-evidence.json",
+    "investigatorResult": "results/solution/event-listener/investigator-result.json",
+    "verification": "results/solution/event-listener/verification.json",
+    "trajectory": "trajectories/event-listener/1f3589d7-5325-4636-b089-e6d409e5c596.jsonl"
+  }
+}

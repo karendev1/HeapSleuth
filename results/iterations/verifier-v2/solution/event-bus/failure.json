@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "caseId": "event-bus",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini request timed out after 120000 ms.",
+  "attemptCount": 2,
+  "stage": "verifier"
+}

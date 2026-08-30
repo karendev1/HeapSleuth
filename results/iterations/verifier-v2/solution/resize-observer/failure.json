@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "caseId": "resize-observer",
+  "status": "failed",
+  "category": "provider",
+  "message": "Gemini request failed with HTTP 500: {\"error\":{\"message\":\"gemini-3.6-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.\",\"code\":\"api_error\"}}",
+  "attemptCount": 2,
+  "stage": "verifier"
+}

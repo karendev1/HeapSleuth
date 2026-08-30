@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "interval",
+  "approach": "solution",
+  "description": "Open and close a live activity card repeatedly.",
+  "route": "/cases/interval",
+  "sources": [
+    {
+      "path": "benchmark/src/cases/IntervalCase.tsx",
+      "byteCount": 795,
+      "sha256": "c92913de13adcb204e2f1cbd14980b26aa55ccaf3b9b1f2dde3ae1f4b0b0a3ec"
+    }
+  ],
+  "browserEvidenceSha256": "84edb8d02ba8f1173fbf040e705c206bf6e0f8d935fa9e74da57becc61682a5e",
+  "prompt": {
+    "version": "investigator-v1",
+    "sha256": "4795f12ed3315f444d5660ca044f6ab82c7237add75b7d32dfdde665fd942e3b"
+  },
+  "verifier": {
+    "promptVersion": "verifier-v1",
+    "promptSha256": "d46235ce525843e7568edeb9905406caa3a4197862f927f6390c5f2fe6b2f526",
+    "investigatorDiagnosisSha256": "72791d55aaba5bd901a90685ec327ef499829a1a2616490df4c29312b973fb7e"
+  }
+}

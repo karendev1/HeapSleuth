@@ -1,0 +1,30 @@
+{
+  "caseId": "global-cache",
+  "verdict": "leak",
+  "mechanism": "Unbounded module-scoped Map cache retains allocated payloads across component mount/unmount cycles without eviction or cleanup.",
+  "rootCause": {
+    "file": "benchmark/src/cases/GlobalCacheCase.tsx",
+    "symbol": "viewedItemCache"
+  },
+  "evidence": [
+    {
+      "source": "source",
+      "claim": "viewedItemCache is declared at module scope outside GlobalCacheCase, and GlobalCacheCase adds items to it inside useEffect without removing them upon unmount."
+    },
+    {
+      "source": "runtime",
+      "claim": "Runtime state recorded retainedResources increasing from 0 at baseline to 3 in the final sample after 3 mount-unmount cycles."
+    },
+    {
+      "source": "heap",
+      "claim": "Used heap size increased by 486,284 bytes after forced garbage collection following 3 mount-unmount cycles."
+    }
+  ],
+  "confidence": 1,
+  "recommendedFix": "Clean up entries from viewedItemCache in a cleanup function returned by useEffect, or clear/evict entries when they are no longer needed.",
+  "limitations": [
+    "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+    "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+    "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search."
+  ]
+}

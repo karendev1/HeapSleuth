@@ -645,11 +645,11 @@ The fallback must remain honest about what it can and cannot prove.
 
 #### Block 8: Evidence-driven iteration - 2 hours
 
-- [ ] Identify the main failure mode.
-- [ ] Make one focused improvement.
-- [ ] Rerun the same evaluation.
-- [ ] Keep or remove the change based on evidence.
-- [ ] Update the improvement changelog immediately.
+- [x] Identify the main failure mode.
+- [x] Make one focused improvement.
+- [x] Rerun the same evaluation.
+- [x] Keep or remove the change based on evidence.
+- [x] Update the improvement changelog immediately.
 
 #### Block 9: Documentation and polish - 2.5 hours
 

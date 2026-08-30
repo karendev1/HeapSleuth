@@ -1,0 +1,988 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-30T16:00:05.179Z",
+  "cohortSha256": "f997b454ca63b4f6952eb0fa2227683ad078b0705c8a15bd268310e1e49fccaf",
+  "caseOrder": [
+    "event-listener",
+    "interval",
+    "resize-observer",
+    "detached-dom",
+    "global-cache",
+    "closure-registry",
+    "event-bus",
+    "healthy-control"
+  ],
+  "cases": [
+    {
+      "caseId": "event-listener",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "event-listener",
+        "approach": "baseline",
+        "runId": "97d4dd08-64e4-4cd7-9714-10d7b984d9af",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Unremoved Event Listener",
+          "rootCauseFile": "benchmark/src/cases/EventListenerCase.tsx",
+          "rootCauseSymbol": "EventListenerCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": true,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 6186,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 853,
+          "outputTokens": 381,
+          "totalTokens": 1234
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/event-listener/run-metadata.json",
+          "manifest": "results/baseline/event-listener/input-manifest.json",
+          "result": "results/baseline/event-listener/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "event-listener",
+        "approach": "solution",
+        "runId": "1f3589d7-5325-4636-b089-e6d409e5c596",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Uncleaned global event listener attached to window in useEffect hook upon component unmount",
+          "rootCauseFile": "benchmark/src/cases/EventListenerCase.tsx",
+          "rootCauseSymbol": "EventListenerCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": true,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 3,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 2,
+          "supportsVerdict": true,
+          "hasLimitations": true,
+          "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+        },
+        "durationMs": 13670,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 5616,
+          "outputTokens": 1248,
+          "totalTokens": 6864
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+          "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+          "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/event-listener/run-metadata.json",
+          "manifest": "results/solution/event-listener/input-manifest.json",
+          "result": "results/solution/event-listener/result.json",
+          "failure": null,
+          "browserEvidence": "results/solution/event-listener/browser-evidence.json",
+          "investigatorResult": "results/solution/event-listener/investigator-result.json",
+          "verification": "results/solution/event-listener/verification.json",
+          "trajectory": "trajectories/event-listener/1f3589d7-5325-4636-b089-e6d409e5c596.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "interval",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "interval",
+        "approach": "baseline",
+        "runId": "219f5fc4-6235-40bf-bf23-c6bc7957c889",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Uncleared setInterval timer",
+          "rootCauseFile": "benchmark/src/cases/IntervalCase.tsx",
+          "rootCauseSymbol": "IntervalCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": true,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": true,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 4226,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 579,
+          "outputTokens": 503,
+          "totalTokens": 1082
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Static source code review only; runtime timer execution and memory retention were not directly measured.",
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/interval/run-metadata.json",
+          "manifest": "results/baseline/interval/input-manifest.json",
+          "result": "results/baseline/interval/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "interval",
+        "approach": "solution",
+        "runId": "fc4bd88b-7975-4f90-9d70-db2534297424",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Uncleared setInterval callback retaining component payload and closure state after unmount",
+          "rootCauseFile": "benchmark/src/cases/IntervalCase.tsx",
+          "rootCauseSymbol": "IntervalCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": true,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 3,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 2,
+          "supportsVerdict": true,
+          "hasLimitations": true,
+          "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+        },
+        "durationMs": 39447,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 4743,
+          "outputTokens": 961,
+          "totalTokens": 5704
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+          "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/interval/run-metadata.json",
+          "manifest": "results/solution/interval/input-manifest.json",
+          "result": "results/solution/interval/result.json",
+          "failure": null,
+          "browserEvidence": "results/solution/interval/browser-evidence.json",
+          "investigatorResult": "results/solution/interval/investigator-result.json",
+          "verification": "results/solution/interval/verification.json",
+          "trajectory": "trajectories/interval/fc4bd88b-7975-4f90-9d70-db2534297424.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "resize-observer",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "resize-observer",
+        "approach": "baseline",
+        "runId": "bf7bc7d2-f31f-4f00-ae05-ea4fd43692d8",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "uncleaned-resize-observer",
+          "rootCauseFile": "benchmark/src/cases/ResizeObserverCase.tsx",
+          "rootCauseSymbol": "ResizeObserverCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": true,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 3978,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 588,
+          "outputTokens": 437,
+          "totalTokens": 1025
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Static code review without runtime heap snapshot analysis.",
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/resize-observer/run-metadata.json",
+          "manifest": "results/baseline/resize-observer/input-manifest.json",
+          "result": "results/baseline/resize-observer/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "resize-observer",
+        "approach": "solution",
+        "runId": "4c4bb71d-8aba-474a-8416-0b2db00ae986",
+        "status": "failed",
+        "observedDiagnosis": null,
+        "checks": {
+          "verdictCorrect": false,
+          "mechanismCorrect": false,
+          "localizationCorrect": false,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 0,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+        },
+        "durationMs": 54021,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 2089,
+          "outputTokens": 359,
+          "totalTokens": 2448
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": {
+          "category": "provider",
+          "stage": "verifier"
+        },
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/resize-observer/run-metadata.json",
+          "manifest": "results/solution/resize-observer/input-manifest.json",
+          "result": null,
+          "failure": "results/solution/resize-observer/failure.json",
+          "browserEvidence": "results/solution/resize-observer/browser-evidence.json",
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": "trajectories/resize-observer/4c4bb71d-8aba-474a-8416-0b2db00ae986.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "detached-dom",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "detached-dom",
+        "approach": "baseline",
+        "runId": "0f3c70c1-12fb-4a58-be24-e133f285b6bb",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Detached DOM / Global reference retention",
+          "rootCauseFile": "benchmark/src/cases/DetachedDomCase.tsx",
+          "rootCauseSymbol": "artifactRegistry",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": true,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 16864,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 652,
+          "outputTokens": 530,
+          "totalTokens": 1182
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Analysis relies solely on static source code inspection without runtime heap snapshot measurements.",
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/detached-dom/run-metadata.json",
+          "manifest": "results/baseline/detached-dom/input-manifest.json",
+          "result": "results/baseline/detached-dom/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "detached-dom",
+        "approach": "solution",
+        "runId": "0130e73e-0cbc-42ec-bd1b-abcc4e603ca6",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Global module-level array retaining detached DOM elements and associated payloads after component unmount",
+          "rootCauseFile": "benchmark/src/cases/DetachedDomCase.tsx",
+          "rootCauseSymbol": "artifactRegistry",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 3,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 2,
+          "supportsVerdict": true,
+          "hasLimitations": true,
+          "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+        },
+        "durationMs": 42102,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 4922,
+          "outputTokens": 787,
+          "totalTokens": 5709
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+          "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+          "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/detached-dom/run-metadata.json",
+          "manifest": "results/solution/detached-dom/input-manifest.json",
+          "result": "results/solution/detached-dom/result.json",
+          "failure": null,
+          "browserEvidence": "results/solution/detached-dom/browser-evidence.json",
+          "investigatorResult": "results/solution/detached-dom/investigator-result.json",
+          "verification": "results/solution/detached-dom/verification.json",
+          "trajectory": "trajectories/detached-dom/0130e73e-0cbc-42ec-bd1b-abcc4e603ca6.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "global-cache",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "global-cache",
+        "approach": "baseline",
+        "runId": "b82c04a6-169b-4f53-a6c5-b1cc3bcc9e95",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Unbounded Module-Scoped Cache Accumulation",
+          "rootCauseFile": "benchmark/src/cases/GlobalCacheCase.tsx",
+          "rootCauseSymbol": "viewedItemCache",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 11841,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 564,
+          "outputTokens": 493,
+          "totalTokens": 1057
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/global-cache/run-metadata.json",
+          "manifest": "results/baseline/global-cache/input-manifest.json",
+          "result": "results/baseline/global-cache/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "global-cache",
+        "approach": "solution",
+        "runId": "88511185-e747-44ad-b333-a64fdb7f5c85",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Unbounded module-scoped Map cache retains allocated payloads across component mount/unmount cycles without eviction or cleanup.",
+          "rootCauseFile": "benchmark/src/cases/GlobalCacheCase.tsx",
+          "rootCauseSymbol": "viewedItemCache",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 3,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 2,
+          "supportsVerdict": true,
+          "hasLimitations": true,
+          "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+        },
+        "durationMs": 41423,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 4736,
+          "outputTokens": 742,
+          "totalTokens": 5478
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+          "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+          "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/global-cache/run-metadata.json",
+          "manifest": "results/solution/global-cache/input-manifest.json",
+          "result": "results/solution/global-cache/result.json",
+          "failure": null,
+          "browserEvidence": "results/solution/global-cache/browser-evidence.json",
+          "investigatorResult": "results/solution/global-cache/investigator-result.json",
+          "verification": "results/solution/global-cache/verification.json",
+          "trajectory": "trajectories/global-cache/88511185-e747-44ad-b333-a64fdb7f5c85.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "closure-registry",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "closure-registry",
+        "approach": "baseline",
+        "runId": "90a17e11-eb05-4e83-88fb-072f2864f051",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Uncleaned module-scoped closure array",
+          "rootCauseFile": "benchmark/src/cases/ClosureRegistryCase.tsx",
+          "rootCauseSymbol": "ClosureRegistryCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": true,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 3156,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 575,
+          "outputTokens": 451,
+          "totalTokens": 1026
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Static source code review performed without runtime heap profiling.",
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/closure-registry/run-metadata.json",
+          "manifest": "results/baseline/closure-registry/input-manifest.json",
+          "result": "results/baseline/closure-registry/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "closure-registry",
+        "approach": "solution",
+        "runId": "2f84835d-f5c7-44a8-ad9f-b9e232a690c8",
+        "status": "failed",
+        "observedDiagnosis": null,
+        "checks": {
+          "verdictCorrect": false,
+          "mechanismCorrect": false,
+          "localizationCorrect": false,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 0,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+        },
+        "durationMs": 23949,
+        "humanTimeMs": null,
+        "usage": null,
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": {
+          "category": "provider",
+          "stage": "investigator"
+        },
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/closure-registry/run-metadata.json",
+          "manifest": "results/solution/closure-registry/input-manifest.json",
+          "result": null,
+          "failure": "results/solution/closure-registry/failure.json",
+          "browserEvidence": "results/solution/closure-registry/browser-evidence.json",
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": "trajectories/closure-registry/2f84835d-f5c7-44a8-ad9f-b9e232a690c8.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "event-bus",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "event-bus",
+        "approach": "baseline",
+        "runId": "bb2df9bc-cd2a-4ced-a03c-078a39faf166",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "leak",
+          "mechanism": "Missing event subscriber cleanup on component unmount",
+          "rootCauseFile": "benchmark/src/cases/EventBusCase.tsx",
+          "rootCauseSymbol": "EventBusCase",
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": false,
+          "localizationCorrect": true,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": true,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 32183,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 596,
+          "outputTokens": 587,
+          "totalTokens": 1183
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Static analysis performed without runtime heap snapshot measurements.",
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/event-bus/run-metadata.json",
+          "manifest": "results/baseline/event-bus/input-manifest.json",
+          "result": "results/baseline/event-bus/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "event-bus",
+        "approach": "solution",
+        "runId": "68cf1e98-6982-486b-a0f9-f329559eb3ca",
+        "status": "failed",
+        "observedDiagnosis": null,
+        "checks": {
+          "verdictCorrect": false,
+          "mechanismCorrect": false,
+          "localizationCorrect": false,
+          "rclaCorrect": false
+        },
+        "evidenceGrounding": {
+          "score": 0,
+          "requiredCategoryCount": 2,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "No completed, conclusive diagnosis with usable evidence was available."
+        },
+        "durationMs": 134983,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 2096,
+          "outputTokens": 452,
+          "totalTokens": 2548
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": {
+          "category": "provider",
+          "stage": "verifier"
+        },
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/event-bus/run-metadata.json",
+          "manifest": "results/solution/event-bus/input-manifest.json",
+          "result": null,
+          "failure": "results/solution/event-bus/failure.json",
+          "browserEvidence": "results/solution/event-bus/browser-evidence.json",
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": "trajectories/event-bus/68cf1e98-6982-486b-a0f9-f329559eb3ca.jsonl"
+        }
+      }
+    },
+    {
+      "caseId": "healthy-control",
+      "baseline": {
+        "schemaVersion": 1,
+        "caseId": "healthy-control",
+        "approach": "baseline",
+        "runId": "dd297af6-e47e-4f13-935d-004aa0857fc6",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "no-leak",
+          "mechanism": null,
+          "rootCauseFile": null,
+          "rootCauseSymbol": null,
+          "confidence": 1
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": null,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 1,
+          "requiredCategoryCount": 1,
+          "representedCategoryCount": 0,
+          "supportsVerdict": false,
+          "hasLimitations": false,
+          "explanation": "Evidence is present, but the required runtime category or structured support is incomplete."
+        },
+        "durationMs": 2755,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 647,
+          "outputTokens": 251,
+          "totalTokens": 898
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "Human time and monetary cost are unavailable from validated run artifacts.",
+          "The baseline receives source code only, so runtime evidence categories are not represented."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/baseline/healthy-control/run-metadata.json",
+          "manifest": "results/baseline/healthy-control/input-manifest.json",
+          "result": "results/baseline/healthy-control/result.json",
+          "failure": null,
+          "browserEvidence": null,
+          "investigatorResult": null,
+          "verification": null,
+          "trajectory": null
+        }
+      },
+      "solution": {
+        "schemaVersion": 1,
+        "caseId": "healthy-control",
+        "approach": "solution",
+        "runId": "e54b6aa6-ae72-407e-b366-6f891a55198b",
+        "status": "succeeded",
+        "observedDiagnosis": {
+          "verdict": "no-leak",
+          "mechanism": null,
+          "rootCauseFile": null,
+          "rootCauseSymbol": null,
+          "confidence": 0.98
+        },
+        "checks": {
+          "verdictCorrect": true,
+          "mechanismCorrect": true,
+          "localizationCorrect": null,
+          "rclaCorrect": true
+        },
+        "evidenceGrounding": {
+          "score": 3,
+          "requiredCategoryCount": 1,
+          "representedCategoryCount": 1,
+          "supportsVerdict": true,
+          "hasLimitations": true,
+          "explanation": "Required structured evidence supports the verdict and limitations are acknowledged."
+        },
+        "durationMs": 60956,
+        "humanTimeMs": null,
+        "usage": {
+          "inputTokens": 4814,
+          "outputTokens": 564,
+          "totalTokens": 5378
+        },
+        "estimatedListCostUsd": null,
+        "actualBilledCostUsd": null,
+        "failure": null,
+        "limitations": [
+          "The evidence comes from a synthetic benchmark-controlled scenario, not an arbitrary production application.",
+          "Heap-size deltas are engine-sensitive and must not be treated as leak proof without a retained post-GC signal.",
+          "The bounded listener summary inspects listeners attached to window and does not replace a full heap snapshot or arbitrary retaining-path search.",
+          "Human time and monetary cost are unavailable from validated run artifacts."
+        ],
+        "rawArtifacts": {
+          "metadata": "results/solution/healthy-control/run-metadata.json",
+          "manifest": "results/solution/healthy-control/input-manifest.json",
+          "result": "results/solution/healthy-control/result.json",
+          "failure": null,
+          "browserEvidence": "results/solution/healthy-control/browser-evidence.json",
+          "investigatorResult": "results/solution/healthy-control/investigator-result.json",
+          "verification": "results/solution/healthy-control/verification.json",
+          "trajectory": "trajectories/healthy-control/e54b6aa6-ae72-407e-b366-6f891a55198b.jsonl"
+        }
+      }
+    }
+  ],
+  "baseline": {
+    "approach": "baseline",
+    "totalCases": 8,
+    "succeededCases": 8,
+    "failedCases": 0,
+    "inconclusiveCases": 0,
+    "rcla": {
+      "numerator": 3,
+      "denominator": 8,
+      "rate": 0.375
+    },
+    "leakDetectionAccuracy": {
+      "numerator": 8,
+      "denominator": 8,
+      "rate": 1
+    },
+    "falsePositiveRate": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0
+    },
+    "mechanismClassificationAccuracy": {
+      "numerator": 2,
+      "denominator": 7,
+      "rate": 0.2857142857142857
+    },
+    "sourceLocalizationAccuracy": {
+      "numerator": 7,
+      "denominator": 7,
+      "rate": 1
+    },
+    "inconclusiveResultRate": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0
+    },
+    "meanEvidenceGroundingScore": 1,
+    "totalDurationMs": 81189,
+    "meanDurationMs": 10148.625,
+    "totalUsage": {
+      "inputTokens": 5054,
+      "outputTokens": 3633,
+      "totalTokens": 8687
+    },
+    "casesWithUsage": 8,
+    "meanTokensPerCaseWithUsage": 1085.875,
+    "totalHumanTimeMs": null,
+    "estimatedListCostUsd": null,
+    "actualBilledCostUsd": null
+  },
+  "solution": {
+    "approach": "solution",
+    "totalCases": 8,
+    "succeededCases": 5,
+    "failedCases": 3,
+    "inconclusiveCases": 0,
+    "rcla": {
+      "numerator": 3,
+      "denominator": 8,
+      "rate": 0.375
+    },
+    "leakDetectionAccuracy": {
+      "numerator": 5,
+      "denominator": 8,
+      "rate": 0.625
+    },
+    "falsePositiveRate": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0
+    },
+    "mechanismClassificationAccuracy": {
+      "numerator": 2,
+      "denominator": 7,
+      "rate": 0.2857142857142857
+    },
+    "sourceLocalizationAccuracy": {
+      "numerator": 4,
+      "denominator": 7,
+      "rate": 0.5714285714285714
+    },
+    "inconclusiveResultRate": {
+      "numerator": 0,
+      "denominator": 8,
+      "rate": 0
+    },
+    "meanEvidenceGroundingScore": 1.875,
+    "totalDurationMs": 410551,
+    "meanDurationMs": 51318.875,
+    "totalUsage": {
+      "inputTokens": 29016,
+      "outputTokens": 5113,
+      "totalTokens": 34129
+    },
+    "casesWithUsage": 7,
+    "meanTokensPerCaseWithUsage": 4875.571428571428,
+    "totalHumanTimeMs": null,
+    "estimatedListCostUsd": null,
+    "actualBilledCostUsd": null
+  },
+  "delta": {
+    "rclaRate": 0,
+    "leakDetectionAccuracyRate": -0.375,
+    "falsePositiveRate": 0,
+    "mechanismClassificationAccuracyRate": 0,
+    "sourceLocalizationAccuracyRate": -0.4285714285714286,
+    "meanEvidenceGroundingScore": 0.875,
+    "totalDurationMs": 329362,
+    "totalTokens": 25442
+  },
+  "primaryMetricImproved": false,
+  "limitations": [
+    "The eight cases are synthetic and do not establish performance on arbitrary production applications.",
+    "The Investigator and Verifier use separate requests to the same Gemini model family.",
+    "Human time and monetary cost are unavailable; runtime and token usage are reported directly from metadata.",
+    "Evidence grounding uses a conservative deterministic proxy for the qualitative rubric."
+  ]
+}
