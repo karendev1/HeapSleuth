@@ -12,6 +12,10 @@ to **4/7 (57.1%)** and the mean evidence-grounding score from **1.0** to
 **3.0**. Verdict accuracy was 8/8 for both approaches, so the demonstrated gain
 is diagnosis quality, not leak detection alone.
 
+The repository began the competition with `docs/PROJECT_PLAN.md` only. All
+source code, benchmark cases, prompts, evaluation artifacts, trajectories, and
+submission documentation were created during the hackathon.
+
 > Frontend debugging agents do not primarily need more reasoning. They need
 > controlled reproduction, runtime evidence, and permission to reject their
 > first hypothesis.
@@ -55,7 +59,8 @@ Then inspect:
 - [final comparison](results/summary/comparison.md);
 - [evaluation methodology](docs/EVALUATION.md);
 - [representative Investigator and Verifier trajectories](docs/TRAJECTORIES.md);
-- [evidence-driven improvement changelog](docs/IMPROVEMENT_CHANGELOG.md).
+- [evidence-driven improvement changelog](docs/IMPROVEMENT_CHANGELOG.md);
+- [official submission checklist](docs/SUBMISSION_CHECKLIST.md).
 
 The repository includes the complete frozen evaluation artifacts. Reviewing them
 does not require Gemini access.
@@ -147,4 +152,5 @@ iterations.
   records.
 
 All direct dependency versions are exact in `package.json`,
-`benchmark/package.json`, and `package-lock.json`.
+`benchmark/package.json`, and `package-lock.json`; licenses are summarized in
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
